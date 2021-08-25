@@ -1,0 +1,7 @@
+export const STATE_KEY: 'movies' = 'movies';
+
+export enum MoviesActionType {
+  RETRIEVE_TOP_RATED_MOVIES = 'movies/RETRIEVE_TOP_RATED_MOVIES',
+  STORE_TOP_RATED_MOVIES = 'movies/STORE_TOP_RATED_MOVIES',
+  RETRIEVE_MOVIES_FAILURE = 'movies/RETRIEVE_MOVIES_FAILURE',
+}
