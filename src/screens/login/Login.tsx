@@ -1,26 +1,9 @@
 import React from 'react';
-import {Text, TouchableOpacity, View, Button} from 'react-native';
-import {NavigationActions} from 'react-navigation';
-
-const Login = ({navigation}) => {
-  //   const navigation = NavigationActions;
+import {Text, View} from 'react-native';
+const Login = ({}) => {
   return (
     <View style={{backgroundColor: 'red'}}>
-      {/* <Button
-        title="caoaoiao"
-        onPress={() => {
-          console.log('aoamsavkoesngesjogjrobj');
-          navigation.navigate('Home');
-        }}
-      /> */}
-      <TouchableOpacity
-        onPress={() => {
-          console.log('ca');
-          navigation.navigate('Home');
-        }}
-        style={{backgroundColor: 'blue'}}>
-        <Text>ciao</Text>
-      </TouchableOpacity>
+      <Text>ciao</Text>
     </View>
   );
 };

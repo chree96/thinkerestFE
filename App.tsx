@@ -3,8 +3,6 @@ import React from 'react';
 import {LogBox, StatusBar} from 'react-native';
 import {Provider} from 'react-redux';
 import Layout from './src/screens';
-
-// import rootStore from './src/store/rootStore';
 import configureStore from './src/store/rootStore';
 import colors from './src/style/colors';
 

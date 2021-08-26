@@ -61,9 +61,10 @@ export const styles = StyleSheet.create({
   },
   reviewContainer: {
     backgroundColor: colors.tundora,
-    // backgroundColor: colors.lightGrey,
-    padding: 10,
     borderRadius: 10,
+  },
+  reviewText: {
+    margin: 10,
   },
   gradientStyle: {
     zIndex: 10,

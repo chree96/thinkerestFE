@@ -1,29 +1,32 @@
 import React from 'react';
-import {View} from 'react-native';
+import {View, ActivityIndicator} from 'react-native';
 import {ContentType} from '../../types/user-actions';
 import {styles} from './Home.styles';
 import Post from '../../components/organisms/post';
 import {useEffect} from 'react';
 import {useState} from 'react';
-import {connect} from 'react-redux';
-import * as postsSelector from '../../store/modules/posts/posts.selector';
+import {colors} from '../../style';
 
 interface PostsListInterface {
   getUserPosts: () => void;
   userPosts?: [] | null;
+  isLoading?: boolean;
 }
 
-export default function Home({getUserPosts, userPosts}: PostsListInterface) {
+export default function Home({
+  getUserPosts,
+  userPosts,
+  isLoading,
+}: PostsListInterface) {
+  const [postsList, setPostsList] = useState(userPosts);
   useEffect(() => {
     getUserPosts();
   }, []);
-  useEffect(() => {
-    console.log('userPosts', userPosts);
-  }, [userPosts]);
 
-  // RECUPERARE IN QUESTA SCHERMATA TUTTE LE INFO CHE CI SERVONO
-  return !userPosts?.length ? (
-    <></>
+  return isLoading ? (
+    <View style={[styles.listContainer, styles.loaderContainer]}>
+      <ActivityIndicator size="large" color={colors.cherryRed} />
+    </View>
   ) : (
     <View style={styles.listContainer}>
       <Post
@@ -37,7 +40,6 @@ export default function Home({getUserPosts, userPosts}: PostsListInterface) {
         review={
           'Lorem Ipsum is simply dummy text of the printing and typesetting industry.'
         }
-        onPress={getUserPosts}
       />
     </View>
   );

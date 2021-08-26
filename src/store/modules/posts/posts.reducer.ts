@@ -1,4 +1,3 @@
-import {Reducer} from 'redux';
 import {PostsActionType} from './posts.const';
 import {PostsState} from './posts.types';
 
@@ -13,9 +12,6 @@ const postsReducer = (state = initialState, action: any) => {
     case PostsActionType.GET_USER_POSTS:
       return Object.assign({}, state, {isLoading: true});
     case PostsActionType.STORE_USER_POSTS:
-      // let tempState = {...state};
-      // tempState.posts = action.payload;
-      // return tempState;
       return Object.assign({}, state, {
         posts: action.payload,
         isLoading: false,
@@ -29,14 +25,5 @@ const postsReducer = (state = initialState, action: any) => {
       return state;
   }
 };
-
-// const reducer: Reducer = (state = initialState, action) => {
-//   const {type, payload} = action;
-//   // const actionHandler = actionHandlers[type];
-//   // if (actionHandler) {
-//   //   return actionHandler(state, payload);
-//   // }
-//   return state;
-// };
 
 export default postsReducer;

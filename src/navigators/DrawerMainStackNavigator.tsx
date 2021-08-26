@@ -29,5 +29,5 @@ const DrawerMainStackNavigator = ({}: any) => {
 
   return <MainStackContainer />;
 };
-const mapDispatchToProps = (dispatch: any) => ({});
+
 export default connect()(DrawerMainStackNavigator);

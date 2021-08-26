@@ -117,7 +117,12 @@ export default function PostCard({
           marginBottom: -10,
         }}></View> */}
       <View style={styles.reviewContainer}>
-        <Text style={[globalStyle.textLight, globalStyle.textSmallishSize]}>
+        <Text
+          style={[
+            globalStyle.textLight,
+            globalStyle.textSmallishSize,
+            styles.reviewText,
+          ]}>
           {review}
         </Text>
         <LinearGradient

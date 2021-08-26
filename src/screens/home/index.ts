@@ -6,6 +6,7 @@ import {connect} from 'react-redux';
 
 const mapStateToProps = (state: any) => ({
   userPosts: postsSelector.retrieveUserPosts(state),
+  isLoading: postsSelector.retrievePostsLoader(state),
 });
 
 const mapDispatchToProps = (dispatch: Dispatch) => ({

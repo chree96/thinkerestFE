@@ -1,6 +1,4 @@
-import {combineReducers, Reducer} from 'redux';
-import {reducer as moviesReducer} from './modules/movies';
-// import {reducer as postsReducer} from './modules/posts';
+import {Reducer} from 'redux';
 import {
   reducer as postsReducer,
   STATE_KEY as POSTS_STATE_KEY,
@@ -19,18 +17,3 @@ const reducer: Reducer<any, any> = (state = initialState, action) => {
 };
 
 export default reducer;
-
-// PRIMA STAVA SOLO QUESTO
-// export default combineReducers({
-//   moviesReducer,
-//   postsReducer,
-// });
-
-// const rootReducer = combineReducers({
-//   moviesReducer,
-//   postsReducer,
-// });
-
-// export default rootReducer;
-
-// export type RootState = ReturnType<typeof rootReducer>;
