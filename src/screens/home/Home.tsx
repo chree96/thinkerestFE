@@ -13,7 +13,7 @@ interface PostsListInterface {
   userPosts?: [] | null;
 }
 
-function Home({getUserPosts, userPosts}: PostsListInterface) {
+export default function Home({getUserPosts, userPosts}: PostsListInterface) {
   useEffect(() => {
     getUserPosts();
   }, []);
@@ -22,7 +22,9 @@ function Home({getUserPosts, userPosts}: PostsListInterface) {
   }, [userPosts]);
 
   // RECUPERARE IN QUESTA SCHERMATA TUTTE LE INFO CHE CI SERVONO
-  return (
+  return !userPosts?.length ? (
+    <></>
+  ) : (
     <View style={styles.listContainer}>
       <Post
         user={'lellodabari'}
@@ -40,9 +42,3 @@ function Home({getUserPosts, userPosts}: PostsListInterface) {
     </View>
   );
 }
-
-const mapStateToProps = (state: any) => ({
-  userPosts: postsSelector.retrieveUserPosts(state),
-});
-
-export default connect(mapStateToProps, null)(Home);
