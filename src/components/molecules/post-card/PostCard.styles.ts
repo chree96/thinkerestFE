@@ -10,7 +10,7 @@ export const styles = StyleSheet.create({
     // backgroundColor: colors.solidWhite,
     borderRadius: 10,
     flex: 1,
-    maxHeight: screenHeight * 0.45,
+    minHeight: screenHeight * 0.45,
     marginHorizontal: 18,
     flexDirection: 'column',
     justifyContent: 'center',
@@ -47,11 +47,6 @@ export const styles = StyleSheet.create({
     marginTop: 8,
     width: '100%',
     justifyContent: 'center',
-  },
-  starsContainer: {
-    flexDirection: 'row',
-    justifyContent: 'center',
-    marginTop: 12,
   },
   btnActionsContainer: {
     flex: 1,

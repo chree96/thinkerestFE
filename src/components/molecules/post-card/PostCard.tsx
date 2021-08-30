@@ -1,47 +1,38 @@
 import React from 'react';
 import {Image, Text, View} from 'react-native';
-import {colors, globalStyle, shadows, sizes} from '../../../style';
+import {colors, globalStyle, shadows} from '../../../style';
 import {styles} from './PostCard.styles';
 import {useMemo} from 'react';
 import ButtonWithIcon from '../../atoms/button-with-icon';
-import {Star} from '../../atoms/svg';
 import IconWithText from '../icon-with-text';
 import LinearGradient from 'react-native-linear-gradient';
+import StarRating from '../star-rating';
 
 interface PostCardProps {
-  starsReview: number;
+  starRating: number;
   contentImg: any;
   title: string;
   genre: string;
   review: string;
+  friendCounter: number;
+  worldCounter: number;
   style?: any;
 }
 
 export default function PostCard({
-  starsReview,
+  starRating,
   contentImg,
   title,
   genre,
   review,
+  friendCounter,
+  worldCounter,
   style,
 }: PostCardProps) {
   const btnActions = [
     {icon: 'share', action: 'log1'},
     {icon: 'cloud', action: 'log2'},
   ];
-  const renderStarsReview = useMemo(() => {
-    let stars: any[] = [];
-    for (let i = 1; i <= 5; i++) {
-      const starColor =
-        i <= starsReview ? colors.gold : colors.notSnowWhiteGray;
-      stars.push(
-        <View style={{marginLeft: i === 1 ? 0 : 4}} key={'star-' + i}>
-          <Star fill={starColor} width={sizes.large} />
-        </View>,
-      );
-    }
-    return stars;
-  }, [starsReview]);
 
   const renderBtnActions = useMemo(() => {
     let buttons: any[] = [];
@@ -59,6 +50,11 @@ export default function PostCard({
     });
     return buttons;
   }, []);
+
+  const formattedCounter = useMemo(() => {
+    let counter = worldCounter;
+    return counter >= 1000 ? Math.trunc(counter / 1000) + 'k' : counter;
+  }, [worldCounter]);
 
   return (
     <View style={[shadows.medium, styles.cardContainer, style]}>
@@ -91,18 +87,18 @@ export default function PostCard({
           <View style={styles.contentInfoContainer}>
             <IconWithText
               svgName={'world'}
-              text={'25k'}
+              text={formattedCounter}
               width={30}
               svgColor={colors.solidWhite}
             />
             <IconWithText
               svgName={'people'}
-              text={'17'}
+              text={friendCounter}
               width={30}
               svgColor={colors.solidWhite}
             />
           </View>
-          <View style={styles.starsContainer}>{renderStarsReview}</View>
+          <StarRating rating={starRating} />
           <View style={styles.btnActionsContainer}>{renderBtnActions}</View>
         </View>
       </View>
