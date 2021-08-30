@@ -1,17 +1,15 @@
 import axios from 'axios';
 import {PostsActionType} from './posts.const';
 
-export const getUserPosts = () => {
+export const getHomePosts = () => {
   return (dispatch: any) => {
-    dispatch({type: PostsActionType.GET_USER_POSTS});
+    dispatch({type: PostsActionType.GET_HOME_POSTS});
     axios
-      .get(
-        'http://api.openweathermap.org/data/2.5/group?id=668737,2643743,3165524&units=metric&lang=it&appid=6754d26c649cf9f0f97649359c3bed9b',
-      )
+      .get('http://10.0.2.2:3030/home-posts')
       .then(response => {
         dispatch({
           type: PostsActionType.STORE_USER_POSTS,
-          payload: response.data.list,
+          payload: response.data.results,
         });
       })
       .catch(error => {

@@ -9,7 +9,7 @@ const initialState: PostsState = {
 
 const postsReducer = (state = initialState, action: any) => {
   switch (action.type) {
-    case PostsActionType.GET_USER_POSTS:
+    case PostsActionType.GET_HOME_POSTS:
       return Object.assign({}, state, {isLoading: true});
     case PostsActionType.STORE_USER_POSTS:
       return Object.assign({}, state, {

@@ -4,23 +4,40 @@ import {ContentType} from '../../types/user-actions';
 import {styles} from './Home.styles';
 import Post from '../../components/organisms/post';
 import {useEffect} from 'react';
-import {useState} from 'react';
 import {colors} from '../../style';
+import {FlatList} from 'react-native-gesture-handler';
+import {useCallback} from 'react';
 
 interface PostsListInterface {
-  getUserPosts: () => void;
+  getHomePosts: () => void;
   userPosts?: [] | null;
   isLoading?: boolean;
 }
 
 export default function Home({
-  getUserPosts,
+  getHomePosts,
   userPosts,
   isLoading,
 }: PostsListInterface) {
-  const [postsList, setPostsList] = useState(userPosts);
   useEffect(() => {
-    getUserPosts();
+    getHomePosts();
+  }, []);
+
+  const renderPosts = useCallback((post: any) => {
+    return (
+      <Post
+        user={post?.item?.user}
+        userImg={require('../../../assets/images/mockImages/lello.jpg')}
+        contentType={post?.item?.contentType as ContentType}
+        starRating={post?.item?.starRating}
+        contentImg={require('../../../assets/images/mockImages/pulp-fiction-locandina.jpg')}
+        title={post?.item?.title}
+        genre={post?.item?.genre}
+        review={post?.item?.review}
+        friendCounter={post?.item?.friendCounter}
+        worldCounter={post?.item?.worldCounter}
+      />
+    );
   }, []);
 
   return isLoading ? (
@@ -29,17 +46,10 @@ export default function Home({
     </View>
   ) : (
     <View style={styles.listContainer}>
-      <Post
-        user={'lellodabari'}
-        userImg={require('../../../assets/images/mockImages/lello.jpg')}
-        contentType={ContentType.movies}
-        starsReview={4}
-        contentImg={require('../../../assets/images/mockImages/pulp-fiction-locandina.jpg')}
-        title={'Pulp Fiction'}
-        genre={'Drama/Romance'}
-        review={
-          'Lorem Ipsum is simply dummy text of the printing and typesetting industry.'
-        }
+      <FlatList
+        renderItem={renderPosts}
+        data={userPosts}
+        keyExtractor={item => 'post-' + item?.id}
       />
     </View>
   );

@@ -10,8 +10,8 @@ const mapStateToProps = (state: any) => ({
 });
 
 const mapDispatchToProps = (dispatch: Dispatch) => ({
-  getUserPosts: () => {
-    dispatch(postsActions.getUserPosts() as any);
+  getHomePosts: () => {
+    dispatch(postsActions.getHomePosts() as any);
   },
 });
 

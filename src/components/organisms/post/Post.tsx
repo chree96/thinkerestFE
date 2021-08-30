@@ -9,11 +9,13 @@ interface PostProps {
   user: string;
   userImg: string;
   contentType: ContentType;
-  starsReview: number;
+  starRating: number;
   contentImg: any;
   title: string;
   genre: string;
   review: string;
+  friendCounter: number;
+  worldCounter: number;
   style?: any;
 }
 
@@ -21,22 +23,26 @@ export default function Post({
   user,
   userImg,
   contentType,
-  starsReview,
+  starRating,
   contentImg,
   title,
   genre,
   review,
+  friendCounter,
+  worldCounter,
   style,
 }: PostProps) {
   return (
     <View style={[styles.listContainer, style]}>
       <UserShareInfo user={user} userImg={userImg} contentType={contentType} />
       <PostCard
-        starsReview={starsReview}
+        starRating={starRating}
         contentImg={contentImg}
         title={title}
         genre={genre}
         review={review}
+        friendCounter={friendCounter}
+        worldCounter={worldCounter}
       />
     </View>
   );

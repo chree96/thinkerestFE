@@ -6,7 +6,7 @@ import IconSvg from '../../atoms/icons-svg';
 
 interface IconWithTextProps {
   svgName: string;
-  text: string;
+  text: string | number;
   svgColor?: string | symbol;
   width?: number;
   style?: any;
