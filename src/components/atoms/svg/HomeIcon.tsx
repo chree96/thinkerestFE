@@ -2,7 +2,7 @@ import * as React from 'react';
 import Svg, {Path} from 'react-native-svg';
 
 function HomeIcon(props: any) {
-  const width = props?.width || 35;
+  const width = props?.width || 30;
   const color = props?.fill || '#000';
   return (
     <Svg width={width} height={width} viewBox="0 0 24 24" {...props}>
