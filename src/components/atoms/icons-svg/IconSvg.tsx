@@ -1,6 +1,15 @@
 import React, {ReactChild, ReactFragment, ReactPortal} from 'react';
 import {View} from 'react-native';
-import {Cloud, People, Share, World} from '../svg';
+import {
+  Book,
+  Cloud,
+  Gamepad,
+  Movie,
+  People,
+  Share,
+  Television,
+  World,
+} from '../svg';
 import styles from './IconsSvg.style';
 
 export interface IconsSvgProps {
@@ -48,6 +57,11 @@ const IconSvg = ({
           people: (
             <People width={width || 35} height={width || 35} fill={color} />
           ),
+          movies: <Movie fill={color} />,
+          books: <Book fill={color} />,
+          tvSeries: <Television fill={color} />,
+          games: <Gamepad fill={color} />,
+          general: <Movie fill={color} />,
         };
         //@ts-ignore
         const Icon = iconList[iconName] as React.ReactNode;

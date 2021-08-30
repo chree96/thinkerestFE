@@ -6,3 +6,7 @@ export {default as Star} from './Star';
 export {default as Movie} from './Movie';
 export {default as HomeIcon} from './HomeIcon';
 export {default as SearchIcon} from './SearchIcon';
+export {default as Timer} from './Timer';
+export {default as Television} from './Television';
+export {default as Gamepad} from './Gamepad';
+export {default as Book} from './Book';
