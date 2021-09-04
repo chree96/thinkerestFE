@@ -24,26 +24,22 @@ export default function Home({
     getHomePosts();
   }, []);
 
-  const renderPosts = useCallback(
-    ({item}) => {
-      return (
-        <Post
-          user={item?.user}
-          userImg={{uri: item?.userImg}}
-          contentType={item?.contentType as ContentType}
-          starRating={item?.starRating}
-          contentImg={{uri: item?.contentImg}}
-          title={item?.title}
-          genre={item?.genre}
-          review={item?.review}
-          friendCounter={item?.friendCounter}
-          worldCounter={item?.worldCounter}
-          color={contentColor}
-        />
-      );
-    },
-    [contentColor],
-  );
+  const renderPosts = useCallback(({item}) => {
+    return (
+      <Post
+        user={item?.user}
+        userImg={{uri: item?.userImg}}
+        contentType={item?.contentType as ContentType}
+        starRating={item?.starRating}
+        contentImg={{uri: item?.contentImg}}
+        title={item?.title}
+        genre={item?.genre}
+        review={item?.review}
+        friendCounter={item?.friendCounter}
+        worldCounter={item?.worldCounter}
+      />
+    );
+  }, []);
 
   return isLoading ? (
     <View style={[styles.listContainer, styles.loaderContainer]}>

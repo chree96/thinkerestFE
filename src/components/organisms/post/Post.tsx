@@ -7,7 +7,7 @@ import {styles} from './Post.styles';
 
 interface PostProps {
   user: string;
-  userImg: string;
+  userImg: any;
   contentType: ContentType;
   starRating: number;
   contentImg: any;

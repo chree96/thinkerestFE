@@ -2,7 +2,6 @@ import React from 'react';
 import {Text, View} from 'react-native';
 import {colors, globalStyle, sizes} from '../../../style';
 import ImageCircleContainer from '../../atoms/image-circle-container';
-import MCIIcon from 'react-native-vector-icons/MaterialCommunityIcons';
 import {styles} from './UserShareInfo.styles';
 import {useMemo} from 'react';
 import {ContentType} from '../../../types/user-actions';
@@ -10,7 +9,7 @@ import {Movie} from '../../atoms/svg';
 
 interface UserShareInfoProps {
   user: string;
-  userImg: string;
+  userImg: any;
   contentType: ContentType;
   style?: any;
 }
@@ -39,7 +38,7 @@ export default function UserShareInfo({
           </>
         );
     }
-  }, []);
+  }, [contentType, user]);
 
   return (
     <View style={[styles.infoContainer, style]}>

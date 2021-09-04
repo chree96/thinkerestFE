@@ -29,12 +29,11 @@ export default function PostCard({
   worldCounter,
   style,
 }: PostCardProps) {
-  const btnActions = [
-    {icon: 'share', action: 'log1'},
-    {icon: 'cloud', action: 'log2'},
-  ];
-
   const renderBtnActions = useMemo(() => {
+    const btnActions = [
+      {icon: 'share', action: 'log1'},
+      {icon: 'cloud', action: 'log2'},
+    ];
     let buttons: any[] = [];
     btnActions.map((item, key) => {
       let iconColor =
