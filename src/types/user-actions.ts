@@ -1,6 +1,7 @@
 export enum ContentType {
-  tvSeries = 'tvSeries',
+  general = 'general',
   movies = 'movies',
+  tvSeries = 'tvSeries',
   games = 'games',
   books = 'books',
 }
