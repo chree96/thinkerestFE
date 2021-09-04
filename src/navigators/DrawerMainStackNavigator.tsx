@@ -1,5 +1,3 @@
-// import {createStackNavigator} from 'react-navigation-stack';
-// import {createAppContainer} from 'react-navigation';
 import Login from '../screens/login';
 import Home from '../screens/home';
 import MainHeader from '../components/organisms/main-header';
@@ -7,71 +5,43 @@ import React, {useCallback} from 'react';
 import {connect} from 'react-redux';
 import {createBottomTabNavigator} from '@react-navigation/bottom-tabs';
 import {NavigationContainer} from '@react-navigation/native';
-import {HomeIcon, SearchIcon} from '../components/atoms/svg';
 import {colors} from '../style';
 import {Screen} from '../screens/types';
+import {
+  retrieveContentColor,
+  retrieveContentType,
+} from '../store/rootSelectors';
+import tabIcon from '../utils/navigator/get-tab-icon';
 
-const DrawerMainStackNavigator = ({}: any) => {
-  // const MainStackContainer = createAppContainer(
-  //   createStackNavigator({
-  //     Home: {
-  //       screen: Home,
-  //       navigationOptions: {
-  //         headerShown: true,
-  //         header: () => {
-  //           return <MainHeader />;
-  //         },
-  //       },
-  //     },
-  //     Login: {
-  //       screen: Login,
-  //       navigationOptions: {
-  //         headerShown: false,
-  //       },
-  //     },
-  //   }),
-  // );
-
-  const tabIcon = useCallback((route, focused) => {
-    const iconInactiveColor = colors.solidBlack;
-    const iconFocusColor = colors.cherryRed;
-    const iconColor = focused ? iconFocusColor : iconInactiveColor;
-    switch (route.name) {
-      case Screen.Home:
-        return <HomeIcon fill={iconColor} />;
-      case Screen.Search:
-        return <SearchIcon fill={iconColor} />;
-      case Screen.Login:
-        return <SearchIcon fill={iconColor} />;
-      case Screen.Profile:
-        return <SearchIcon fill={iconColor} />;
-    }
-  }, []);
-
+const DrawerMainStackNavigator = ({contentType, contentColor}: any) => {
   const Tab = createBottomTabNavigator();
-  function MyTabs() {
+  const MyTabs = useCallback(() => {
     return (
       <Tab.Navigator
         screenOptions={({route}) => ({
-          header: () => <MainHeader />,
+          header: () => (
+            <MainHeader contentType={contentType} contentColor={contentColor} />
+          ),
           headerShown: true,
           tabBarShowLabel: false,
-          tabBarIcon: ({focused, color, size}) => tabIcon(route, focused),
+          tabBarIcon: ({focused}) => tabIcon(route, focused, contentColor),
+          tabBarStyle: {
+            backgroundColor: colors.solidBlack,
+            borderTopColor: 'transparent',
+          },
         })}>
-        {/* <MainStackContainer /> */}
-
         <Tab.Screen
           name={Screen.Home}
           component={Home}
           options={{headerShown: true}}
         />
         <Tab.Screen
-          name={Screen.Login}
+          name={Screen.Search}
           component={Login}
           options={{headerShown: true}}
         />
         <Tab.Screen
-          name={Screen.Search}
+          name={Screen.Login}
           component={Login}
           options={{headerShown: true}}
         />
@@ -82,13 +52,18 @@ const DrawerMainStackNavigator = ({}: any) => {
         />
       </Tab.Navigator>
     );
-  }
+  }, [contentColor, contentType]);
+
   return (
     <NavigationContainer>
-      {/* <MainStackContainer /> */}
       <MyTabs />
     </NavigationContainer>
   );
 };
 
-export default connect()(DrawerMainStackNavigator);
+const mapStateToProps = (state: any) => ({
+  contentType: retrieveContentType(state),
+  contentColor: retrieveContentColor(state),
+});
+
+export default connect(mapStateToProps)(DrawerMainStackNavigator);
