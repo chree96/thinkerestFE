@@ -1,4 +1,5 @@
 import axios from 'axios';
+import {ContentType} from '../../../types/user-actions';
 import {PostsActionType} from './posts.const';
 
 export const getHomePosts = () => {
@@ -18,5 +19,11 @@ export const getHomePosts = () => {
           payload: error,
         });
       });
+  };
+};
+
+export const setContentType = (contentType: ContentType) => {
+  return (dispatch: any) => {
+    dispatch({type: PostsActionType.SET_CONTENT_TYPE, payload: contentType});
   };
 };
