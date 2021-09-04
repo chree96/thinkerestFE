@@ -1,11 +1,12 @@
 import React from 'react';
 import {Text, View} from 'react-native';
-import {colors, globalStyle, sizes} from '../../../style';
+import {globalStyle} from '../../../style';
 import ImageCircleContainer from '../../atoms/image-circle-container';
 import {styles} from './UserShareInfo.styles';
 import {useMemo} from 'react';
 import {ContentType} from '../../../types/user-actions';
-import {Movie} from '../../atoms/svg';
+import getContentIcon from '../../../utils/content/get-content-icon';
+import getContentAction from '../../../utils/content/get-content-action';
 
 interface UserShareInfoProps {
   user: string;
@@ -21,23 +22,17 @@ export default function UserShareInfo({
   style,
 }: UserShareInfoProps) {
   const renderUserAction = useMemo(() => {
-    switch (contentType) {
-      case ContentType.tvSeries:
-      case ContentType.movies:
-      case ContentType.games:
-      case ContentType.books:
-        return (
-          <>
-            <Text style={[globalStyle.textLight, styles.txtStyle]}>
-              <Text style={globalStyle.textBold}>{user} </Text>
-              sta vedendo
-            </Text>
-            <View style={styles.iconContainer}>
-              <Movie fill={colors.cherryRed} width={sizes.larger} />
-            </View>
-          </>
-        );
-    }
+    const action = getContentAction(contentType);
+    const icon = getContentIcon(contentType);
+    return (
+      <>
+        <Text style={[globalStyle.textLight, styles.txtStyle]}>
+          <Text style={globalStyle.textBold}>{user} </Text>
+          {action}
+        </Text>
+        <View style={styles.iconContainer}>{icon}</View>
+      </>
+    );
   }, [contentType, user]);
 
   return (
