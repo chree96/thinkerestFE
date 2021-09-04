@@ -4,45 +4,50 @@ import {ContentType} from '../../types/user-actions';
 import {styles} from './Home.styles';
 import Post from '../../components/organisms/post';
 import {useEffect} from 'react';
-import {colors} from '../../style';
 import {FlatList} from 'react-native-gesture-handler';
 import {useCallback} from 'react';
 
 interface PostsListInterface {
   getHomePosts: () => void;
   userPosts?: [] | null;
+  contentColor: string;
   isLoading?: boolean;
 }
 
 export default function Home({
   getHomePosts,
   userPosts,
+  contentColor,
   isLoading,
 }: PostsListInterface) {
   useEffect(() => {
     getHomePosts();
   }, []);
 
-  const renderPosts = useCallback((post: any) => {
-    return (
-      <Post
-        user={post?.item?.user}
-        userImg={require('../../../assets/images/mockImages/lello.jpg')}
-        contentType={post?.item?.contentType as ContentType}
-        starRating={post?.item?.starRating}
-        contentImg={require('../../../assets/images/mockImages/pulp-fiction-locandina.jpg')}
-        title={post?.item?.title}
-        genre={post?.item?.genre}
-        review={post?.item?.review}
-        friendCounter={post?.item?.friendCounter}
-        worldCounter={post?.item?.worldCounter}
-      />
-    );
-  }, []);
+  const renderPosts = useCallback(
+    ({item}) => {
+      return (
+        <Post
+          user={item?.user}
+          userImg={{uri: item?.userImg}}
+          contentType={item?.contentType as ContentType}
+          starRating={item?.starRating}
+          contentImg={{uri: item?.contentImg}}
+          title={item?.title}
+          genre={item?.genre}
+          review={item?.review}
+          friendCounter={item?.friendCounter}
+          worldCounter={item?.worldCounter}
+          color={contentColor}
+        />
+      );
+    },
+    [contentColor],
+  );
 
   return isLoading ? (
     <View style={[styles.listContainer, styles.loaderContainer]}>
-      <ActivityIndicator size="large" color={colors.cherryRed} />
+      <ActivityIndicator size="large" color={contentColor} />
     </View>
   ) : (
     <View style={styles.listContainer}>
