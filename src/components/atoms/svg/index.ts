@@ -10,3 +10,4 @@ export {default as Timer} from './Timer';
 export {default as Television} from './Television';
 export {default as Gamepad} from './Gamepad';
 export {default as Book} from './Book';
+export {default as Generic} from './Generic';

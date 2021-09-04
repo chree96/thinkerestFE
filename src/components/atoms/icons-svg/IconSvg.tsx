@@ -4,6 +4,7 @@ import {
   Book,
   Cloud,
   Gamepad,
+  Generic,
   Movie,
   People,
   Share,
@@ -61,7 +62,7 @@ const IconSvg = ({
           books: <Book fill={color} />,
           tvSeries: <Television fill={color} />,
           games: <Gamepad fill={color} />,
-          general: <Movie fill={color} />,
+          general: <Generic fill={color} />,
         };
         //@ts-ignore
         const Icon = iconList[iconName] as React.ReactNode;
