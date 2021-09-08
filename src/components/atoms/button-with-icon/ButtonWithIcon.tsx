@@ -1,5 +1,5 @@
 import React from 'react';
-import {TouchableOpacity} from 'react-native';
+import {TouchableOpacity} from 'react-native-gesture-handler';
 import {colors, shadows} from '../../../style';
 import {styles} from './ButtonWithIcon.styles';
 import IconSvg from '../icons-svg';
