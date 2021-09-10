@@ -1,4 +1,4 @@
-import React from 'react';
+import React, {memo, useCallback} from 'react';
 import {View} from 'react-native';
 import UserShareInfo from '../../molecules/user-share-info/UserShareInfo';
 import {ContentType} from '../../../types/user-actions';
@@ -19,31 +19,60 @@ interface PostProps {
   style?: any;
 }
 
-export default function Post({
-  user,
-  userImg,
-  contentType,
-  starRating,
-  contentImg,
-  title,
-  genre,
-  review,
-  friendCounter,
-  worldCounter,
-  style,
-}: PostProps) {
-  return (
-    <View style={[styles.listContainer, style]}>
-      <UserShareInfo user={user} userImg={userImg} contentType={contentType} />
-      <PostCard
-        starRating={starRating}
-        contentImg={contentImg}
-        title={title}
-        genre={genre}
-        review={review}
-        friendCounter={friendCounter}
-        worldCounter={worldCounter}
-      />
-    </View>
-  );
-}
+const Post = memo<PostProps>(
+  ({
+    user,
+    userImg,
+    contentType,
+    starRating,
+    contentImg,
+    title,
+    genre,
+    review,
+    friendCounter,
+    worldCounter,
+    style,
+  }) => {
+    const RenderPostCard = useCallback(
+      () => (
+        <PostCard
+          starRating={starRating}
+          contentImg={contentImg}
+          title={title}
+          genre={genre}
+          review={review}
+          friendCounter={friendCounter}
+          worldCounter={worldCounter}
+        />
+      ),
+      [
+        contentImg,
+        friendCounter,
+        genre,
+        review,
+        starRating,
+        title,
+        worldCounter,
+      ],
+    );
+    const RenderUserShareInfo = useCallback(
+      () => (
+        <UserShareInfo
+          user={user}
+          userImg={userImg}
+          contentType={contentType}
+        />
+      ),
+      [contentType, user, userImg],
+    );
+
+    return (
+      <View style={[styles.listContainer, style]}>
+        <RenderUserShareInfo />
+        <RenderPostCard />
+      </View>
+    );
+  },
+);
+
+export default Post;
