@@ -1,13 +1,13 @@
 import React from 'react';
 import {Text, TouchableOpacity, View} from 'react-native';
-const Login = ({navigation}) => {
+const Test = ({navigation}) => {
   return (
-    <View style={{backgroundColor: 'red'}}>
+    <View style={{backgroundColor: 'red', marginTop: 90}}>
       <TouchableOpacity onPress={() => navigation.navigate('Home')}>
-        <Text>ciao</Text>
+        <Text>AAAAAAAAAAAAAAAAAAAAAAAA</Text>
       </TouchableOpacity>
     </View>
   );
 };
 
-export default Login;
+export default Test;
