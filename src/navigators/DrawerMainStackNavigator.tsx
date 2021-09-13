@@ -32,53 +32,18 @@ const DrawerMainStackNavigator = ({contentType, contentColor}: any) => {
     [],
   );
 
-  const BottomNavigator = useCallback(() => {
-    return (
-      <Tab.Navigator
-        initialRouteName={Screen.Home}
-        screenOptions={({route}) => ({
-          tabBarShowLabel: false,
-          tabBarIcon: ({focused}) => tabIcon(route, focused, contentColor),
-          tabBarStyle: {
-            backgroundColor: colors.solidBlack,
-            borderTopColor: 'transparent',
-          },
-        })}>
-        <Tab.Screen
-          name={Screen.Home}
-          children={props => getInnerNavigator(Home, Screen.Home, props)}
-          options={{
-            headerShown: false,
-          }}
-        />
-        <Tab.Screen
-          name={Screen.Search}
-          children={props =>
-            getInnerNavigator(Search, Screen.Search, props, false)
-          }
-          options={{headerShown: false, unmountOnBlur: true}}
-        />
-        <Tab.Screen
-          name={Screen.Login}
-          children={props => getInnerNavigator(Login, Screen.Login, props)}
-          options={{headerShown: false}}
-        />
-        <Tab.Screen
-          name={Screen.Profile}
-          children={props => getInnerNavigator(Login, Screen.Profile, props)}
-          options={{headerShown: false}}
-        />
-      </Tab.Navigator>
-    );
-  }, [contentColor, getInnerNavigator]);
-
-  const InnerNavigator = useCallback(
-    ({initialRouteComponent, initialRouteName, navigation, headerShown}) => (
-      <Stack.Navigator initialRouteName={initialRouteName}>
-        <Stack.Screen
-          name={initialRouteName}
-          component={initialRouteComponent}
-          options={{
+  const BottomNavigator = useCallback(
+    ({navigation}) => {
+      return (
+        <Tab.Navigator
+          initialRouteName={Screen.Home}
+          screenOptions={({route}) => ({
+            tabBarShowLabel: false,
+            tabBarIcon: ({focused}) => tabIcon(route, focused, contentColor),
+            tabBarStyle: {
+              backgroundColor: colors.solidBlack,
+              borderTopColor: 'transparent',
+            },
             header: () => {
               return (
                 <MainHeader
@@ -88,6 +53,45 @@ const DrawerMainStackNavigator = ({contentType, contentColor}: any) => {
                 />
               );
             },
+            headerShown: true,
+          })}>
+          <Tab.Screen
+            name={Screen.Home}
+            children={props => getInnerNavigator(Home, Screen.Home, props)}
+            options={{
+              headerShown: true,
+            }}
+          />
+          <Tab.Screen
+            name={Screen.Search}
+            children={props =>
+              getInnerNavigator(Search, Screen.Search, props, false)
+            }
+            options={{headerShown: false, unmountOnBlur: true}}
+          />
+          <Tab.Screen
+            name={Screen.Login}
+            children={props => getInnerNavigator(Login, Screen.Login, props)}
+            options={{headerShown: false}}
+          />
+          <Tab.Screen
+            name={Screen.Profile}
+            children={props => getInnerNavigator(Login, Screen.Profile, props)}
+            options={{headerShown: false}}
+          />
+        </Tab.Navigator>
+      );
+    },
+    [contentColor, contentType, getInnerNavigator],
+  );
+
+  const InnerNavigator = useCallback(
+    ({initialRouteComponent, initialRouteName, navigation, headerShown}) => (
+      <Stack.Navigator initialRouteName={initialRouteName}>
+        <Stack.Screen
+          name={initialRouteName}
+          component={initialRouteComponent}
+          options={{
             headerShown: headerShown,
           }}
         />
@@ -98,7 +102,7 @@ const DrawerMainStackNavigator = ({contentType, contentColor}: any) => {
         />
       </Stack.Navigator>
     ),
-    [contentColor, contentType],
+    [],
   );
 
   return (
