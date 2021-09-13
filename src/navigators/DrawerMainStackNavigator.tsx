@@ -1,28 +1,42 @@
-import Login from '../screens/login';
-import Home from '../screens/home';
-import MainHeader from '../components/organisms/main-header';
-import React, {useCallback} from 'react';
-import {connect} from 'react-redux';
 import {createBottomTabNavigator} from '@react-navigation/bottom-tabs';
 import {NavigationContainer} from '@react-navigation/native';
-import {colors} from '../style';
+import {createStackNavigator} from '@react-navigation/stack';
+import React, {useCallback} from 'react';
+import {connect} from 'react-redux';
+import MainHeader from '../components/organisms/main-header';
+import Home from '../screens/home';
+import Login from '../screens/login';
+import Search from '../screens/search';
+import Test from '../screens/search copy/Test';
 import {Screen} from '../screens/types';
 import {
   retrieveContentColor,
   retrieveContentType,
 } from '../store/rootSelectors';
+import {colors} from '../style';
 import tabIcon from '../utils/navigator/get-tab-icon';
 
 const DrawerMainStackNavigator = ({contentType, contentColor}: any) => {
+  const Stack = createStackNavigator();
   const Tab = createBottomTabNavigator();
-  const MyTabs = useCallback(() => {
+
+  const getInnerNavigator = useCallback(
+    (initialRouteComponent, initialRouteName, props, headerShown = true) => (
+      <InnerNavigator
+        initialRouteComponent={initialRouteComponent}
+        initialRouteName={initialRouteName + 'In'}
+        {...props}
+        headerShown={headerShown}
+      />
+    ),
+    [],
+  );
+
+  const BottomNavigator = useCallback(() => {
     return (
       <Tab.Navigator
+        initialRouteName={Screen.Home}
         screenOptions={({route}) => ({
-          header: () => (
-            <MainHeader contentType={contentType} contentColor={contentColor} />
-          ),
-          headerShown: true,
           tabBarShowLabel: false,
           tabBarIcon: ({focused}) => tabIcon(route, focused, contentColor),
           tabBarStyle: {
@@ -32,31 +46,64 @@ const DrawerMainStackNavigator = ({contentType, contentColor}: any) => {
         })}>
         <Tab.Screen
           name={Screen.Home}
-          component={Home}
-          options={{headerShown: true}}
+          children={props => getInnerNavigator(Home, Screen.Home, props)}
+          options={{
+            headerShown: false,
+          }}
         />
         <Tab.Screen
           name={Screen.Search}
-          component={Login}
-          options={{headerShown: true}}
+          children={props =>
+            getInnerNavigator(Search, Screen.Search, props, false)
+          }
+          options={{headerShown: false, unmountOnBlur: true}}
         />
         <Tab.Screen
           name={Screen.Login}
-          component={Login}
-          options={{headerShown: true}}
+          children={props => getInnerNavigator(Login, Screen.Login, props)}
+          options={{headerShown: false}}
         />
         <Tab.Screen
           name={Screen.Profile}
-          component={Login}
-          options={{headerShown: true}}
+          children={props => getInnerNavigator(Login, Screen.Profile, props)}
+          options={{headerShown: false}}
         />
       </Tab.Navigator>
     );
-  }, [contentColor, contentType]);
+  }, [contentColor, getInnerNavigator]);
+
+  const InnerNavigator = useCallback(
+    ({initialRouteComponent, initialRouteName, navigation, headerShown}) => (
+      <Stack.Navigator initialRouteName={initialRouteName}>
+        <Stack.Screen
+          name={initialRouteName}
+          component={initialRouteComponent}
+          options={{
+            header: () => {
+              return (
+                <MainHeader
+                  contentType={contentType}
+                  contentColor={contentColor}
+                  navigation={navigation}
+                />
+              );
+            },
+            headerShown: headerShown,
+          }}
+        />
+        <Stack.Screen
+          name={'Test'}
+          children={() => <Test navigation={navigation} />}
+          options={{headerShown: false}}
+        />
+      </Stack.Navigator>
+    ),
+    [contentColor, contentType],
+  );
 
   return (
     <NavigationContainer>
-      <MyTabs />
+      <BottomNavigator />
     </NavigationContainer>
   );
 };
