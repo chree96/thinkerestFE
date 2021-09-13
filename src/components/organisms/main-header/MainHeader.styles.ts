@@ -14,10 +14,4 @@ export const styles = StyleSheet.create({
     fontSize: sizes.larger,
     marginLeft: 15,
   },
-  buttonsContainer: {
-    flex: 1,
-    flexDirection: 'row',
-    justifyContent: 'space-evenly',
-    alignItems: 'center',
-  },
 });

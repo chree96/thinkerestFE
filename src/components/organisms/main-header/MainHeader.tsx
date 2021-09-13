@@ -1,16 +1,15 @@
 import React, {memo, useEffect, useMemo} from 'react';
 import {Animated} from 'react-native';
-import {colors, shadows} from '../../../style';
+import {shadows} from '../../../style';
 import {styles} from './MainHeader.styles';
 import {ContentType} from '../../../types/user-actions';
-import {FlatList} from 'react-native-gesture-handler';
-import ButtonWithIcon from '../../atoms/button-with-icon';
 import {useCallback} from 'react';
 import {BottomTabHeaderProps} from '@react-navigation/bottom-tabs/lib/typescript/src/types';
 import {
   getHeaderAnimationStyles,
   startCollapse,
 } from '../../../utils/header/header-animation';
+import HeaderContentButtons from '../../molecules/header-content-buttons';
 
 interface MainHeaderProps {
   contentType: ContentType;
@@ -30,21 +29,6 @@ const MainHeader = memo<MainHeaderProps>(
     isHiddenHeader,
     navigation,
   }) => {
-    const renderContentButtons = useCallback(
-      ({item}) => {
-        const selectedContent = item === contentType;
-        const iconColor = selectedContent ? contentColor : colors.solidWhite;
-        return (
-          <ButtonWithIcon
-            iconName={item}
-            iconColor={iconColor}
-            onPress={() => setContentType(item as ContentType)}
-          />
-        );
-      },
-      [contentColor, contentType, setContentType],
-    );
-
     const {transformHeaderCollapse, transformContent, transformLogo} = useMemo(
       () => getHeaderAnimationStyles(),
       [],
@@ -73,20 +57,20 @@ const MainHeader = memo<MainHeaderProps>(
             ]}>
             Thinkerest
           </Animated.Text>
-          <Animated.View style={[transformContent, {paddingBottom: 4}]}>
-            <FlatList
-              horizontal
-              contentContainerStyle={styles.buttonsContainer}
-              data={Object.keys(ContentType)}
-              renderItem={renderContentButtons}
-              keyExtractor={item => item + '-button'}
-            />
-          </Animated.View>
+          <HeaderContentButtons
+            contentType={contentType}
+            contentColor={contentColor}
+            isHiddenHeader={isHiddenHeader}
+            setContentType={setContentType}
+            style={transformContent}
+          />
         </Animated.View>
       );
     }, [
       contentColor,
-      renderContentButtons,
+      contentType,
+      isHiddenHeader,
+      setContentType,
       style,
       transformContent,
       transformHeaderCollapse,
