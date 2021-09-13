@@ -7,7 +7,9 @@ const headerY = new Animated.Value(0);
 const contentsHeight = new Animated.Value(40);
 // LOGO ANIMATION
 const logoSize = new Animated.Value(10);
+const logoSizeY = new Animated.Value(10);
 const logoX = new Animated.Value(0);
+const logoY = new Animated.Value(0);
 
 export const getHeaderAnimationStyles = () => {
   const headerCollapse = headerHeight.interpolate({
@@ -32,7 +34,11 @@ export const getHeaderAnimationStyles = () => {
     transform: [{scaleY: contentsCollapse}],
   };
 
-  const logoCollapse = logoSize.interpolate({
+  const logoCollapseX = logoSize.interpolate({
+    inputRange: [0, 5, 10],
+    outputRange: [0, 0.5, 1],
+  });
+  const logoCollapseY = logoSizeY.interpolate({
     inputRange: [0, 5, 10],
     outputRange: [0, 0.5, 1],
   });
@@ -40,12 +46,17 @@ export const getHeaderAnimationStyles = () => {
     inputRange: [0, 1],
     outputRange: [0, 2],
   });
+  const logoYInterpolate = logoX.interpolate({
+    inputRange: [0, 1],
+    outputRange: [0, 2],
+  });
 
   const transformLogo = {
     transform: [
-      {scale: logoCollapse},
+      {scaleX: logoCollapseX},
+      {scaleY: logoCollapseY},
       {translateX: logoXInterpolate},
-      {translateY: logoXInterpolate},
+      {translateY: logoYInterpolate},
     ],
   };
 
@@ -85,8 +96,20 @@ export const startCollapse = (isHiddenHeader: boolean) => {
     easing: Easing.linear,
     useNativeDriver: true,
   }).start();
+  Animated.timing(logoSizeY, {
+    toValue: isHiddenHeader ? 14 : 10,
+    duration: 250,
+    easing: Easing.linear,
+    useNativeDriver: true,
+  }).start();
 
   Animated.timing(logoX, {
+    toValue: isHiddenHeader ? 15 : 0,
+    duration: 250,
+    easing: Easing.linear,
+    useNativeDriver: true,
+  }).start();
+  Animated.timing(logoY, {
     toValue: isHiddenHeader ? 15 : 0,
     duration: 250,
     easing: Easing.linear,

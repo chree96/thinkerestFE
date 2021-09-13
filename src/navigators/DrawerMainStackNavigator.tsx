@@ -92,7 +92,7 @@ const DrawerMainStackNavigator = ({contentType, contentColor}: any) => {
           name={initialRouteName}
           component={initialRouteComponent}
           options={{
-            headerShown: headerShown,
+            headerShown: false,
           }}
         />
         <Stack.Screen
