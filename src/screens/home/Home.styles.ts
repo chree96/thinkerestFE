@@ -9,4 +9,10 @@ export const styles = StyleSheet.create({
     flex: 1,
     backgroundColor: colors.solidBlack,
   },
+  paddingTopHiddenHeader: {
+    paddingTop: 50,
+  },
+  paddingTopHeader: {
+    paddingTop: 70,
+  },
 });
