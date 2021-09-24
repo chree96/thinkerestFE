@@ -1,4 +1,4 @@
-import React, {useRef} from 'react';
+import React, {memo, useRef} from 'react';
 import {View, ActivityIndicator} from 'react-native';
 import {ContentType} from '../../types/user-actions';
 import {styles} from './Home.styles';
@@ -18,73 +18,78 @@ interface PostsListInterface {
   navigation: NavigationStackProp;
 }
 
-export default function Home({
-  getHomePosts,
-  setHiddenHeader,
-  userPosts,
-  contentColor,
-  isLoading,
-  isHiddenHeader,
-  navigation,
-}: PostsListInterface) {
-  const scrollY = useRef(0);
+const Home = memo<PostsListInterface>(
+  ({
+    getHomePosts,
+    setHiddenHeader,
+    userPosts,
+    contentColor,
+    isLoading,
+    isHiddenHeader,
+    navigation,
+  }) => {
+    const scrollY = useRef(0);
 
-  useEffect(() => {
-    getHomePosts();
-  }, []);
+    useEffect(() => {
+      getHomePosts();
+      setHiddenHeader(false);
+    }, []);
 
-  const renderPosts = useCallback(({item}) => {
-    return (
-      <Post
-        user={item?.user}
-        userImg={{uri: item?.userImg}}
-        contentType={item?.contentType as ContentType}
-        starRating={item?.starRating}
-        contentImg={{uri: item?.contentImg}}
-        title={item?.title}
-        genre={item?.genre}
-        review={item?.review}
-        friendCounter={item?.friendCounter}
-        worldCounter={item?.worldCounter}
-      />
-    );
-  }, []);
+    const renderPosts = useCallback(({item}) => {
+      return (
+        <Post
+          user={item?.user}
+          userImg={{uri: item?.userImg}}
+          contentType={item?.contentType as ContentType}
+          starRating={item?.starRating}
+          contentImg={{uri: item?.contentImg}}
+          title={item?.title}
+          genre={item?.genre}
+          review={item?.review}
+          friendCounter={item?.friendCounter}
+          worldCounter={item?.worldCounter}
+        />
+      );
+    }, []);
 
-  const setHeaderVisibility = useCallback(
-    scroll => {
-      if (scroll > scrollY.current && !isHiddenHeader) {
-        setHiddenHeader(true);
-      } else if (scroll < scrollY.current && isHiddenHeader) {
-        setHiddenHeader(false);
-      }
-    },
-    [isHiddenHeader, scrollY, setHiddenHeader],
-  );
-
-  return isLoading ? (
-    <View style={[styles.listContainer, styles.loaderContainer]}>
-      <ActivityIndicator size="large" color={contentColor} />
-    </View>
-  ) : (
-    <View
-      style={[
-        styles.listContainer,
-        isHiddenHeader
-          ? styles.paddingTopHiddenHeader
-          : styles.paddingTopHeader,
-      ]}>
-      <FlatList
-        renderItem={renderPosts}
-        data={userPosts}
-        keyExtractor={item => 'post-' + item?.id}
-        onScroll={event => {
-          setHeaderVisibility(event.nativeEvent.contentOffset.y);
-        }}
-        onScrollBeginDrag={event =>
-          (scrollY.current = event.nativeEvent.contentOffset.y)
+    const setHeaderVisibility = useCallback(
+      scroll => {
+        if (scroll > scrollY.current && !isHiddenHeader) {
+          setHiddenHeader(true);
+        } else if (scroll < scrollY.current && isHiddenHeader) {
+          setHiddenHeader(false);
         }
-        scrollEventThrottle={16}
-      />
-    </View>
-  );
-}
+      },
+      [isHiddenHeader, scrollY, setHiddenHeader],
+    );
+
+    return isLoading ? (
+      <View style={[styles.listContainer, styles.loaderContainer]}>
+        <ActivityIndicator size="large" color={contentColor} />
+      </View>
+    ) : (
+      <View
+        style={[
+          styles.listContainer,
+          isHiddenHeader
+            ? styles.paddingTopHiddenHeader
+            : styles.paddingTopHeader,
+        ]}>
+        <FlatList
+          renderItem={renderPosts}
+          data={userPosts}
+          keyExtractor={item => 'post-' + item?.id}
+          onScroll={event => {
+            setHeaderVisibility(event.nativeEvent.contentOffset.y);
+          }}
+          onScrollBeginDrag={event =>
+            (scrollY.current = event.nativeEvent.contentOffset.y)
+          }
+          scrollEventThrottle={16}
+        />
+      </View>
+    );
+  },
+);
+
+export default Home;
