@@ -1,7 +1,7 @@
 import MainHeader from './MainHeader';
 import {Dispatch} from 'redux';
 import {connect} from 'react-redux';
-import {setContentType} from '../../../store/modules/posts/posts.action';
+import {setContentType} from '../../../store/modules/contents/contents.action';
 import {ContentType} from '../../../types/user-actions';
 import * as navigationSelector from '../../../store/modules/navigation/navigation.selector';
 
