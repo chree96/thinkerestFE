@@ -1,6 +1,3 @@
-import {colors} from '../../../style';
-import {ContentType} from '../../../types/user-actions';
-import getContentColor from '../../../utils/content/get-content-color';
 import {PostsActionType} from './posts.const';
 import {PostsState} from './posts.types';
 
@@ -8,8 +5,6 @@ const initialState: PostsState = {
   posts: [],
   isLoading: false,
   error: null,
-  contentType: ContentType.general,
-  contentColor: colors.solidWhite,
 };
 
 const postsReducer = (state = initialState, action: any) => {
@@ -25,12 +20,6 @@ const postsReducer = (state = initialState, action: any) => {
       return Object.assign({}, state, {
         error: action.payload,
         isLoading: false,
-      });
-    case PostsActionType.SET_CONTENT_TYPE:
-      const content = action.payload as ContentType;
-      return Object.assign({}, state, {
-        contentType: content,
-        contentColor: getContentColor(content),
       });
     default:
       return state;
