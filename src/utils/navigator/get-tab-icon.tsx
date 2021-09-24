@@ -1,6 +1,6 @@
 import React from 'react';
 import ImageCircleContainer from '../../components/atoms/image-circle-container';
-import {HomeIcon, SearchIcon, Timer} from '../../components/atoms/svg';
+import {HomeIcon, Lens, Timer} from '../../components/atoms/svg';
 import {Screen} from '../../screens/types';
 import {colors} from '../../style';
 
@@ -11,7 +11,7 @@ export default function tabIcon(route, focused, contentColor) {
     case Screen.Home:
       return <HomeIcon fill={iconColor} />;
     case Screen.Search:
-      return <SearchIcon fill={iconColor} />;
+      return <Lens fill={iconColor} />;
     case Screen.Login:
       return <Timer fill={iconColor} />;
     case Screen.Profile:

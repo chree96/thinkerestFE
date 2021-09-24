@@ -9,6 +9,7 @@ interface ButtonWithIconProps {
   iconColor?: string;
   iconName: string;
   onPress: () => void;
+  style?: any;
 }
 
 export default function ButtonWithIcon({
@@ -16,6 +17,7 @@ export default function ButtonWithIcon({
   iconColor = colors.solidWhite,
   iconName,
   onPress,
+  style,
 }: ButtonWithIconProps) {
   return (
     <TouchableOpacity
@@ -27,6 +29,7 @@ export default function ButtonWithIcon({
           width: width,
           height: width,
         },
+        style,
       ]}>
       <IconSvg iconName={iconName} color={iconColor} width={25} />
     </TouchableOpacity>

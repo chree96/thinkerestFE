@@ -1,7 +1,7 @@
 import * as React from 'react';
 import Svg, {Path} from 'react-native-svg';
 
-function SearchIcon(props: any) {
+function Lens(props: any) {
   const width = props?.width || 30;
   const color = props?.fill || '#000';
 
@@ -15,4 +15,4 @@ function SearchIcon(props: any) {
   );
 }
 
-export default SearchIcon;
+export default Lens;
