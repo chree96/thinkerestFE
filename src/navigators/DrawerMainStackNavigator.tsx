@@ -4,6 +4,7 @@ import {createStackNavigator} from '@react-navigation/stack';
 import React, {useCallback} from 'react';
 import {connect} from 'react-redux';
 import MainHeader from '../components/organisms/main-header';
+import SearchHeader from '../components/organisms/search-header';
 import Home from '../screens/home';
 import Login from '../screens/login';
 import Search from '../screens/search';
@@ -38,6 +39,7 @@ const DrawerMainStackNavigator = ({contentType, contentColor}: any) => {
         <Tab.Navigator
           initialRouteName={Screen.Home}
           screenOptions={({route}) => ({
+            tabBarHideOnKeyboard: true,
             tabBarShowLabel: false,
             tabBarIcon: ({focused}) => tabIcon(route, focused, contentColor),
             tabBarStyle: {
@@ -60,6 +62,7 @@ const DrawerMainStackNavigator = ({contentType, contentColor}: any) => {
             children={props => getInnerNavigator(Home, Screen.Home, props)}
             options={{
               headerShown: true,
+              unmountOnBlur: true,
             }}
           />
           <Tab.Screen
@@ -67,7 +70,17 @@ const DrawerMainStackNavigator = ({contentType, contentColor}: any) => {
             children={props =>
               getInnerNavigator(Search, Screen.Search, props, false)
             }
-            options={{headerShown: false, unmountOnBlur: true}}
+            options={{
+              headerShown: true,
+              unmountOnBlur: true,
+              header: () => (
+                <SearchHeader
+                  contentType={contentType}
+                  contentColor={contentColor}
+                  navigation={navigation}
+                />
+              ),
+            }}
           />
           <Tab.Screen
             name={Screen.Login}
