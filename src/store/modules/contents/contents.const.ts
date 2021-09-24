@@ -1,0 +1,8 @@
+export const STATE_KEY: 'contents_info' = 'contents_info';
+
+export enum ContentsActionType {
+  SEARCH_CONTENT = 'contents/SEARCH_CONTENT',
+  STORE_SEARCHED_CONTENT_PREVIEW = 'contents/STORE_SEARCHED_CONTENT_PREVIEW',
+  RETRIEVE_SEARCH_CONTENT_FAILURE = 'contents/RETRIEVE_SEARCH_CONTENT_FAILURE',
+  SET_CONTENT_TYPE = 'posts/SET_CONTENT_TYPE',
+}
