@@ -1,8 +1,10 @@
 import {MoviesActionType} from './movies.const';
+import {MoviesState} from './movies.types';
 
-const initialState = {
+const initialState: MoviesState = {
   movies: [],
   singleMovie: [],
+  topRatedMovies: [],
   isLoading: false,
   error: null,
 };
@@ -13,7 +15,7 @@ const moviesReducer = (state = initialState, action: any) => {
       return Object.assign({}, state, {isLoading: true});
     case MoviesActionType.STORE_TOP_RATED_MOVIES:
       return Object.assign({}, state, {
-        movies: action.payload,
+        topRatedMovies: action.payload,
         isLoading: false,
       });
     case MoviesActionType.RETRIEVE_MOVIES_FAILURE:

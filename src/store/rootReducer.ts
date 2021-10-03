@@ -11,6 +11,11 @@ import {
   reducer as contentsReducer,
   STATE_KEY as CONTENTS_STATE_KEY,
 } from './modules/contents';
+import {
+  reducer as moviesReducer,
+  STATE_KEY as MOVIES_STATE_KEY,
+} from './modules/movies';
+
 const initialState: any = {
   [POSTS_STATE_KEY]: undefined,
   [CONTENTS_STATE_KEY]: undefined,
@@ -25,6 +30,7 @@ const reducer: Reducer<any, any> = (state = initialState, action) => {
       action,
     ),
     [CONTENTS_STATE_KEY]: contentsReducer(state[CONTENTS_STATE_KEY], action),
+    [MOVIES_STATE_KEY]: moviesReducer(state[MOVIES_STATE_KEY], action),
   };
 
   return state;
