@@ -1,11 +1,12 @@
 import axios from 'axios';
+import {HttpAddress} from '../../../services/http/HttpService';
 import {PostsActionType} from './posts.const';
 
 export const getHomePosts = () => {
   return (dispatch: any) => {
     dispatch({type: PostsActionType.GET_HOME_POSTS});
     axios
-      .get('http://10.0.2.2:3030/home-posts')
+      .get(HttpAddress + 'home-posts')
       .then(response => {
         dispatch({
           type: PostsActionType.STORE_USER_POSTS,
