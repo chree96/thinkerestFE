@@ -7,6 +7,7 @@ import {useEffect} from 'react';
 import {FlatList} from 'react-native-gesture-handler';
 import {useCallback} from 'react';
 import {NavigationStackProp} from 'react-navigation-stack';
+import {globalStyle} from '../../style';
 
 interface PostsListInterface {
   getHomePosts: () => void;
@@ -64,7 +65,7 @@ const Home = memo<PostsListInterface>(
     );
 
     return isLoading ? (
-      <View style={[styles.listContainer, styles.loaderContainer]}>
+      <View style={[styles.listContainer, globalStyle.loaderContainer]}>
         <ActivityIndicator size="large" color={contentColor} />
       </View>
     ) : (

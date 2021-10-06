@@ -29,7 +29,9 @@ export const globalStyle = StyleSheet.create({
   textSmallishSize: {
     fontSize: sizes.smallish,
   },
-
+  loaderContainer: {
+    justifyContent: 'center',
+  },
   //GENERIC
   flex: {
     flex: 1,
