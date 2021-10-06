@@ -2,15 +2,24 @@ import axios from 'axios';
 import {HttpAddress} from '../../../services/http/HttpService';
 import {MoviesActionType} from './movies.const';
 
-export const getTopRatedMovies = () => {
+export const getSearchSectionMovies = () => {
   return (dispatch: any) => {
-    dispatch({type: MoviesActionType.RETRIEVE_TOP_RATED_MOVIES});
+    dispatch({type: MoviesActionType.RETRIEVE_SEARCH_SECTION_MOVIES});
     axios
-      .get(HttpAddress + 'get-most-popular-movies')
+      .get(HttpAddress + 'get-search-section-movies')
       .then(response => {
+        const {topRated, byGenre, recommended} = response?.data?.results;
         dispatch({
           type: MoviesActionType.STORE_TOP_RATED_MOVIES,
-          payload: response.data.results,
+          payload: topRated,
+        });
+        dispatch({
+          type: MoviesActionType.STORE_MOVIES_BY_GENRE,
+          payload: byGenre,
+        });
+        dispatch({
+          type: MoviesActionType.STORE_RECOMMENDED_MOVIES,
+          payload: recommended,
         });
       })
       .catch(error => {

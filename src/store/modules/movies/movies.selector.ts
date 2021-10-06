@@ -7,3 +7,7 @@ export const retrieveMoviesLoader = (state: any) =>
   mainSelector(state).isLoading;
 export const retrieveTopRatedMovies = (state: any) =>
   mainSelector(state).topRatedMovies;
+export const retrieveMoviesByGenre = (state: any) =>
+  mainSelector(state).moviesByGenre;
+export const retrieveRecommendedMovies = (state: any) =>
+  mainSelector(state).recommendedMovies;
