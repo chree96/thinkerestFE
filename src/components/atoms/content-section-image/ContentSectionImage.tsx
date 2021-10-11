@@ -5,14 +5,16 @@ import {TouchableOpacity} from 'react-native-gesture-handler';
 
 interface ContentSectionImageProps {
   contentSectionImg: any;
+  onPress: () => void;
   style?: any;
 }
 export default function ContentSectionImage({
   contentSectionImg,
+  onPress,
   style,
 }: ContentSectionImageProps) {
   return (
-    <TouchableOpacity style={[styles.imageContainer, style]}>
+    <TouchableOpacity onPress={onPress} style={[styles.imageContainer, style]}>
       <Image source={contentSectionImg} style={styles.image} />
     </TouchableOpacity>
   );
