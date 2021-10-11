@@ -36,4 +36,8 @@ export const globalStyle = StyleSheet.create({
   flex: {
     flex: 1,
   },
+  lottieLoader: {
+    backgroundColor: 'transparent',
+    height: 150,
+  },
 });

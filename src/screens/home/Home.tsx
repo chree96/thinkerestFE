@@ -1,5 +1,5 @@
 import React, {memo, useRef} from 'react';
-import {View, ActivityIndicator} from 'react-native';
+import {View} from 'react-native';
 import {ContentType} from '../../types/user-actions';
 import {styles} from './Home.styles';
 import Post from '../../components/organisms/post';
@@ -8,8 +8,9 @@ import {FlatList} from 'react-native-gesture-handler';
 import {useCallback} from 'react';
 import {NavigationStackProp} from 'react-navigation-stack';
 import {globalStyle} from '../../style';
+import AnimatedLoader from 'react-native-animated-loader';
 
-interface PostsListInterface {
+interface PostsListProps {
   getHomePosts: () => void;
   setHiddenHeader: (payload: any) => void;
   userPosts?: [] | null;
@@ -19,7 +20,7 @@ interface PostsListInterface {
   navigation: NavigationStackProp;
 }
 
-const Home = memo<PostsListInterface>(
+const Home = memo<PostsListProps>(
   ({
     getHomePosts,
     setHiddenHeader,
@@ -66,7 +67,13 @@ const Home = memo<PostsListInterface>(
 
     return isLoading ? (
       <View style={[styles.listContainer, globalStyle.loaderContainer]}>
-        <ActivityIndicator size="large" color={contentColor} />
+        <AnimatedLoader
+          visible={true}
+          // overlayColor="rgba(255,255,255,0.75)"
+          source={require('../../../assets/animations/loader-bars-mono-color.json')}
+          animationStyle={globalStyle.lottieLoader}
+          speed={1}
+        />
       </View>
     ) : (
       <View

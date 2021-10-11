@@ -1,5 +1,5 @@
 import React, {memo, useCallback, useEffect} from 'react';
-import {ActivityIndicator, FlatList, Text, View} from 'react-native';
+import {FlatList, Text, View} from 'react-native';
 import {ScrollView} from 'react-native-gesture-handler';
 import {NavigationStackProp} from 'react-navigation-stack';
 import ContentSectionImage from '../../components/atoms/content-section-image';
@@ -12,8 +12,9 @@ import {globalStyle} from '../../style';
 import {ContentGenre, ContentSearchSections} from '../../types/content';
 import {styles} from './Search.styles';
 import {getSectionTitle} from './utils';
+import AnimatedLoader from 'react-native-animated-loader';
 
-interface SearchInterface {
+interface SearchProps {
   searchedContentPreview?: any;
   setHiddenHeader: (payload: any) => void;
   getSearchSectionMovies: () => void;
@@ -41,7 +42,7 @@ const dataTest = [
   {text: 'prova'},
 ];
 
-const Search = memo<SearchInterface>(
+const Search = memo<SearchProps>(
   ({
     searchedContentPreview,
     setHiddenHeader,
@@ -69,9 +70,12 @@ const Search = memo<SearchInterface>(
 
     const renderSingleContent = useCallback(
       ({item}) => (
-        <ContentSectionImage contentSectionImg={{uri: item?.image?.url}} />
+        <ContentSectionImage
+          contentSectionImg={{uri: item?.image?.url}}
+          onPress={() => navigation.navigate('Login', {data: 'ciao'})}
+        />
       ),
-      [],
+      [navigation],
     );
 
     const sectionTitle = useCallback(
@@ -157,7 +161,13 @@ const Search = memo<SearchInterface>(
 
     return isLoadingMovies ? (
       <View style={[styles.pageContainer, globalStyle.loaderContainer]}>
-        <ActivityIndicator size="large" color={contentColor} />
+        <AnimatedLoader
+          visible={true}
+          // overlayColor="rgba(255,255,255,0.75)"
+          source={require('../../../assets/animations/loader-bars-mono-color.json')}
+          animationStyle={globalStyle.lottieLoader}
+          speed={1}
+        />
       </View>
     ) : (
       <View style={styles.pageContainer}>
