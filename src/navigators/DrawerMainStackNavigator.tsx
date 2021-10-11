@@ -99,22 +99,33 @@ const DrawerMainStackNavigator = ({contentType, contentColor}: any) => {
   );
 
   const InnerNavigator = useCallback(
-    ({initialRouteComponent, initialRouteName, navigation, headerShown}) => (
-      <Stack.Navigator initialRouteName={initialRouteName}>
-        <Stack.Screen
-          name={initialRouteName}
-          component={initialRouteComponent}
-          options={{
-            headerShown: false,
-          }}
-        />
-        <Stack.Screen
+    ({initialRouteComponent, initialRouteName, navigation, headerShown}) => {
+      const navigationState = navigation.getState();
+      const navigationParams = {
+        ...navigationState.routes[navigationState.index].params,
+      };
+
+      const Component = initialRouteComponent;
+
+      return (
+        <Stack.Navigator initialRouteName={initialRouteName}>
+          <Stack.Screen
+            name={initialRouteName}
+            children={() => (
+              <Component navigation={navigation} props={navigationParams} />
+            )}
+            options={{
+              headerShown: false,
+            }}
+          />
+          {/* <Stack.Screen
           name={'Test'}
           children={() => <Test navigation={navigation} />}
           options={{headerShown: false}}
-        />
-      </Stack.Navigator>
-    ),
+        /> */}
+        </Stack.Navigator>
+      );
+    },
     [],
   );
 
