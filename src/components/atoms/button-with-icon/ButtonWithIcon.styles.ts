@@ -6,8 +6,10 @@ export const styles = StyleSheet.create({
     borderRadius: 100,
     marginRight: 8,
     backgroundColor: colors.mineShaft,
-    // backgroundColor: colors.solidWhite,
     alignItems: 'center',
     justifyContent: 'center',
+  },
+  noBackground: {
+    backgroundColor: 'transparent',
   },
 });

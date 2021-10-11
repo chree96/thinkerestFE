@@ -5,33 +5,37 @@ import {styles} from './ButtonWithIcon.styles';
 import IconSvg from '../icons-svg';
 
 interface ButtonWithIconProps {
-  width?: number;
-  iconColor?: string;
   iconName: string;
-  onPress: () => void;
+  iconColor?: string;
+  iconSize?: number;
+  width?: number;
+  noBackgroundColor?: boolean;
   style?: any;
+  onPress: () => void;
 }
 
 export default function ButtonWithIcon({
-  width = 40,
-  iconColor = colors.solidWhite,
   iconName,
-  onPress,
+  iconColor = colors.solidWhite,
+  iconSize,
+  width = 40,
+  noBackgroundColor,
   style,
+  onPress,
 }: ButtonWithIconProps) {
   return (
     <TouchableOpacity
       onPress={onPress}
       style={[
-        shadows.medium,
         styles.buttonContainer,
         {
           width: width,
           height: width,
         },
+        noBackgroundColor ? styles.noBackground : shadows.medium,
         style,
       ]}>
-      <IconSvg iconName={iconName} color={iconColor} width={25} />
+      <IconSvg iconName={iconName} color={iconColor} width={iconSize || 25} />
     </TouchableOpacity>
   );
 }
