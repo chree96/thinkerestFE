@@ -7,8 +7,10 @@ export const retrieveContentsLoader = (state: any) =>
   mainSelector(state).isLoading;
 export const retrieveSearchedContentsPreview = (state: any) =>
   mainSelector(state).searchedContentsPreview;
-export const retrieveSearchedContents = (state: any) =>
-  mainSelector(state).searchedContents;
+export const retrieveSearchedContents = (state: any) => {
+  const contentType = retrieveContentType(state);
+  return mainSelector(state).searchSectionContents[contentType];
+};
 export const retrieveContentType = (state: any) =>
   mainSelector(state).contentType;
 export const retrieveContentColor = (state: any) =>

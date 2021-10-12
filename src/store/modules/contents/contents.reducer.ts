@@ -5,7 +5,35 @@ import {ContentsActionType} from './contents.const';
 import {ContentsState} from './contents.types';
 
 const initialState: ContentsState = {
-  searchedContents: [],
+  searchSectionContents: {
+    general: {
+      topRated: [],
+    },
+    movies: {
+      topRated: [],
+      recommended: [],
+      byGenre: {
+        action: [],
+        adventure: [],
+        romantic: [],
+      },
+    },
+    tvSeries: {
+      topRated: [],
+      recommended: [],
+      byGenre: [],
+    },
+    games: {
+      topRated: [],
+      recommended: [],
+      byGenre: [],
+    },
+    books: {
+      topRated: [],
+      recommended: [],
+      byGenre: [],
+    },
+  },
   searchedContentsPreview: [],
   isLoading: false,
   error: null,
@@ -17,6 +45,20 @@ const contentsReducer = (state = initialState, action: any) => {
   switch (action.type) {
     case ContentsActionType.SEARCH_CONTENT:
       return Object.assign({}, state, {isLoading: true});
+    case ContentsActionType.RETRIEVE_SEARCH_SECTION_CONTENT:
+      return Object.assign({}, state, {isLoading: true});
+    case ContentsActionType.STORE_SEARCH_SECTION_CONTENT:
+      const {contentType, results} = action.payload;
+
+      const searchSectionContents = {
+        ...state.searchSectionContents,
+      };
+      searchSectionContents[contentType] = results;
+
+      return Object.assign({}, state, {
+        searchSectionContents: searchSectionContents,
+        isLoading: false,
+      });
     case ContentsActionType.STORE_SEARCHED_CONTENT_PREVIEW:
       return Object.assign({}, state, {
         searchedContentsPreview: action.payload,
