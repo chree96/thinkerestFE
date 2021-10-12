@@ -4,10 +4,7 @@ import {ScrollView} from 'react-native-gesture-handler';
 import {NavigationStackProp} from 'react-navigation-stack';
 import ContentSectionImage from '../../components/atoms/content-section-image';
 import HeaderText from '../../components/molecules/header-text';
-import {
-  MoviesByGenre,
-  SearchMovie,
-} from '../../store/modules/movies/movies.types';
+import {SearchContent} from '../../store/modules/contents/contents.types';
 import {globalStyle} from '../../style';
 import {ContentGenre, ContentSearchSections} from '../../types/content';
 import {styles} from './Search.styles';
@@ -17,46 +14,26 @@ import AnimatedLoader from 'react-native-animated-loader';
 interface SearchProps {
   searchedContentPreview?: any;
   setHiddenHeader: (payload: any) => void;
-  getSearchSectionMovies: () => void;
+  retrieveSearchSectionContents: () => void;
   navigation: NavigationStackProp;
-  isLoadingMovies: boolean;
-  topRatedMovies: SearchMovie[];
-  recommendedMovies: SearchMovie[];
-  moviesByGenre: MoviesByGenre;
+  isLoading: boolean;
   contentColor: string;
+  searchSectionContent: any;
 }
-
-const dataTest = [
-  {text: 'prova'},
-  {text: 'prova'},
-  {text: 'prova'},
-  {text: 'prova'},
-  {text: 'prova'},
-  {text: 'prova'},
-  {text: 'prova'},
-  {text: 'prova'},
-  {text: 'prova'},
-  {text: 'prova'},
-  {text: 'prova'},
-  {text: 'prova'},
-  {text: 'prova'},
-];
 
 const Search = memo<SearchProps>(
   ({
     searchedContentPreview,
     setHiddenHeader,
-    getSearchSectionMovies,
-    isLoadingMovies,
-    topRatedMovies,
-    recommendedMovies,
-    moviesByGenre,
+    isLoading,
     contentColor,
     navigation,
+    retrieveSearchSectionContents,
+    searchSectionContent,
   }) => {
     useEffect(() => {
       setHiddenHeader(false);
-      getSearchSectionMovies();
+      retrieveSearchSectionContents();
     }, []);
 
     const renderSearchedContentList = useCallback(
@@ -88,26 +65,30 @@ const Search = memo<SearchProps>(
       (section: ContentSearchSections, genre?: ContentGenre) => {
         switch (section) {
           case ContentSearchSections.TOP_RATED:
-            return topRatedMovies;
+            return searchSectionContent?.topRated;
           case ContentSearchSections.GENRE:
             switch (genre) {
               case ContentGenre.ACTION:
-                return moviesByGenre?.action;
+                return searchSectionContent?.byGenre?.action;
               case ContentGenre.ADVENTURE:
-                return moviesByGenre?.adventure;
+                return searchSectionContent?.byGenre?.adventure;
               case ContentGenre.ROMANTIC:
-                return moviesByGenre?.romantic;
+                return searchSectionContent?.byGenre?.romantic;
               default:
                 [];
             }
-            return moviesByGenre;
+            return searchSectionContent?.byGenre;
           case ContentSearchSections.RECOMMENDED:
-            return recommendedMovies;
+            return searchSectionContent?.recommended;
           default:
             return [];
         }
       },
-      [moviesByGenre, recommendedMovies, topRatedMovies],
+      [
+        searchSectionContent?.byGenre,
+        searchSectionContent?.recommended,
+        searchSectionContent?.topRated,
+      ],
     );
 
     const renderContentSections = useCallback(
@@ -132,7 +113,7 @@ const Search = memo<SearchProps>(
                   style={styles.contentContainer}>
                   <HeaderText text={title} />
                   <FlatList
-                    data={content as SearchMovie[]}
+                    data={content as SearchContent[]}
                     showsVerticalScrollIndicator={false}
                     keyExtractor={(item, index) => section + index}
                     renderItem={renderSingleContent}
@@ -147,7 +128,7 @@ const Search = memo<SearchProps>(
             <View key={section + '-section'} style={styles.contentContainer}>
               <HeaderText text={title} />
               <FlatList
-                data={content as SearchMovie[]}
+                data={content as SearchContent[]}
                 showsVerticalScrollIndicator={false}
                 keyExtractor={(item, index) => section + index}
                 renderItem={renderSingleContent}
@@ -159,7 +140,7 @@ const Search = memo<SearchProps>(
       [sectionTitle, getContents, renderSingleContent],
     );
 
-    return isLoadingMovies ? (
+    return isLoading ? (
       <View style={[styles.pageContainer, globalStyle.loaderContainer]}>
         <AnimatedLoader
           visible={true}
@@ -173,7 +154,7 @@ const Search = memo<SearchProps>(
       <View style={styles.pageContainer}>
         {searchedContentPreview.length ? (
           <FlatList
-            data={dataTest}
+            data={searchedContentPreview}
             showsVerticalScrollIndicator={false}
             keyExtractor={(item, index) => 'searched-content-' + index}
             renderItem={renderSearchedContentList}
