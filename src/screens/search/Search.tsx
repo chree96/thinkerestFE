@@ -1,4 +1,4 @@
-import React, {memo, useCallback, useEffect} from 'react';
+import React, {memo, useCallback, useEffect, useMemo} from 'react';
 import {FlatList, Text, View} from 'react-native';
 import {ScrollView} from 'react-native-gesture-handler';
 import {NavigationStackProp} from 'react-navigation-stack';
@@ -8,8 +8,9 @@ import {SearchContent} from '../../store/modules/contents/contents.types';
 import {globalStyle} from '../../style';
 import {ContentGenre, ContentSearchSections} from '../../types/content';
 import {styles} from './Search.styles';
-import {getSectionTitle} from './utils';
+import {getGenreButtons, getSectionTitle} from './utils';
 import AnimatedLoader from 'react-native-animated-loader';
+import {ContentType} from '../../types/user-actions';
 
 interface SearchProps {
   searchedContentPreview?: any;
@@ -18,6 +19,7 @@ interface SearchProps {
   navigation: NavigationStackProp;
   isLoading: boolean;
   contentColor: string;
+  contentType: ContentType;
   searchSectionContent: any;
 }
 
@@ -27,6 +29,7 @@ const Search = memo<SearchProps>(
     setHiddenHeader,
     isLoading,
     contentColor,
+    contentType,
     navigation,
     retrieveSearchSectionContents,
     searchSectionContent,
@@ -35,6 +38,11 @@ const Search = memo<SearchProps>(
       setHiddenHeader(false);
       retrieveSearchSectionContents();
     }, []);
+
+    const genreButtons = useMemo(
+      () => getGenreButtons(contentType, contentColor),
+      [contentColor, contentType],
+    );
 
     const renderSearchedContentList = useCallback(
       ({item}) => (
@@ -160,7 +168,10 @@ const Search = memo<SearchProps>(
             renderItem={renderSearchedContentList}
           />
         ) : (
-          <ScrollView>{renderContentSections()}</ScrollView>
+          <ScrollView>
+            <View style={styles.pillButtonsContainer}>{genreButtons}</View>
+            {renderContentSections()}
+          </ScrollView>
         )}
       </View>
     );

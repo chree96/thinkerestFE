@@ -7,6 +7,11 @@ export const styles = StyleSheet.create({
     backgroundColor: colors.solidBlack,
     paddingHorizontal: 4,
   },
+  pillButtonsContainer: {
+    flexDirection: 'row',
+    paddingHorizontal: 10,
+    marginTop: 12,
+  },
   loaderContainer: {
     justifyContent: 'center',
   },

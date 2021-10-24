@@ -10,6 +10,7 @@ const mapStateToProps = (state: any) => ({
     contentsSelector.retrieveSearchedContentsPreview(state),
   isLoading: contentsSelector.retrieveContentsLoader(state),
   contentColor: contentsSelector.retrieveContentColor(state),
+  contentType: contentsSelector.retrieveContentType(state),
   searchSectionContent: contentsSelector.retrieveSearchedContents(state),
 });
 
