@@ -57,7 +57,7 @@ const Search = memo<SearchProps>(
       ({item}) => (
         <ContentSectionImage
           contentSectionImg={{uri: item?.image?.url}}
-          onPress={() => navigation.navigate('Login', {data: 'ciao'})}
+          onPress={() => navigation.navigate('Login', {data: item})}
         />
       ),
       [navigation],
@@ -169,7 +169,9 @@ const Search = memo<SearchProps>(
           />
         ) : (
           <ScrollView>
-            <View style={styles.pillButtonsContainer}>{genreButtons}</View>
+            {contentType !== ContentType.general ? (
+              <View style={styles.pillButtonsContainer}>{genreButtons}</View>
+            ) : null}
             {renderContentSections()}
           </ScrollView>
         )}
