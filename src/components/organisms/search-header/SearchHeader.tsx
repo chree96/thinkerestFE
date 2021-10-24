@@ -12,10 +12,7 @@ import {
 import HeaderContentButtons from '../../molecules/header-content-buttons';
 import {Input} from 'react-native-elements';
 import {Lens} from '../../atoms/svg';
-import {
-  getSearchAnimationStyles,
-  startSearchAnimation,
-} from '../../../utils/header/search-animation';
+import {startSearchAnimation} from '../../../utils/header/search-animation';
 import ButtonWithIcon from '../../atoms/button-with-icon';
 
 interface SearchHeaderProps {
@@ -40,30 +37,38 @@ const SearchHeader = memo<SearchHeaderProps>(
   }) => {
     const [isExtended, setIsExtended] = useState(false);
     const [isPeopleSearch, setIsPeopleSearch] = useState(false);
+    const [selectContentAlert, setSelectContentAlert] = useState(false);
+
     const {transformHeaderCollapse, transformContent} = useMemo(
       () => getHeaderAnimationStyles(),
       [],
     );
 
-    const {transformSearch} = useMemo(() => getSearchAnimationStyles(), []);
+    const canSearch = useMemo(
+      () => contentType !== ContentType.general || isPeopleSearch,
+      [contentType, isPeopleSearch],
+    );
     // handle animation
     useEffect(() => {
       startSearchAnimation(isExtended);
       setIsExtended(true);
     }, []);
 
-    // useEffect(
-    //   () => () => {
-    //     console.log('unmount');
-    //     // setAnimationStarted(false);
-    //     // startSearchAnimation();
-    //   },
-    //   [],
-    // );
+    useEffect(() => {
+      if (selectContentAlert) {
+        setTimeout(() => setSelectContentAlert(false), 500);
+      }
+    }, [selectContentAlert]);
 
     useEffect(() => {
       startCollapse(isHiddenHeader);
     }, [isHiddenHeader]);
+
+    const onPressInput = useCallback(() => {
+      if (!canSearch) {
+        setSelectContentAlert(true);
+      }
+    }, [canSearch]);
 
     const Header = useCallback(() => {
       const peopleIconColor = isPeopleSearch
@@ -88,6 +93,8 @@ const SearchHeader = memo<SearchHeaderProps>(
                 inputStyle={styles.inputStyle}
                 placeholderTextColor={colors.shadowLight}
                 selectionColor={contentColor}
+                onPressIn={onPressInput}
+                showSoftInputOnFocus={canSearch}
                 rightIcon={
                   // cambiare colore all'onPress?
                   <ButtonWithIcon
@@ -104,18 +111,20 @@ const SearchHeader = memo<SearchHeaderProps>(
           <HeaderContentButtons
             contentType={contentType}
             contentColor={contentColor}
-            isHiddenHeader={isHiddenHeader}
             setContentType={setContentType}
+            selectContentAlert={selectContentAlert}
             style={transformContent}
           />
         </Animated.View>
       );
     }, [
+      canSearch,
       contentColor,
       contentType,
-      isHiddenHeader,
       isPeopleSearch,
+      onPressInput,
       searchContent,
+      selectContentAlert,
       setContentType,
       style,
       transformContent,

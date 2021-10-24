@@ -13,13 +13,13 @@ import RadialGradient from 'react-native-radial-gradient';
 interface HeaderContentButtonsProps {
   contentType: ContentType;
   contentColor: string;
-  isHiddenHeader: boolean;
+  selectContentAlert?: boolean;
   style?: any;
   setContentType: (payload: ContentType) => void;
 }
 
 const HeaderContentButtons = memo<HeaderContentButtonsProps>(
-  ({contentType, contentColor, setContentType, style}) => {
+  ({contentType, contentColor, selectContentAlert, setContentType, style}) => {
     const {width: screenWidth} = useDimensions().window;
 
     const renderContentButtons = useCallback(
@@ -35,9 +35,10 @@ const HeaderContentButtons = memo<HeaderContentButtonsProps>(
 
         const withMargin = index === 0 || index === 3;
 
-        const gradientColor = selectedContent
-          ? 'rgba(255, 255, 255, 0.3)'
-          : colors.solidBlack;
+        const gradientColor =
+          selectedContent || selectContentAlert
+            ? 'rgba(255, 255, 255, 0.3)'
+            : colors.solidBlack;
 
         return item === ContentType.general ? (
           <TouchableOpacity onPress={() => setContentType(item as ContentType)}>
@@ -68,7 +69,13 @@ const HeaderContentButtons = memo<HeaderContentButtonsProps>(
           </RadialGradient>
         );
       },
-      [contentColor, contentType, screenWidth, setContentType],
+      [
+        contentColor,
+        contentType,
+        selectContentAlert,
+        screenWidth,
+        setContentType,
+      ],
     );
 
     const ContentButtons = useCallback(() => {

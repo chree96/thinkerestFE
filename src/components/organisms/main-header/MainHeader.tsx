@@ -60,7 +60,6 @@ const MainHeader = memo<MainHeaderProps>(
           <HeaderContentButtons
             contentType={contentType}
             contentColor={contentColor}
-            isHiddenHeader={isHiddenHeader}
             setContentType={setContentType}
             style={transformContent}
           />
@@ -69,7 +68,6 @@ const MainHeader = memo<MainHeaderProps>(
     }, [
       contentColor,
       contentType,
-      isHiddenHeader,
       setContentType,
       style,
       transformContent,
