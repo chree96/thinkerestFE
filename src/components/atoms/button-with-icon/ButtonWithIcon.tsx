@@ -8,7 +8,8 @@ interface ButtonWithIconProps {
   iconName: string;
   iconColor?: string;
   iconSize?: number;
-  width?: number;
+  width?: number | string;
+  height?: number | string;
   noBackgroundColor?: boolean;
   style?: any;
   onPress: () => void;
@@ -19,6 +20,7 @@ export default function ButtonWithIcon({
   iconColor = colors.solidWhite,
   iconSize,
   width = 40,
+  height = 40,
   noBackgroundColor,
   style,
   onPress,
@@ -30,7 +32,7 @@ export default function ButtonWithIcon({
         styles.buttonContainer,
         {
           width: width,
-          height: width,
+          height: height,
         },
         noBackgroundColor ? styles.noBackground : shadows.medium,
         style,
