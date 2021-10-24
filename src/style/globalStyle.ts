@@ -23,6 +23,9 @@ export const globalStyle = StyleSheet.create({
   textCardTitleSize: {
     fontSize: sizes.cardTitle,
   },
+  textExtraSmallSize: {
+    fontSize: sizes.extraSmall,
+  },
   textSmallSize: {
     fontSize: sizes.small,
   },
