@@ -3,9 +3,12 @@ import {Animated} from 'react-native';
 import {colors} from '../../../style';
 import {styles} from './HeaderContentButtons.styles';
 import {ContentType} from '../../../types/user-actions';
-import {FlatList} from 'react-native-gesture-handler';
+import {FlatList, TouchableOpacity} from 'react-native-gesture-handler';
 import ButtonWithIcon from '../../atoms/button-with-icon';
 import {useCallback} from 'react';
+import ImageCircleContainer from '../../atoms/image-circle-container';
+import {useDimensions} from 'react-native-hooks';
+import RadialGradient from 'react-native-radial-gradient';
 
 interface HeaderContentButtonsProps {
   contentType: ContentType;
@@ -17,24 +20,65 @@ interface HeaderContentButtonsProps {
 
 const HeaderContentButtons = memo<HeaderContentButtonsProps>(
   ({contentType, contentColor, setContentType, style}) => {
+    const {width: screenWidth} = useDimensions().window;
+
     const renderContentButtons = useCallback(
-      ({item}) => {
+      ({item, index}) => {
         const selectedContent = item === contentType;
+
         const iconColor = selectedContent ? contentColor : colors.solidWhite;
-        return (
-          <ButtonWithIcon
-            iconName={item}
-            iconColor={iconColor}
-            onPress={() => setContentType(item as ContentType)}
-          />
+
+        const iconName =
+          !selectedContent && item === ContentType.tvSeries
+            ? item + 'Outline'
+            : item;
+
+        const withMargin = index === 0 || index === 3;
+
+        const gradientColor = selectedContent
+          ? 'rgba(255, 255, 255, 0.3)'
+          : colors.solidBlack;
+
+        return item === ContentType.general ? (
+          <TouchableOpacity onPress={() => setContentType(item as ContentType)}>
+            <ImageCircleContainer
+              img={require('../../../../assets/images/T-logo.png')}
+              style={styles.genericButtonContainer}
+              width={screenWidth * 0.12}
+            />
+          </TouchableOpacity>
+        ) : (
+          <RadialGradient
+            style={[
+              styles.radialGradient,
+              {
+                borderRightColor: withMargin ? colors.doveGrey : 'transparent',
+                width: screenWidth * 0.22,
+              },
+            ]}
+            stops={[0.4, 1]}
+            colors={[gradientColor, colors.solidBlack]}>
+            <ButtonWithIcon
+              iconName={iconName}
+              iconColor={iconColor}
+              noBackgroundColor
+              style={styles.headerButton}
+              onPress={() => setContentType(item as ContentType)}
+            />
+          </RadialGradient>
         );
       },
-      [contentColor, contentType, setContentType],
+      [contentColor, contentType, screenWidth, setContentType],
     );
 
     const ContentButtons = useCallback(() => {
       return (
-        <Animated.View style={[styles.buttonsContainer, style]}>
+        <Animated.View
+          style={[
+            styles.buttonsContainer,
+            {borderBottomColor: contentColor},
+            style,
+          ]}>
           <FlatList
             horizontal
             contentContainerStyle={styles.buttonsRow}
@@ -44,7 +88,7 @@ const HeaderContentButtons = memo<HeaderContentButtonsProps>(
           />
         </Animated.View>
       );
-    }, [renderContentButtons, style]);
+    }, [contentColor, renderContentButtons, style]);
 
     return <ContentButtons />;
   },
