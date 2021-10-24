@@ -39,6 +39,7 @@ const SearchHeader = memo<SearchHeaderProps>(
     navigation,
   }) => {
     const [isExtended, setIsExtended] = useState(false);
+    const [isPeopleSearch, setIsPeopleSearch] = useState(false);
     const {transformHeaderCollapse, transformContent} = useMemo(
       () => getHeaderAnimationStyles(),
       [],
@@ -65,6 +66,10 @@ const SearchHeader = memo<SearchHeaderProps>(
     }, [isHiddenHeader]);
 
     const Header = useCallback(() => {
+      const peopleIconColor = isPeopleSearch
+        ? colors.solidWhite
+        : colors.solidBlack;
+
       return (
         <Animated.View
           style={[
@@ -87,8 +92,8 @@ const SearchHeader = memo<SearchHeaderProps>(
                   // cambiare colore all'onPress?
                   <ButtonWithIcon
                     iconName={'people'}
-                    onPress={() => console.log('find people')}
-                    iconColor={colors.solidBlack}
+                    onPress={() => setIsPeopleSearch(!isPeopleSearch)}
+                    iconColor={peopleIconColor}
                     iconSize={30}
                     noBackgroundColor
                   />
@@ -109,6 +114,7 @@ const SearchHeader = memo<SearchHeaderProps>(
       contentColor,
       contentType,
       isHiddenHeader,
+      isPeopleSearch,
       searchContent,
       setContentType,
       style,

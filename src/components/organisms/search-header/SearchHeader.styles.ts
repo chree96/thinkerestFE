@@ -23,7 +23,7 @@ export const styles = StyleSheet.create({
   textInput: {
     height: 42,
     paddingLeft: 12,
-    borderRadius: 4,
+    borderRadius: 10,
     backgroundColor: colors.mineShaft,
     borderBottomWidth: 0,
     color: colors.shadowLight,

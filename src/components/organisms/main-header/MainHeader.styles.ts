@@ -7,7 +7,6 @@ export const styles = StyleSheet.create({
     height: 100,
     backgroundColor: colors.solidBlack,
     position: 'absolute',
-    justifyContent: 'space-between',
   },
   textLogo: {
     fontFamily: families.bold,
