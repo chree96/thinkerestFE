@@ -1,6 +1,5 @@
 import React, {memo, useRef} from 'react';
 import {View} from 'react-native';
-import {ContentType} from '../../types/user-actions';
 import {styles} from './Home.styles';
 import Post from '../../components/organisms/post';
 import {useEffect} from 'react';
@@ -9,11 +8,13 @@ import {useCallback} from 'react';
 import {NavigationStackProp} from 'react-navigation-stack';
 import {globalStyle} from '../../style';
 import AnimatedLoader from 'react-native-animated-loader';
+import {getMappedData} from './utils';
+import {UserPost} from '../types';
 
 interface PostsListProps {
   getHomePosts: () => void;
   setHiddenHeader: (payload: any) => void;
-  userPosts?: [] | null;
+  userPosts?: UserPost[] | null;
   contentColor: string;
   isLoading?: boolean;
   isHiddenHeader?: boolean;
@@ -37,22 +38,20 @@ const Home = memo<PostsListProps>(
       setHiddenHeader(false);
     }, []);
 
-    const renderPosts = useCallback(({item}) => {
-      return (
-        <Post
-          user={item?.user}
-          userImg={{uri: item?.userImg}}
-          contentType={item?.contentType as ContentType}
-          starRating={item?.starRating}
-          contentImg={{uri: item?.contentImg}}
-          title={item?.title}
-          genre={item?.genre}
-          review={item?.review}
-          friendCounter={item?.friendCounter}
-          worldCounter={item?.worldCounter}
-        />
-      );
-    }, []);
+    const renderPosts = useCallback(
+      ({item}) => {
+        const {postData, userData} = getMappedData(item);
+
+        return (
+          <Post
+            postData={postData}
+            userData={userData}
+            contentColor={contentColor}
+          />
+        );
+      },
+      [contentColor],
+    );
 
     const setHeaderVisibility = useCallback(
       scroll => {

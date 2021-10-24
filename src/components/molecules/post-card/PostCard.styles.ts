@@ -7,7 +7,6 @@ const {width: screenWidth, height: screenHeight} = useDimensions().window;
 export const styles = StyleSheet.create({
   cardContainer: {
     backgroundColor: colors.codGrey,
-    // backgroundColor: colors.solidWhite,
     borderRadius: 10,
     flex: 1,
     minHeight: screenHeight * 0.45,
@@ -55,8 +54,8 @@ export const styles = StyleSheet.create({
     justifyContent: 'flex-end',
   },
   reviewContainer: {
-    backgroundColor: colors.tundora,
-    borderRadius: 10,
+    padding: 10,
+    minHeight: 80,
   },
   reviewText: {
     margin: 10,

@@ -1,124 +1,122 @@
-import React, {memo, useCallback} from 'react';
+import React, {memo, useCallback, useState} from 'react';
 import {Image, Text, View} from 'react-native';
 import {colors, globalStyle, shadows} from '../../../style';
 import {styles} from './PostCard.styles';
 import {useMemo} from 'react';
-import ButtonWithIcon from '../../atoms/button-with-icon';
 import IconWithText from '../icon-with-text';
-import LinearGradient from 'react-native-linear-gradient';
 import StarRating from '../star-rating';
 import getButtonActions from '../../../utils/post/button-actions';
 import formatCounter from '../../../utils/post/format-counter';
+import MoreButton from '../../atoms/more-button';
 
 interface PostCardProps {
-  starRating: number;
-  contentImg: any;
-  title: string;
-  genre: string;
-  review: string;
-  friendCounter: number;
-  worldCounter: number;
+  postData: {
+    starRating: number;
+    contentImg: any;
+    title: string;
+    genre: string;
+    review: string;
+    friendCounter: number;
+    worldCounter: number;
+  };
+  contentColor: string;
   style?: any;
 }
 
-const PostCard = memo<PostCardProps>(
-  ({
-    starRating,
-    contentImg,
-    title,
-    genre,
-    review,
-    friendCounter,
-    worldCounter,
-    style,
-  }) => {
-    const renderBtnActions = useMemo(() => getButtonActions(), []);
+const NUM_OF_LINES = 2;
 
-    const formattedCounter = useMemo(
-      () => formatCounter(worldCounter),
-      [worldCounter],
-    );
+const PostCard = memo<PostCardProps>(({postData, contentColor, style}) => {
+  const [isVisible, setIsVisible] = useState(false);
+  const [currentNumberOfLines, setCurrentNumberOfLines] = useState<
+    number | undefined
+  >(NUM_OF_LINES);
 
-    return (
-      <View style={[shadows.medium, styles.cardContainer, style]}>
-        <View style={styles.contentContainer}>
-          <View style={[shadows.little, styles.imgContainer]}>
-            <Image
-              source={contentImg}
-              style={styles.imgStyle}
-              key={contentImg}
-            />
-          </View>
-          {/* MOVIE INFO (RIGHT SIDE) */}
-          <View style={globalStyle.flex}>
-            <Text
-              style={[
-                globalStyle.textRegular,
-                globalStyle.textCardTitleSize,
-                styles.textAlignCenter,
-              ]}>
-              {title}
-            </Text>
-            <View>
-              <Text
-                style={[
-                  globalStyle.textLight,
-                  globalStyle.textSmallSize,
-                  styles.textAlignCenter,
-                  styles.marginNegative,
-                ]}>
-                {genre}
-              </Text>
-            </View>
-            {/* DA RIVEDERE */}
-            <View style={styles.contentInfoContainer}>
-              <IconWithText
-                svgName={'world'}
-                text={formattedCounter}
-                width={30}
-                svgColor={colors.solidWhite}
-              />
-              <IconWithText
-                svgName={'people'}
-                text={friendCounter}
-                width={30}
-                svgColor={colors.solidWhite}
-              />
-            </View>
-            <StarRating rating={starRating} />
-            <View style={styles.btnActionsContainer}>{renderBtnActions}</View>
-          </View>
-        </View>
-        {/* <View
-        style={{
-          width: 40,
-          height: 14,
-          borderRadius: 8,
-          backgroundColor: colors.lightGrey,
-          elevation: 5,
-          alignSelf: 'center',
-          marginBottom: -10,
-        }}></View> */}
-        <View style={styles.reviewContainer}>
-          <Text
-            style={[
-              globalStyle.textLight,
-              globalStyle.textSmallishSize,
-              styles.reviewText,
-            ]}>
-            {review}
-          </Text>
-          <LinearGradient
-            colors={[
-              'rgba(77,77,77, 0)',
-              'rgba(77, 77, 77, 1)',
-              'rgba(77,77,77, 1)',
-            ]}
-            style={styles.gradientStyle}
+  const renderBtnActions = useMemo(() => getButtonActions(), []);
+
+  const formattedCounter = useMemo(
+    () => formatCounter(postData?.worldCounter),
+    [postData?.worldCounter],
+  );
+
+  const changeNumberOfLines = useCallback(
+    () =>
+      !currentNumberOfLines
+        ? setCurrentNumberOfLines(NUM_OF_LINES)
+        : setCurrentNumberOfLines(undefined),
+    [currentNumberOfLines],
+  );
+
+  const onTextRender = useCallback(
+    (numberOfLines: number) =>
+      numberOfLines > NUM_OF_LINES ? setIsVisible(true) : setIsVisible(false),
+    [],
+  );
+
+  return (
+    <View style={[shadows.medium, styles.cardContainer, style]}>
+      <View style={styles.contentContainer}>
+        <View style={[shadows.little, styles.imgContainer]}>
+          <Image
+            source={postData?.contentImg}
+            style={styles.imgStyle}
+            key={postData?.contentImg}
           />
         </View>
+        {/* MOVIE INFO (RIGHT SIDE) */}
+        <View style={globalStyle.flex}>
+          <Text
+            style={[
+              globalStyle.textRegular,
+              globalStyle.textCardTitleSize,
+              styles.textAlignCenter,
+            ]}>
+            {postData?.title}
+          </Text>
+          <View>
+            <Text
+              style={[
+                globalStyle.textLight,
+                globalStyle.textSmallSize,
+                styles.textAlignCenter,
+                styles.marginNegative,
+              ]}>
+              {postData?.genre}
+            </Text>
+          </View>
+          {/* DA RIVEDERE */}
+          <View style={styles.contentInfoContainer}>
+            <IconWithText
+              svgName={'world'}
+              text={formattedCounter}
+              width={30}
+              svgColor={colors.solidWhite}
+            />
+            <IconWithText
+              svgName={'people'}
+              text={postData?.friendCounter}
+              width={30}
+              svgColor={colors.solidWhite}
+            />
+          </View>
+          <StarRating rating={postData?.starRating} />
+          <View style={styles.btnActionsContainer}>{renderBtnActions}</View>
+        </View>
       </View>
-    );
-  },
-);
+      <View style={styles.reviewContainer}>
+        <Text
+          numberOfLines={currentNumberOfLines}
+          onTextLayout={e => onTextRender(e.nativeEvent.lines.length)}
+          style={[globalStyle.textLight, globalStyle.textSmallishSize]}>
+          {postData?.review}
+        </Text>
+        <MoreButton
+          textColor={contentColor}
+          isVisible={isVisible}
+          isShowingMore={!currentNumberOfLines}
+          onPress={changeNumberOfLines}
+        />
+      </View>
+    </View>
+  );
+});
 export default PostCard;
