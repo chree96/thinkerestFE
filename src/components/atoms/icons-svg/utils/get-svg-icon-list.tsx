@@ -1,5 +1,6 @@
 import React from 'react';
 import {
+  ArrowBack,
   Book,
   Cloud,
   Gamepad,
@@ -11,6 +12,7 @@ import {
   Share,
   Television,
   TelevisionOutline,
+  Timer,
   World,
 } from '../../svg';
 
@@ -29,5 +31,7 @@ export const getSvgIconList = (width?: number, color?: string | symbol) => {
     lens: <Lens fill={color} width={width || 30} />,
     tvSeriesOutline: <TelevisionOutline fill={color} />,
     moviesOutline: <MovieOutline fill={color} />,
+    arrowBack: <ArrowBack fill={color} width={width || 30} />,
+    timer: <Timer fill={color} width={width || 30} />,
   };
 };

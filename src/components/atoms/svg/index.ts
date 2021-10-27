@@ -13,3 +13,4 @@ export {default as Book} from './Book';
 export {default as Generic} from './Generic';
 export {default as TelevisionOutline} from './TelevisionOutline';
 export {default as MovieOutline} from './MovieOutline';
+export {default as ArrowBack} from './ArrowBack';
