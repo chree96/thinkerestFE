@@ -57,7 +57,7 @@ const Search = memo<SearchProps>(
       ({item}) => (
         <ContentSectionImage
           contentSectionImg={{uri: item?.image?.url}}
-          onPress={() => navigation.navigate('Login', {data: item})}
+          onPress={() => navigation.navigate('ContentDetail', {data: item})}
         />
       ),
       [navigation],

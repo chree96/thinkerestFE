@@ -12,7 +12,7 @@ export default function tabIcon(route, focused, contentColor) {
       return <HomeIcon fill={iconColor} />;
     case Screen.Search:
       return <Lens fill={iconColor} />;
-    case Screen.Login:
+    case Screen.ContentDetail:
       return <Timer fill={iconColor} />;
     case Screen.Profile:
       return (
