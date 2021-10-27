@@ -20,11 +20,17 @@ export const globalStyle = StyleSheet.create({
     color: colors.solidWhite,
     // color: colors.mineShaft,
   },
+  textMedLargeSize: {
+    fontSize: sizes.medLarge,
+  },
   textCardTitleSize: {
     fontSize: sizes.cardTitle,
   },
   textExtraSmallSize: {
     fontSize: sizes.extraSmall,
+  },
+  textLittleMediumSize: {
+    fontSize: sizes.littleMedium,
   },
   textSmallSize: {
     fontSize: sizes.small,
