@@ -16,7 +16,7 @@ const mapDispatchToProps = (dispatch: Dispatch) => ({
   },
 });
 const mapStateToProps = (state: any) => ({
-  isLoading: contentsSelector.retrieveContentsLoader(state),
+  isLoading: contentsSelector.getContentsLoader(state),
   isHiddenHeader: navigationSelector.retrieveIsHiddenHeader(state),
 });
 

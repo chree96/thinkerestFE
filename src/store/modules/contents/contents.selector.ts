@@ -3,15 +3,14 @@ import {ContentsState} from './contents.types';
 
 const mainSelector = (state: any) => state[STATE_KEY] as ContentsState;
 
-export const retrieveContentsLoader = (state: any) =>
-  mainSelector(state).isLoading;
-export const retrieveSearchedContentsPreview = (state: any) =>
+export const getContentsLoader = (state: any) => mainSelector(state).isLoading;
+export const getSearchedContentsPreview = (state: any) =>
   mainSelector(state).searchedContentsPreview;
-export const retrieveSearchedContents = (state: any) => {
-  const contentType = retrieveContentType(state);
+export const getSearchedContents = (state: any) => {
+  const contentType = getContentType(state);
   return mainSelector(state).searchSectionContents[contentType];
 };
-export const retrieveContentType = (state: any) =>
-  mainSelector(state).contentType;
-export const retrieveContentColor = (state: any) =>
-  mainSelector(state).contentColor;
+export const getContentType = (state: any) => mainSelector(state).contentType;
+export const getContentColor = (state: any) => mainSelector(state).contentColor;
+export const getContentDetail = (state: any) =>
+  mainSelector(state).contentDetail;

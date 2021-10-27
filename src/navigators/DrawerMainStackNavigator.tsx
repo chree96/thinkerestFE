@@ -10,10 +10,7 @@ import ContentDetail from '../screens/content-detail';
 import Search from '../screens/search';
 import Test from '../screens/search copy/Test';
 import {Screen} from '../screens/types';
-import {
-  retrieveContentColor,
-  retrieveContentType,
-} from '../store/rootSelectors';
+import {getContentColor, getContentType} from '../store/rootSelectors';
 import {colors} from '../style';
 import tabIcon from '../utils/navigator/get-tab-icon';
 import {hideTabNavigator} from './routesOptions';
@@ -148,8 +145,8 @@ const DrawerMainStackNavigator = ({contentType, contentColor}: any) => {
 };
 
 const mapStateToProps = (state: any) => ({
-  contentType: retrieveContentType(state),
-  contentColor: retrieveContentColor(state),
+  contentType: getContentType(state),
+  contentColor: getContentColor(state),
 });
 
 export default connect(mapStateToProps)(DrawerMainStackNavigator);

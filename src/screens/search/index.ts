@@ -6,12 +6,11 @@ import * as contentsSelector from '../../store/modules/contents/contents.selecto
 import * as contentsAction from '../../store/modules/contents/contents.action';
 
 const mapStateToProps = (state: any) => ({
-  searchedContentPreview:
-    contentsSelector.retrieveSearchedContentsPreview(state),
-  isLoading: contentsSelector.retrieveContentsLoader(state),
-  contentColor: contentsSelector.retrieveContentColor(state),
-  contentType: contentsSelector.retrieveContentType(state),
-  searchSectionContent: contentsSelector.retrieveSearchedContents(state),
+  searchedContentPreview: contentsSelector.getSearchedContentsPreview(state),
+  isLoading: contentsSelector.getContentsLoader(state),
+  contentColor: contentsSelector.getContentColor(state),
+  contentType: contentsSelector.getContentType(state),
+  searchSectionContent: contentsSelector.getSearchedContents(state),
 });
 
 const mapDispatchToProps = (dispatch: Dispatch) => ({

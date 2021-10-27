@@ -9,7 +9,7 @@ import {connect} from 'react-redux';
 
 const mapStateToProps = (state: any) => ({
   userPosts: postsSelector.retrieveUserPosts(state),
-  contentColor: contentsSelector.retrieveContentColor(state),
+  contentColor: contentsSelector.getContentColor(state),
   isLoading: postsSelector.retrievePostsLoader(state),
   isHiddenHeader: navigationSelector.retrieveIsHiddenHeader(state),
 });
