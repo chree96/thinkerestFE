@@ -12,4 +12,7 @@ export const styles = StyleSheet.create({
   noBackground: {
     backgroundColor: 'transparent',
   },
+  backgroundWithOpacity: {
+    backgroundColor: 'rgba(255, 255, 255, 0.4)',
+  },
 });
