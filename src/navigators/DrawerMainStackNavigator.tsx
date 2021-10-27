@@ -6,7 +6,7 @@ import {connect} from 'react-redux';
 import MainHeader from '../components/organisms/main-header';
 import SearchHeader from '../components/organisms/search-header';
 import Home from '../screens/home';
-import Login from '../screens/login';
+import ContentDetail from '../screens/content-detail';
 import Search from '../screens/search';
 import Test from '../screens/search copy/Test';
 import {Screen} from '../screens/types';
@@ -16,6 +16,7 @@ import {
 } from '../store/rootSelectors';
 import {colors} from '../style';
 import tabIcon from '../utils/navigator/get-tab-icon';
+import {hideTabNavigator} from './routesOptions';
 
 const DrawerMainStackNavigator = ({contentType, contentColor}: any) => {
   const Stack = createStackNavigator();
@@ -38,25 +39,30 @@ const DrawerMainStackNavigator = ({contentType, contentColor}: any) => {
       return (
         <Tab.Navigator
           initialRouteName={Screen.Home}
-          screenOptions={({route}) => ({
-            tabBarHideOnKeyboard: true,
-            tabBarShowLabel: false,
-            tabBarIcon: ({focused}) => tabIcon(route, focused, contentColor),
-            tabBarStyle: {
-              backgroundColor: colors.solidBlack,
-              borderTopColor: 'transparent',
-            },
-            header: () => {
-              return (
-                <MainHeader
-                  contentType={contentType}
-                  contentColor={contentColor}
-                  navigation={navigation}
-                />
-              );
-            },
-            headerShown: true,
-          })}>
+          screenOptions={({route, navigation}) => {
+            const hideNavigator = hideTabNavigator(navigation);
+
+            return {
+              tabBarHideOnKeyboard: true,
+              tabBarShowLabel: false,
+              tabBarIcon: ({focused}) => tabIcon(route, focused, contentColor),
+              tabBarStyle: {
+                backgroundColor: colors.solidBlack,
+                borderTopColor: 'transparent',
+                display: hideNavigator ? 'none' : 'flex',
+              },
+              header: () => {
+                return (
+                  <MainHeader
+                    contentType={contentType}
+                    contentColor={contentColor}
+                    navigation={navigation}
+                  />
+                );
+              },
+              headerShown: true,
+            };
+          }}>
           <Tab.Screen
             name={Screen.Home}
             children={props => getInnerNavigator(Home, Screen.Home, props)}
@@ -83,13 +89,17 @@ const DrawerMainStackNavigator = ({contentType, contentColor}: any) => {
             }}
           />
           <Tab.Screen
-            name={Screen.Login}
-            children={props => getInnerNavigator(Login, Screen.Login, props)}
+            name={Screen.ContentDetail}
+            children={props =>
+              getInnerNavigator(ContentDetail, Screen.ContentDetail, props)
+            }
             options={{headerShown: false}}
           />
           <Tab.Screen
             name={Screen.Profile}
-            children={props => getInnerNavigator(Login, Screen.Profile, props)}
+            children={props =>
+              getInnerNavigator(ContentDetail, Screen.Profile, props)
+            }
             options={{headerShown: false}}
           />
         </Tab.Navigator>
@@ -101,8 +111,9 @@ const DrawerMainStackNavigator = ({contentType, contentColor}: any) => {
   const InnerNavigator = useCallback(
     ({initialRouteComponent, initialRouteName, navigation, headerShown}) => {
       const navigationState = navigation.getState();
+
       const navigationParams = {
-        ...navigationState.routes[navigationState.index].params,
+        params: {...navigationState.routes[navigationState.index].params},
       };
 
       const Component = initialRouteComponent;

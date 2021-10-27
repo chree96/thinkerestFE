@@ -3,7 +3,7 @@ import {ContentType} from '../types/user-actions';
 export enum Screen {
   Home = 'Home',
   Search = 'Search',
-  Login = 'Login',
+  ContentDetail = 'ContentDetail',
   Profile = 'Profile',
 }
 
