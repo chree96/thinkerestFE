@@ -27,6 +27,7 @@ export interface ContentsState {
     };
   };
   searchedContentsPreview: [] | null;
+  contentDetail: ContentDetails;
   isLoading: boolean;
   error: boolean | null;
   contentType: ContentType;
@@ -51,4 +52,13 @@ export interface SearchContent {
   title: string;
   titleType?: string;
   year: number;
+}
+
+export interface ContentDetails extends SearchContent {
+  genre: string;
+  peopleShare: number;
+  friendsShare: number;
+  peopleRate: number;
+  friendRate: number;
+  plot: string;
 }

@@ -35,6 +35,25 @@ const initialState: ContentsState = {
     },
   },
   searchedContentsPreview: [],
+  contentDetail: {
+    id: '',
+    image: {
+      height: 0,
+      width: 0,
+      id: '',
+      url: '',
+    },
+    runningTimeInMinutes: 0,
+    title: '',
+    titleType: '',
+    year: 0,
+    genre: '',
+    peopleShare: 0,
+    friendsShare: 0,
+    peopleRate: 0,
+    friendRate: 0,
+    plot: '',
+  },
   isLoading: false,
   error: null,
   contentType: ContentType.general,
@@ -74,6 +93,13 @@ const contentsReducer = (state = initialState, action: any) => {
       return Object.assign({}, state, {
         contentType: content,
         contentColor: getContentColor(content),
+      });
+    case ContentsActionType.RETRIEVE_CONTENT_DETAIL:
+      return Object.assign({}, state, {isLoading: true}); //FARE ACTION LOADER?
+    case ContentsActionType.STORE_CONTENT_DETAIL:
+      return Object.assign({}, state, {
+        contentDetail: action.payload,
+        isLoading: false,
       });
     default:
       return state;
