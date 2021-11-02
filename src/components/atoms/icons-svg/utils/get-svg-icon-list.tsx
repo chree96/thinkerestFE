@@ -10,6 +10,7 @@ import {
   MovieOutline,
   People,
   Share,
+  Star,
   Television,
   TelevisionOutline,
   Timer,
@@ -33,5 +34,6 @@ export const getSvgIconList = (width?: number, color?: string | symbol) => {
     moviesOutline: <MovieOutline fill={color} />,
     arrowBack: <ArrowBack fill={color} width={width || 30} />,
     timer: <Timer fill={color} width={width || 30} />,
+    star: <Star fill={color} width={width || 30} />,
   };
 };
