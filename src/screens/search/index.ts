@@ -20,6 +20,9 @@ const mapDispatchToProps = (dispatch: Dispatch) => ({
   retrieveSearchSectionContents: () => {
     dispatch(contentsAction.retrieveSearchSectionContents() as any);
   },
+  retrieveContentDetail: (payload: string) => {
+    dispatch(contentsAction.retrieveContentDetail(payload) as any);
+  },
 });
 
 export default connect(mapStateToProps, mapDispatchToProps)(Search);

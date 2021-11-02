@@ -16,6 +16,7 @@ interface SearchProps {
   searchedContentPreview?: any;
   setHiddenHeader: (payload: any) => void;
   retrieveSearchSectionContents: () => void;
+  retrieveContentDetail: (payload: string) => void;
   navigation: NavigationStackProp;
   isLoading: boolean;
   contentColor: string;
@@ -32,6 +33,7 @@ const Search = memo<SearchProps>(
     contentType,
     navigation,
     retrieveSearchSectionContents,
+    retrieveContentDetail,
     searchSectionContent,
   }) => {
     useEffect(() => {
@@ -42,6 +44,14 @@ const Search = memo<SearchProps>(
     const genreButtons = useMemo(
       () => getGenreButtons(contentType, contentColor),
       [contentColor, contentType],
+    );
+
+    const goToContentDetail = useCallback(
+      contentId => {
+        retrieveContentDetail(contentId);
+        navigation.navigate('ContentDetail');
+      },
+      [navigation, retrieveContentDetail],
     );
 
     const renderSearchedContentList = useCallback(
@@ -57,10 +67,10 @@ const Search = memo<SearchProps>(
       ({item}) => (
         <ContentSectionImage
           contentSectionImg={{uri: item?.image?.url}}
-          onPress={() => navigation.navigate('ContentDetail', {data: item})}
+          onPress={() => goToContentDetail(item?.id)}
         />
       ),
-      [navigation],
+      [goToContentDetail],
     );
 
     const sectionTitle = useCallback(
