@@ -10,6 +10,7 @@ interface IconWithTextProps {
   svgColor?: string | symbol;
   width?: number;
   style?: any;
+  textStyle?: any;
 }
 
 export default function IconWithText({
@@ -18,6 +19,7 @@ export default function IconWithText({
   svgColor,
   width,
   style,
+  textStyle,
 }: IconWithTextProps) {
   return (
     <View style={[styles.container, style]}>
@@ -31,6 +33,7 @@ export default function IconWithText({
           globalStyle.textBold,
           globalStyle.textSmallSize,
           styles.textMargin,
+          textStyle,
         ]}>
         {text}
       </Text>

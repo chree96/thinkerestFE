@@ -9,6 +9,7 @@ interface DetailShareDataProps {
     title: string;
     genre: string;
     year: number;
+    duration: string;
   };
   style?: any;
 }
@@ -30,7 +31,7 @@ export default function DetailBackgroundData({
           globalStyle.textLittleMediumSize,
           styles.description,
         ]}>
-        {data?.genre + ' · ' + data?.year}
+        {data?.year + ' · ' + data?.genre + ' · ' + data?.duration}
       </Text>
     </LinearGradient>
   );

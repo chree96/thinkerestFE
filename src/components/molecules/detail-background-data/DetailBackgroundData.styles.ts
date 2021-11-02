@@ -11,6 +11,7 @@ export const styles = StyleSheet.create({
     paddingHorizontal: 20,
     paddingBottom: 16,
     justifyContent: 'flex-end',
+    alignItems: 'center',
   },
   description: {
     color: colors.lightGrey,
