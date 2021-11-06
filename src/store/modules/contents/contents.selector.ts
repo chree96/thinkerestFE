@@ -4,6 +4,8 @@ import {ContentsState} from './contents.types';
 const mainSelector = (state: any) => state[STATE_KEY] as ContentsState;
 
 export const getContentsLoader = (state: any) => mainSelector(state).isLoading;
+export const getReviewsLoader = (state: any) =>
+  mainSelector(state).isLoadingReviews;
 export const getSearchedContentsPreview = (state: any) =>
   mainSelector(state).searchedContentsPreview;
 export const getSearchedContents = (state: any) => {
@@ -14,3 +16,7 @@ export const getContentType = (state: any) => mainSelector(state).contentType;
 export const getContentColor = (state: any) => mainSelector(state).contentColor;
 export const getContentDetail = (state: any) =>
   mainSelector(state).contentDetail;
+export const getFriendsContentReviews = (state: any) =>
+  mainSelector(state).contentReviews?.friends;
+export const getPeopleContentReviews = (state: any) =>
+  mainSelector(state).contentReviews?.people;

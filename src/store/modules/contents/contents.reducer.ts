@@ -53,8 +53,16 @@ const initialState: ContentsState = {
     peopleRate: 0,
     friendRate: 0,
     plot: '',
+    runTime: 0,
+    releaseData: '',
+    credits: [],
+  },
+  contentReviews: {
+    friends: [],
+    people: [],
   },
   isLoading: false,
+  isLoadingReviews: false,
   error: null,
   contentType: ContentType.general,
   contentColor: colors.solidWhite,
@@ -95,11 +103,18 @@ const contentsReducer = (state = initialState, action: any) => {
         contentColor: getContentColor(content),
       });
     case ContentsActionType.RETRIEVE_CONTENT_DETAIL:
-      return Object.assign({}, state, {isLoading: true}); //FARE ACTION LOADER?
+      return Object.assign({}, state, {isLoading: true});
     case ContentsActionType.STORE_CONTENT_DETAIL:
       return Object.assign({}, state, {
         contentDetail: action.payload,
         isLoading: false,
+      });
+    case ContentsActionType.RETRIEVE_CONTENT_REVIEWS:
+      return Object.assign({}, state, {isLoadingReviews: true});
+    case ContentsActionType.STORE_CONTENT_REVIEWS:
+      return Object.assign({}, state, {
+        contentReviews: action.payload,
+        isLoadingReviews: false,
       });
     default:
       return state;

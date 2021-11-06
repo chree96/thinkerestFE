@@ -74,12 +74,36 @@ export const retrieveContentDetail = (id: string) => {
 
     axios
       .get(HttpAddress + 'content-details', {
-        params: {id},
+        params: {contentId: id},
       })
       .then(response => {
         const results = response?.data?.results;
         dispatch({
           type: ContentsActionType.STORE_CONTENT_DETAIL,
+          payload: results,
+        });
+      })
+      .catch(error => {
+        dispatch({
+          type: ContentsActionType.RETRIEVE_SEARCH_CONTENT_FAILURE,
+          payload: error,
+        });
+      });
+  };
+};
+
+export const retrieveContentReviews = (id: string) => {
+  return (dispatch: any) => {
+    dispatch({type: ContentsActionType.RETRIEVE_CONTENT_REVIEWS});
+
+    axios
+      .get(HttpAddress + 'content-reviews', {
+        params: {contentId: id},
+      })
+      .then(response => {
+        const results = response?.data?.results;
+        dispatch({
+          type: ContentsActionType.STORE_CONTENT_REVIEWS,
           payload: results,
         });
       })

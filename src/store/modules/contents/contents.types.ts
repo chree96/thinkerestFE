@@ -28,10 +28,21 @@ export interface ContentsState {
   };
   searchedContentsPreview: [] | null;
   contentDetail: ContentDetails;
+  contentReviews: {
+    friends: ContentReview[];
+    people: ContentReview[];
+  };
   isLoading: boolean;
+  isLoadingReviews: boolean;
   error: boolean | null;
   contentType: ContentType;
   contentColor: string;
+}
+
+export default interface ContentReview {
+  user: string;
+  userImg: string;
+  review: string;
 }
 
 export interface ContentByGenre {
@@ -61,4 +72,13 @@ export interface ContentDetails extends SearchContent {
   peopleRate: number;
   friendRate: number;
   plot: string;
+  runTime: number;
+  releaseData: string;
+  credits: CastInfo[];
+}
+
+export interface CastInfo {
+  name: string;
+  image: string;
+  character: string;
 }
