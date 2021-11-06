@@ -1,5 +1,11 @@
 /* eslint-disable react-native/no-inline-styles */
-import React, {ReactNode, useState, useRef, useEffect} from 'react';
+import React, {
+  ReactNode,
+  useState,
+  useRef,
+  useEffect,
+  useCallback,
+} from 'react';
 import {
   TouchableOpacity,
   View,
@@ -32,6 +38,7 @@ export interface CardProps extends ViewProps {
   scrollToTop?: boolean;
   scrollToEnd?: boolean;
   noHeaderShadow?: boolean;
+  withScroll?: boolean;
   onModalHide?: () => void;
 }
 const SwipeableBottomDrawer = ({
@@ -49,6 +56,7 @@ const SwipeableBottomDrawer = ({
   scrollToTop = false,
   scrollToEnd = false,
   noHeaderShadow = false,
+  withScroll = false,
   onModalHide,
   ...props
 }: CardProps) => {
@@ -75,6 +83,51 @@ const SwipeableBottomDrawer = ({
     closeAction();
     if (scrollView.current) scrollView.current.scrollTo({x: 0, y: 0});
   };
+
+  const DrawerContent = useCallback(() => {
+    if (children) {
+      return withScroll ? (
+        <ScrollView
+          ref={scrollView}
+          nestedScrollEnabled
+          directionalLockEnabled
+          showsVerticalScrollIndicator={false}
+          alwaysBounceVertical={false}
+          contentContainerStyle={{
+            paddingBottom: fixedBottomComponent ? 50 : 0,
+            backgroundColor: colors.solidBlack,
+          }}
+          onScroll={Animated.event(
+            [{nativeEvent: {contentOffset: {y: scroll}}}],
+            {useNativeDriver: false},
+          )}
+          scrollEventThrottle={16}>
+          <TouchableOpacity
+            activeOpacity={1}
+            style={[styles.touchableSwipeFix, contentStyle]}>
+            {children}
+          </TouchableOpacity>
+        </ScrollView>
+      ) : (
+        <View
+          style={{
+            flexGrow: 1,
+            minHeight: screenHeight * 0.6,
+            backgroundColor: 'black',
+          }}>
+          {children}
+        </View>
+      );
+    }
+    return null;
+  }, [
+    children,
+    contentStyle,
+    fixedBottomComponent,
+    screenHeight,
+    scroll,
+    withScroll,
+  ]);
 
   return (
     <Modal
@@ -116,29 +169,7 @@ const SwipeableBottomDrawer = ({
               {headerComponent}
             </View>
           ) : null}
-          {children ? (
-            <ScrollView
-              ref={scrollView}
-              nestedScrollEnabled
-              directionalLockEnabled
-              showsVerticalScrollIndicator={false}
-              alwaysBounceVertical={false}
-              contentContainerStyle={{
-                paddingBottom: fixedBottomComponent ? 50 : 0,
-                paddingTop: 10,
-              }}
-              onScroll={Animated.event(
-                [{nativeEvent: {contentOffset: {y: scroll}}}],
-                {useNativeDriver: false},
-              )}
-              scrollEventThrottle={16}>
-              <TouchableOpacity
-                activeOpacity={1}
-                style={[styles.touchableSwipeFix, contentStyle]}>
-                {children}
-              </TouchableOpacity>
-            </ScrollView>
-          ) : null}
+          <DrawerContent />
           {fixedBottomComponent ? (
             <LinearGradient
               pointerEvents="box-none"

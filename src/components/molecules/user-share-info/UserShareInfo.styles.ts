@@ -16,4 +16,8 @@ export const styles = StyleSheet.create({
     alignSelf: 'center',
     marginLeft: 8,
   },
+  reviewContainer: {
+    paddingRight: 16,
+    paddingBottom: 16,
+  },
 });

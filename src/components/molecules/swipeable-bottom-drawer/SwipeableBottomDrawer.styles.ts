@@ -9,7 +9,7 @@ const styles = StyleSheet.create({
   },
   header: {
     width: '100%',
-    height: 40,
+    height: 20,
     backgroundColor: 'transparent',
     justifyContent: 'center',
     alignItems: 'center',
@@ -19,6 +19,7 @@ const styles = StyleSheet.create({
     height: 4,
     backgroundColor: colors.alto,
     borderRadius: 2,
+    marginTop: 10,
   },
   headerContent: {
     width: '100%',
