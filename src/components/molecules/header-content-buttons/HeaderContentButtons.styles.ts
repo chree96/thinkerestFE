@@ -12,17 +12,7 @@ export const styles = StyleSheet.create({
     alignContent: 'center',
     alignItems: 'center',
     paddingBottom: 4,
-  },
-  genericButtonContainer: {
-    backgroundColor: colors.solidWhite,
-    padding: 6,
-  },
-  radialGradient: {
-    borderRightWidth: 0.5,
-    flexDirection: 'row',
-    justifyContent: 'center',
-    backgroundColor: 'black',
-    height: 40,
+    backgroundColor: colors.mattBlack,
   },
   headerButton: {
     borderRadius: 0,

@@ -1,6 +1,5 @@
 import React, {memo, useEffect, useMemo} from 'react';
 import {Animated} from 'react-native';
-import {shadows} from '../../../style';
 import {styles} from './MainHeader.styles';
 import {ContentType} from '../../../types/user-actions';
 import {useCallback} from 'react';
@@ -10,6 +9,7 @@ import {
   startCollapse,
 } from '../../../utils/header/header-animation';
 import HeaderContentButtons from '../../molecules/header-content-buttons';
+import MainHeaderTop from '../../molecules/main-header-top';
 
 interface MainHeaderProps {
   contentType: ContentType;
@@ -29,7 +29,7 @@ const MainHeader = memo<MainHeaderProps>(
     isHiddenHeader,
     navigation,
   }) => {
-    const {transformHeaderCollapse, transformContent, transformLogo} = useMemo(
+    const {transformHeaderCollapse, transformContent} = useMemo(
       () => getHeaderAnimationStyles(),
       [],
     );
@@ -41,22 +41,8 @@ const MainHeader = memo<MainHeaderProps>(
     const Header = useCallback(() => {
       return (
         <Animated.View
-          style={[
-            shadows.little,
-            styles.headerContainer,
-            transformHeaderCollapse,
-            style,
-          ]}>
-          <Animated.Text
-            style={[
-              styles.textLogo,
-              {
-                color: contentColor,
-              },
-              transformLogo,
-            ]}>
-            Thinkerest
-          </Animated.Text>
+          style={[styles.headerContainer, transformHeaderCollapse, style]}>
+          <MainHeaderTop color={contentColor} />
           <HeaderContentButtons
             contentType={contentType}
             contentColor={contentColor}
@@ -72,7 +58,6 @@ const MainHeader = memo<MainHeaderProps>(
       style,
       transformContent,
       transformHeaderCollapse,
-      transformLogo,
     ]);
 
     return <Header />;
