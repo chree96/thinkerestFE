@@ -19,6 +19,7 @@ import {SceneMap, TabBar, TabView} from 'react-native-tab-view';
 import {useDimensions} from 'react-native-hooks';
 import DetailCredits from '../../components/molecules/detail-credits';
 import ReviewItem from '../../components/molecules/review-item';
+import ButtonPrimary from '../../components/atoms/button-primary';
 
 interface ContentDetailProps {
   navigation: any;
@@ -192,11 +193,7 @@ const ContentDetail = memo<ContentDetailProps>(
           />
           <DetailBackgroundData data={backgroundData} />
         </DetailBackgroundImage>
-
         <DetailShareData data={shareAndRateData} iconColor={contentColor} />
-        <DetailPlot plot={contentDetail?.plot} />
-        <DetailCredits credits={contentDetail?.credits} />
-
         <DetailRating
           rate={contentDetail?.peopleRate}
           onMorePress={() => {
@@ -204,6 +201,15 @@ const ContentDetail = memo<ContentDetailProps>(
             toggleDrawer();
           }}
         />
+
+        <ButtonPrimary
+          text={'Add review'}
+          bgColor={contentColor}
+          onPress={() => console.log('added review')}
+        />
+
+        <DetailPlot plot={contentDetail?.plot} />
+        <DetailCredits credits={contentDetail?.credits} />
 
         <SwipeableBottomDrawer
           visible={isDrawerVisible}

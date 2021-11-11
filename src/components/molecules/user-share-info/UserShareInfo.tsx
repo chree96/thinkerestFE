@@ -40,7 +40,7 @@ export default function UserShareInfo({
               {color: textColor},
             ]}>
             <Text style={[globalStyle.textBold, {color: textColor}]}>
-              {user}
+              {user}{' '}
             </Text>
             {action}
           </Text>
