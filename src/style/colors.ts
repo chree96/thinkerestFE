@@ -3,6 +3,7 @@
 const colors = {
   catskillWhite: '#EEF6F7',
   solidBlack: '#000000',
+  mattBlack: 'rgba(0, 0, 0, 0.4)',
   aliceBlue: '#F0F8FF',
   tuna: '#4A4C54',
   solidWhite: '#FFFFFF',
