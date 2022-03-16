@@ -20,11 +20,12 @@ export default function ReviewItem({
 }: ReviewItemProps) {
   const buttonActions = useMemo(() => getButtonActions(true), []);
 
+  const shareInfo = {user, userImg: {uri: userImg}};
+
   return (
     <View style={[styles.container, shadows.little, style]}>
       <UserShareInfo
-        user={user}
-        userImg={{uri: userImg}}
+        shareInfo={shareInfo}
         withoutAction
         review={review}
         style={styles.userInfo}

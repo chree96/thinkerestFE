@@ -7,17 +7,15 @@ import {styles} from './Post.styles';
 
 interface PostProps {
   postData: {
-    starRating: number;
     contentImg: any;
-    title: string;
     genre: string;
     review: string;
-    friendCounter: number;
-    worldCounter: number;
   };
   userData: {
     user: string;
     userImg: any;
+    rating: number;
+    contentTitle: string;
     contentType: ContentType;
   };
   contentColor: string;
@@ -31,14 +29,8 @@ const Post = memo<PostProps>(({contentColor, postData, userData, style}) => {
   );
 
   const RenderUserShareInfo = useCallback(
-    () => (
-      <UserShareInfo
-        user={userData?.user}
-        userImg={userData?.userImg}
-        contentType={userData?.contentType}
-      />
-    ),
-    [userData?.contentType, userData?.user, userData?.userImg],
+    () => <UserShareInfo shareInfo={userData} />,
+    [userData],
   );
 
   return (

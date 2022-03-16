@@ -19,7 +19,7 @@ export default function MoreButton({
   onPress,
 }: MoreButtonProps) {
   const buttonText = useMemo(
-    () => (isShowingMore ? 'see less' : 'see more'),
+    () => (isShowingMore ? 'Hide review' : 'Show review'),
     [isShowingMore],
   );
 

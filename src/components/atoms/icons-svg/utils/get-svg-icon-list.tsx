@@ -11,6 +11,7 @@ import {
   Movie,
   MovieOutline,
   People,
+  Plus,
   Share,
   Star,
   Television,
@@ -39,5 +40,6 @@ export const getSvgIconList = (width?: number, color?: string | symbol) => {
     star: <Star fill={color} width={width || 30} />,
     hamburger: <Hamburger fill={color} width={40} />,
     airplane: <Airplane fill={color} width={30} />,
+    plus: <Plus fill={color} width={width || 30} />,
   };
 };

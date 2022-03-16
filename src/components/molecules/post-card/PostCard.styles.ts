@@ -1,69 +1,48 @@
 import {StyleSheet} from 'react-native';
 import {colors} from '../../../style';
-import {useDimensions} from 'react-native-hooks';
-
-const {width: screenWidth, height: screenHeight} = useDimensions().window;
 
 export const styles = StyleSheet.create({
   cardContainer: {
-    backgroundColor: colors.codGrey,
     borderRadius: 10,
     flex: 1,
-    minHeight: screenHeight * 0.45,
+    minHeight: 380,
+    maxHeight: 450,
+    width: '90%',
+    paddingLeft: '14%',
     marginHorizontal: 18,
     flexDirection: 'column',
-    justifyContent: 'center',
-    alignContent: 'center',
-    paddingVertical: 20,
-    paddingHorizontal: 10,
-    marginTop: 10,
+    justifyContent: 'flex-start',
   },
   contentContainer: {
     flexDirection: 'row',
     flex: 1,
   },
   imgContainer: {
-    width: screenWidth * 0.35,
-    maxHeight: 180,
+    width: '100%',
+    height: '82%',
     borderRadius: 10,
+    marginTop: -12,
     overflow: 'hidden',
-    marginRight: 20,
+    borderColor: colors.doveGrey,
+    borderWidth: 1,
   },
   imgStyle: {
     width: '100%',
     height: '100%',
     resizeMode: 'stretch',
-  },
-  textAlignCenter: {
-    textAlign: 'center',
-  },
-  marginNegative: {
-    marginTop: -4,
+    borderRadius: 10,
   },
   contentInfoContainer: {
     flexDirection: 'row',
     alignItems: 'center',
-    marginTop: 8,
     width: '100%',
-    justifyContent: 'center',
-  },
-  btnActionsContainer: {
-    flex: 1,
-    marginTop: 14,
-    flexDirection: 'row',
-    justifyContent: 'flex-end',
+    justifyContent: 'space-between',
+    paddingHorizontal: 4,
   },
   reviewContainer: {
-    padding: 10,
-    minHeight: 80,
-  },
-  reviewText: {
-    margin: 10,
-  },
-  gradientStyle: {
-    zIndex: 10,
-    borderRadius: 10,
-    height: 12,
-    marginTop: -12,
+    flex: 1,
+    paddingTop: 6,
+    paddingRight: 8,
+    minHeight: 280,
   },
 });

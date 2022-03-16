@@ -16,3 +16,4 @@ export {default as ArrowBack} from './ArrowBack';
 export {default as General} from './General';
 export {default as Hamburger} from './Hamburger';
 export {default as Airplane} from './Airplane';
+export {default as Plus} from './Plus';
