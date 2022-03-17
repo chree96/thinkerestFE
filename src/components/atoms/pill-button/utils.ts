@@ -1,7 +1,7 @@
-import {colors} from '../../style';
-import {ContentType} from '../../types/user-actions';
+import {colors} from '../../../style';
+import {ContentType} from '../../../types/user-actions';
 
-const getSecondaryContentColor = (content: ContentType) => {
+export const getSecondaryContentColor = (content: ContentType) => {
   switch (content) {
     case ContentType.movies:
       return colors.cherryRedLight;
@@ -15,5 +15,3 @@ const getSecondaryContentColor = (content: ContentType) => {
       return colors.solidWhite;
   }
 };
-
-export default getSecondaryContentColor;
