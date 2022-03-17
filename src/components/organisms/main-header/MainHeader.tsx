@@ -2,7 +2,6 @@ import React, {memo, useEffect, useMemo} from 'react';
 import {Animated} from 'react-native';
 import {styles} from './MainHeader.styles';
 import {ContentType} from '../../../types/user-actions';
-import {useCallback} from 'react';
 import {BottomTabHeaderProps} from '@react-navigation/bottom-tabs/lib/typescript/src/types';
 import {
   getHeaderAnimationStyles,
@@ -38,29 +37,18 @@ const MainHeader = memo<MainHeaderProps>(
       startCollapse(isHiddenHeader);
     }, [isHiddenHeader]);
 
-    const Header = useCallback(() => {
-      return (
-        <Animated.View
-          style={[styles.headerContainer, transformHeaderCollapse, style]}>
-          <MainHeaderTop color={contentColor} />
-          <HeaderContentButtons
-            contentType={contentType}
-            contentColor={contentColor}
-            setContentType={setContentType}
-            style={transformContent}
-          />
-        </Animated.View>
-      );
-    }, [
-      contentColor,
-      contentType,
-      setContentType,
-      style,
-      transformContent,
-      transformHeaderCollapse,
-    ]);
-
-    return <Header />;
+    return (
+      <Animated.View
+        style={[styles.headerContainer, transformHeaderCollapse, style]}>
+        <MainHeaderTop color={contentColor} />
+        <HeaderContentButtons
+          contentType={contentType}
+          contentColor={contentColor}
+          setContentType={setContentType}
+          style={transformContent}
+        />
+      </Animated.View>
+    );
   },
 );
 

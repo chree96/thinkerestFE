@@ -5,7 +5,6 @@ import ImageCircleContainer from '../../atoms/image-circle-container';
 import {styles} from './UserShareInfo.styles';
 import {ContentType} from '../../../types/user-actions';
 import getContentIcon from '../../../utils/content/get-content-icon';
-import getContentAction from '../../../utils/content/get-content-action';
 import StarRating from '../star-rating';
 import getContentColor from '../../../utils/content/get-content-color';
 
@@ -36,7 +35,6 @@ export default function UserShareInfo({
 
   const UserAction = useCallback(() => {
     if (contentType) {
-      const action = getContentAction(contentType);
       const icon = getContentIcon(contentType, 16);
       const contentColor = getContentColor(contentType);
 
@@ -59,7 +57,7 @@ export default function UserShareInfo({
                   styles.txtStyle,
                   {color: colors.doveGrey},
                 ]}>
-                {action}
+                {' ha aggiunto'}
               </Text>
             </View>
             <Text

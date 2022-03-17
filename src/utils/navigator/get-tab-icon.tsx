@@ -4,9 +4,14 @@ import {HomeIcon, Lens, Timer} from '../../components/atoms/svg';
 import {Screen} from '../../screens/types';
 import {colors} from '../../style';
 
-export default function tabIcon(route, focused, contentColor) {
+export default function tabIcon(
+  route: any,
+  focused: boolean,
+  contentColor: string,
+) {
   const iconInactiveColor = colors.lightGrey;
   const iconColor = focused ? contentColor : iconInactiveColor;
+
   switch (route.name) {
     case Screen.Home:
       return <HomeIcon fill={iconColor} />;

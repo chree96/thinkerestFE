@@ -1,8 +1,8 @@
 import React, {useMemo} from 'react';
 import {View} from 'react-native';
-import formatCounter from '../../../utils/post/format-counter';
 import IconWithText from '../icon-with-text';
 import {styles} from './DetailShareData.styles';
+import {formatCounter} from './utils';
 
 interface DetailShareDataProps {
   data: {

@@ -1,4 +1,4 @@
-import React, {memo, useCallback} from 'react';
+import React, {memo} from 'react';
 import {View} from 'react-native';
 import UserShareInfo from '../../molecules/user-share-info/UserShareInfo';
 import {ContentType} from '../../../types/user-actions';
@@ -23,20 +23,10 @@ interface PostProps {
 }
 
 const Post = memo<PostProps>(({contentColor, postData, userData, style}) => {
-  const RenderPostCard = useCallback(
-    () => <PostCard postData={postData} contentColor={contentColor} />,
-    [contentColor, postData],
-  );
-
-  const RenderUserShareInfo = useCallback(
-    () => <UserShareInfo shareInfo={userData} />,
-    [userData],
-  );
-
   return (
     <View style={[styles.listContainer, style]}>
-      <RenderUserShareInfo />
-      <RenderPostCard />
+      <UserShareInfo shareInfo={userData} />
+      <PostCard postData={postData} contentColor={contentColor} />
     </View>
   );
 });

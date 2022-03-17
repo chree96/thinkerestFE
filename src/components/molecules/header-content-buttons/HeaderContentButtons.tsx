@@ -9,7 +9,7 @@ import {useCallback} from 'react';
 interface HeaderContentButtonsProps {
   contentType: ContentType;
   contentColor: string;
-  selectContentAlert?: boolean; //aggiungere funzione x avviso selezione
+  selectContentAlert?: boolean;
   style?: any;
   setContentType: (payload: ContentType) => void;
 }

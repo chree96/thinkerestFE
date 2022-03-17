@@ -49,7 +49,12 @@ export default function DetailCredits({credits, style}: DetailCreditsProps) {
       <Text style={[globalStyle.textBold, globalStyle.textCardTitleSize]}>
         Credits
       </Text>
-      <FlatList data={credits} renderItem={renderCredits} horizontal />
+      <FlatList
+        data={credits}
+        keyExtractor={(item, index) => 'credits-' + index}
+        renderItem={renderCredits}
+        horizontal
+      />
     </View>
   );
 }

@@ -4,8 +4,8 @@ import {colors, globalStyle, shadows} from '../../../style';
 import {styles} from './PostCard.styles';
 import {useMemo} from 'react';
 import IconWithText from '../icon-with-text';
-import getButtonActions from '../../../utils/post/button-actions';
 import MoreButton from '../../atoms/more-button';
+import {getButtonActions} from './utils';
 
 interface PostCardProps {
   postData: {

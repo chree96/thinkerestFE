@@ -17,11 +17,4 @@ export const styles = StyleSheet.create({
     marginLeft: 0,
     paddingRight: 16,
   },
-  buttonsContainer: {
-    position: 'absolute',
-    width: '100%',
-    bottom: -10,
-    flexDirection: 'row',
-    justifyContent: 'flex-end',
-  },
 });

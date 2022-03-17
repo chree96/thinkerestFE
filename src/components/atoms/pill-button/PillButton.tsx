@@ -5,7 +5,7 @@ import {styles} from './PillButton.styles';
 import IconSvg from '../icons-svg';
 import {Text, View} from 'react-native';
 import {ContentType} from '../../../types/user-actions';
-import getSecondaryContentColor from '../../../utils/content/get-secondary-content-color';
+import {getSecondaryContentColor} from './utils';
 
 interface PillButtonProps {
   iconName: string;

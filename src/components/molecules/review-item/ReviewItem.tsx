@@ -1,9 +1,8 @@
-import React, {useMemo} from 'react';
+import React from 'react';
 import {View} from 'react-native';
 import {styles} from './ReviewItem.styles';
 import {shadows} from '../../../style';
 import UserShareInfo from '../user-share-info';
-import getButtonActions from '../../../utils/post/button-actions';
 
 interface ReviewItemProps {
   user: string;
@@ -18,8 +17,6 @@ export default function ReviewItem({
   review,
   style,
 }: ReviewItemProps) {
-  const buttonActions = useMemo(() => getButtonActions(true), []);
-
   const shareInfo = {user, userImg: {uri: userImg}};
 
   return (
@@ -30,7 +27,6 @@ export default function ReviewItem({
         review={review}
         style={styles.userInfo}
       />
-      <View style={styles.buttonsContainer}>{buttonActions}</View>
     </View>
   );
 }

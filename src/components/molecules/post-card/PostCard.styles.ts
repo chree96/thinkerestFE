@@ -1,5 +1,5 @@
 import {StyleSheet} from 'react-native';
-import {colors} from '../../../style';
+import {colors, families} from '../../../style';
 
 export const styles = StyleSheet.create({
   cardContainer: {
@@ -44,5 +44,16 @@ export const styles = StyleSheet.create({
     paddingTop: 6,
     paddingRight: 8,
     minHeight: 280,
+  },
+  buttonsContainer: {
+    flexDirection: 'row',
+    alignItems: 'flex-end',
+    paddingRight: 4,
+  },
+  buttonIconText: {
+    fontFamily: families.bold,
+    fontSize: 12,
+    color: colors.doveGrey,
+    textAlignVertical: 'bottom',
   },
 });
