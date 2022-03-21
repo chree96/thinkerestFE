@@ -1,7 +1,6 @@
 import React, {useCallback} from 'react';
 import {Image, Text, View, FlatList} from 'react-native';
 import {styles} from './DetailCredits.styles';
-import {globalStyle} from '../../../style/globalStyle';
 import {CastInfo} from '../../../store/modules/contents/contents.types';
 
 interface DetailCreditsProps {
@@ -22,22 +21,8 @@ export default function DetailCredits({credits, style}: DetailCreditsProps) {
           />
         </View>
         <View style={styles.textContainer}>
-          <Text
-            style={[
-              globalStyle.textBold,
-              globalStyle.textSmallishSize,
-              {textAlign: 'center'},
-            ]}>
-            {item?.name}
-          </Text>
-          <Text
-            style={[
-              globalStyle.textLight,
-              globalStyle.textSmallishSize,
-              {textAlign: 'center'},
-            ]}>
-            {item?.character}
-          </Text>
+          <Text style={styles.nameText}>{item?.name}</Text>
+          <Text style={styles.characterText}>{item?.character}</Text>
         </View>
       </View>
     ),
@@ -46,9 +31,7 @@ export default function DetailCredits({credits, style}: DetailCreditsProps) {
 
   return (
     <View style={[styles.container, style]}>
-      <Text style={[globalStyle.textBold, globalStyle.textCardTitleSize]}>
-        Credits
-      </Text>
+      <Text style={styles.creditsTitle}>Credits</Text>
       <FlatList
         data={credits}
         keyExtractor={(item, index) => 'credits-' + index}

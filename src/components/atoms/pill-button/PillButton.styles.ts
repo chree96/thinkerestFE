@@ -1,5 +1,5 @@
 import {StyleSheet} from 'react-native';
-import {colors} from '../../../style';
+import {colors, families, sizes} from '../../../style';
 
 export const styles = StyleSheet.create({
   buttonContainer: {
@@ -22,5 +22,9 @@ export const styles = StyleSheet.create({
     padding: 4,
     width: 25,
     height: 25,
+  },
+  text: {
+    fontFamily: families.bold,
+    fontSize: sizes.extraSmall,
   },
 });

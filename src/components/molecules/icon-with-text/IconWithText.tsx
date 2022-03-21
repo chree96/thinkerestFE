@@ -1,6 +1,6 @@
 import React from 'react';
 import {Text, View} from 'react-native';
-import {colors, globalStyle, sizes} from '../../../style';
+import {colors, sizes} from '../../../style';
 import {styles} from './IconWithText.styles';
 import IconSvg from '../../atoms/icons-svg';
 
@@ -28,15 +28,7 @@ export default function IconWithText({
         color={svgColor || colors.mineShaft}
         width={width || sizes.large}
       />
-      <Text
-        style={[
-          globalStyle.textBold,
-          globalStyle.textSmallSize,
-          styles.textMargin,
-          textStyle,
-        ]}>
-        {text}
-      </Text>
+      <Text style={[styles.iconText, textStyle]}>{text}</Text>
     </View>
   );
 }

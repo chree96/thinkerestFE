@@ -1,6 +1,6 @@
 import React from 'react';
 import {TouchableOpacity} from 'react-native-gesture-handler';
-import {globalStyle, shadows} from '../../../style';
+import {shadows} from '../../../style';
 import {Text} from 'react-native';
 import {styles} from './ButtonPrimary.styles';
 
@@ -26,14 +26,7 @@ export default function ButtonPrimary({
         shadows.medium,
         style,
       ]}>
-      <Text
-        style={[
-          globalStyle.textBold,
-          globalStyle.textCardTitleSize,
-          styles.text,
-        ]}>
-        {text}
-      </Text>
+      <Text style={styles.text}>{text}</Text>
     </TouchableOpacity>
   );
 }

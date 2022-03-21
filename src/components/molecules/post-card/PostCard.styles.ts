@@ -1,5 +1,5 @@
 import {StyleSheet} from 'react-native';
-import {colors, families} from '../../../style';
+import {colors, families, sizes} from '../../../style';
 
 export const styles = StyleSheet.create({
   cardContainer: {
@@ -44,6 +44,12 @@ export const styles = StyleSheet.create({
     paddingTop: 6,
     paddingRight: 8,
     minHeight: 280,
+  },
+  reviewText: {
+    fontFamily: families.light,
+    color: colors.solidWhite,
+    fontSize: sizes.smallish,
+    paddingTop: 4,
   },
   buttonsContainer: {
     flexDirection: 'row',

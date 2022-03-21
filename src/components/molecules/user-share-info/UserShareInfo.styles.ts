@@ -1,4 +1,5 @@
 import {StyleSheet} from 'react-native';
+import {colors, families, sizes} from '../../../style';
 
 export const styles = StyleSheet.create({
   userActionContainer: {
@@ -8,6 +9,27 @@ export const styles = StyleSheet.create({
   },
   userActionRow: {
     flexDirection: 'row',
+  },
+  userText: {
+    fontFamily: families.bold,
+    color: colors.solidWhite,
+    fontSize: sizes.littleMedium,
+  },
+  actionText: {
+    fontFamily: families.regular,
+    fontSize: sizes.small,
+    color: colors.doveGrey,
+    textAlignVertical: 'center',
+  },
+  dateText: {
+    fontFamily: families.light,
+    fontSize: sizes.small,
+    color: colors.doveGrey,
+  },
+  contentText: {
+    fontFamily: families.regular,
+    fontSize: sizes.littleMedium,
+    textAlignVertical: 'center',
   },
   contentWithRateContainer: {
     flexDirection: 'row',
@@ -37,9 +59,5 @@ export const styles = StyleSheet.create({
   },
   iconContainer: {
     paddingRight: 4,
-  },
-  reviewContainer: {
-    paddingRight: 16,
-    paddingBottom: 16,
   },
 });

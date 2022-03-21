@@ -1,6 +1,6 @@
 import React, {useMemo} from 'react';
 import {TouchableOpacity} from 'react-native-gesture-handler';
-import {colors, globalStyle, shadows} from '../../../style';
+import {colors, shadows} from '../../../style';
 import {styles} from './PillButton.styles';
 import IconSvg from '../icons-svg';
 import {Text, View} from 'react-native';
@@ -44,14 +44,7 @@ export default function PillButton({
       <View style={styles.iconContainer}>
         <IconSvg iconName={iconName} color={color} width={iconSize || 25} />
       </View>
-      <Text
-        style={[
-          globalStyle.textBold,
-          globalStyle.textExtraSmallSize,
-          {color: color},
-        ]}>
-        {text}
-      </Text>
+      <Text style={[styles.text, {color: color}]}>{text}</Text>
     </TouchableOpacity>
   );
 }

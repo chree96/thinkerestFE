@@ -68,7 +68,6 @@ const Home = memo<PostsListProps>(
       <View style={[styles.listContainer, globalStyle.loaderContainer]}>
         <AnimatedLoader
           visible={true}
-          // overlayColor="rgba(255,255,255,0.75)"
           source={require('../../../assets/animations/loader-bars-mono-color.json')}
           animationStyle={globalStyle.lottieLoader}
           speed={1}

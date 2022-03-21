@@ -1,8 +1,8 @@
 import React from 'react';
-import {View} from 'react-native';
+import {Text, View} from 'react-native';
 import {styles} from './ReviewItem.styles';
 import {shadows} from '../../../style';
-import UserShareInfo from '../user-share-info';
+import ImageCircleContainer from '../../atoms/image-circle-container';
 
 interface ReviewItemProps {
   user: string;
@@ -17,16 +17,17 @@ export default function ReviewItem({
   review,
   style,
 }: ReviewItemProps) {
-  const shareInfo = {user, userImg: {uri: userImg}};
-
   return (
     <View style={[styles.container, shadows.little, style]}>
-      <UserShareInfo
-        shareInfo={shareInfo}
-        withoutAction
-        review={review}
-        style={styles.userInfo}
+      <ImageCircleContainer
+        img={{uri: userImg}}
+        style={styles.imgStyle}
+        width={54}
       />
+      <View style={styles.reviewContainer}>
+        <Text style={styles.userText}>{user}</Text>
+        <Text style={styles.reviewText}>{review}</Text>
+      </View>
     </View>
   );
 }

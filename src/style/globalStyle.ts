@@ -1,24 +1,21 @@
 import {StyleSheet} from 'react-native';
 
 import colors from './colors';
-import {sizes, weights, families} from './fonts';
+import {sizes, families} from './fonts';
 
 export const globalStyle = StyleSheet.create({
   // TEXT
   textRegular: {
     fontFamily: families.regular,
     color: colors.solidWhite,
-    // color: colors.mineShaft,
   },
   textLight: {
     fontFamily: families.light,
     color: colors.solidWhite,
-    // color: colors.mineShaft,
   },
   textBold: {
     fontFamily: families.bold,
     color: colors.solidWhite,
-    // color: colors.mineShaft,
   },
   textExtraSmallSize: {
     fontSize: sizes.extraSmall,

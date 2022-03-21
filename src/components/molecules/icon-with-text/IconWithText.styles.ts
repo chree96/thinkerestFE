@@ -1,4 +1,5 @@
 import {StyleSheet} from 'react-native';
+import {colors, families, sizes} from '../../../style';
 
 export const styles = StyleSheet.create({
   container: {
@@ -6,7 +7,10 @@ export const styles = StyleSheet.create({
     alignItems: 'center',
     marginRight: 10,
   },
-  textMargin: {
+  iconText: {
+    fontFamily: families.bold,
+    color: colors.solidWhite,
+    fontSize: sizes.small,
     marginLeft: 2,
   },
 });

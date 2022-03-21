@@ -1,5 +1,5 @@
 import {StyleSheet} from 'react-native';
-import {colors} from '../../../style';
+import {colors, families, sizes} from '../../../style';
 
 export const styles = StyleSheet.create({
   obscuredView: {
@@ -13,7 +13,14 @@ export const styles = StyleSheet.create({
     justifyContent: 'flex-end',
     alignItems: 'center',
   },
+  title: {
+    fontFamily: families.bold,
+    color: colors.solidWhite,
+    fontSize: sizes.medLarge,
+  },
   description: {
+    fontFamily: families.light,
+    fontSize: sizes.littleMedium,
     color: colors.lightGrey,
   },
 });

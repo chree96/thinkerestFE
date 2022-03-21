@@ -1,5 +1,5 @@
 import {StyleSheet} from 'react-native';
-import {colors} from '../../../style';
+import {colors, families, sizes} from '../../../style';
 
 export const styles = StyleSheet.create({
   container: {
@@ -10,6 +10,8 @@ export const styles = StyleSheet.create({
     alignSelf: 'center',
   },
   text: {
+    fontFamily: families.bold,
+    fontSize: sizes.cardTitle,
     color: colors.solidWhite,
     textAlign: 'center',
   },

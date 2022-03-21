@@ -1,7 +1,6 @@
 import React from 'react';
 import {Text} from 'react-native';
 import LinearGradient from 'react-native-linear-gradient';
-import {globalStyle} from '../../../style/globalStyle';
 import {styles} from './DetailBackgroundData.styles';
 
 interface DetailShareDataProps {
@@ -22,15 +21,8 @@ export default function DetailBackgroundData({
     <LinearGradient
       colors={['rgba(0, 0, 0, 0.0)', 'rgba(0,0,0, 1)']}
       style={[styles.obscuredView, style]}>
-      <Text style={[globalStyle.textBold, globalStyle.textMedLargeSize]}>
-        {data?.title}
-      </Text>
-      <Text
-        style={[
-          globalStyle.textLight,
-          globalStyle.textLittleMediumSize,
-          styles.description,
-        ]}>
+      <Text style={styles.title}>{data?.title}</Text>
+      <Text style={styles.description}>
         {data?.year + ' · ' + data?.genre + ' · ' + data?.duration}
       </Text>
     </LinearGradient>

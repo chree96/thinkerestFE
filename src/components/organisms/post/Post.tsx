@@ -1,7 +1,8 @@
 import React, {memo} from 'react';
 import {View} from 'react-native';
-import UserShareInfo from '../../molecules/user-share-info/UserShareInfo';
-import {ContentType} from '../../../types/user-actions';
+import UserShareInfo, {
+  ShareInfo,
+} from '../../molecules/user-share-info/UserShareInfo';
 import PostCard from '../../molecules/post-card';
 import {styles} from './Post.styles';
 
@@ -11,13 +12,7 @@ interface PostProps {
     genre: string;
     review: string;
   };
-  userData: {
-    user: string;
-    userImg: any;
-    rating: number;
-    contentTitle: string;
-    contentType: ContentType;
-  };
+  userData: ShareInfo;
   contentColor: string;
   style?: any;
 }

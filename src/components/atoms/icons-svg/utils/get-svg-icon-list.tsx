@@ -1,4 +1,5 @@
 import React from 'react';
+import {colors} from '../../../../style';
 import {
   Airplane,
   ArrowBack,
@@ -27,10 +28,12 @@ export const getSvgIconList = (width?: number, color?: string | symbol) => {
     cloud: <Cloud width={width || 35} height={width || 35} fill={color} />,
     world: <World width={width || 35} height={width || 35} fill={color} />,
     people: <People width={width || 35} height={width || 35} fill={color} />,
-    movies: <Movie fill={color} width={width || 28} />,
-    books: <Book fill={color} width={width || 28} />,
-    tvSeries: <Television fill={color} width={width || 28} />,
-    games: <Gamepad fill={color} width={36 || 30} />,
+    movies: <Movie fill={color || colors.cherryRed} width={width || 28} />,
+    books: <Book fill={color || colors.yellow} width={width || 28} />,
+    tvSeries: <Television fill={color || colors.malibu} width={width || 28} />,
+    games: (
+      <Gamepad fill={color || colors.electricViolet} width={width || 36} />
+    ),
     general: <General fill={color} width={width || 30} />,
     lens: <Lens fill={color} width={width || 30} />,
     tvSeriesOutline: <TelevisionOutline fill={color} />,

@@ -1,7 +1,6 @@
 import React from 'react';
 import {Text, View} from 'react-native';
 import {styles} from './DetailRating.styles';
-import {globalStyle} from '../../../style/globalStyle';
 import RatingBox from '../rating-box';
 import TextButton from '../../atoms/text-button';
 
@@ -19,15 +18,11 @@ export default function DetailRating({
   return (
     <View style={[styles.container, style]}>
       <View style={styles.titleGrid}>
-        <Text style={[globalStyle.textBold, globalStyle.textCardTitleSize]}>
-          {'Rating & reviews'}
-        </Text>
+        <Text style={styles.titleText}>{'Rating & reviews'}</Text>
         <TextButton text={'View'} onPress={onMorePress} />
       </View>
       <View style={styles.rateGrid}>
-        <Text style={[globalStyle.textBold, globalStyle.textGiantSize]}>
-          {rate}
-        </Text>
+        <Text style={styles.rateText}>{rate}</Text>
         <RatingBox rate={Math.round(rate)} />
       </View>
     </View>

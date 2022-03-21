@@ -23,7 +23,6 @@ import ButtonPrimary from '../../components/atoms/button-primary';
 
 interface ContentDetailProps {
   navigation: any;
-  props: any;
   contentColor: string;
   contentDetail: ContentDetails;
   friendsContentReviews: ContentReview[];
@@ -50,7 +49,6 @@ const initialTabViewState = {
 const ContentDetail = memo<ContentDetailProps>(
   ({
     navigation,
-    props,
     contentColor,
     contentDetail,
     friendsContentReviews,
@@ -111,13 +109,13 @@ const ContentDetail = memo<ContentDetailProps>(
       [tabViewState.index],
     );
 
-    const reviews = useCallback(
+    const Reviews = useCallback(
       () => (
         <View onStartShouldSetResponder={(): boolean => true}>
           <FlatList
             data={reviewsData}
             renderItem={renderReviews}
-            contentContainerStyle={{paddingBottom: 40}}
+            contentContainerStyle={styles.reviewContainer}
             keyExtractor={(item, index) => reviewKeyExtractor(index)}
           />
         </View>
@@ -128,10 +126,10 @@ const ContentDetail = memo<ContentDetailProps>(
     const sceneMap = useMemo(
       () =>
         SceneMap({
-          friendsReviews: reviews,
-          peopleReviews: reviews,
+          friendsReviews: Reviews,
+          peopleReviews: Reviews,
         }),
-      [reviews],
+      [Reviews],
     );
 
     const renderTabBar = useCallback(
@@ -178,7 +176,6 @@ const ContentDetail = memo<ContentDetailProps>(
       <View style={[styles.container, globalStyle.loaderContainer]}>
         <AnimatedLoader
           visible={true}
-          // overlayColor="rgba(255,255,255,0.75)"
           source={require('../../../assets/animations/loader-bars-mono-color.json')}
           animationStyle={globalStyle.lottieLoader}
           speed={1}
@@ -193,7 +190,9 @@ const ContentDetail = memo<ContentDetailProps>(
           />
           <DetailBackgroundData data={backgroundData} />
         </DetailBackgroundImage>
+
         <DetailShareData data={shareAndRateData} iconColor={contentColor} />
+
         <DetailRating
           rate={contentDetail?.peopleRate}
           onMorePress={() => {
@@ -219,7 +218,6 @@ const ContentDetail = memo<ContentDetailProps>(
             {isLoadingReviews ? (
               <AnimatedLoader
                 visible={true}
-                // overlayColor="rgba(255,255,255,0.75)"
                 source={require('../../../assets/animations/loader-bars-mono-color.json')}
                 animationStyle={globalStyle.lottieLoader}
                 speed={1}

@@ -5,6 +5,9 @@ export const styles = StyleSheet.create({
   container: {
     backgroundColor: colors.solidBlack,
   },
+  reviewContainer: {
+    paddingBottom: 40,
+  },
   tabBarText: {
     textTransform: 'uppercase',
     textAlign: 'center',

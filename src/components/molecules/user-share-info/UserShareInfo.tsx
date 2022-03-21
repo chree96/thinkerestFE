@@ -1,33 +1,29 @@
 import React, {useCallback} from 'react';
 import {Text, View} from 'react-native';
-import {globalStyle, colors, sizes} from '../../../style';
+import {colors, sizes} from '../../../style';
 import ImageCircleContainer from '../../atoms/image-circle-container';
 import {styles} from './UserShareInfo.styles';
 import {ContentType} from '../../../types/user-actions';
-import getContentIcon from '../../../utils/content/get-content-icon';
 import StarRating from '../star-rating';
 import getContentColor from '../../../utils/content/get-content-color';
+import IconSvg from '../../atoms/icons-svg';
 
-interface ShareInfo {
+export interface ShareInfo {
   user: string;
   userImg: any;
-  rating?: number;
-  contentTitle?: string;
-  contentType?: ContentType;
+  rating: number;
+  contentTitle: string;
+  contentType: ContentType;
 }
 
 interface UserShareInfoProps {
   shareInfo: ShareInfo;
-  review?: string;
-  withoutAction?: boolean;
   textColor?: string;
   style?: any;
 }
 
 export default function UserShareInfo({
   shareInfo,
-  review,
-  withoutAction = false,
   textColor = colors.solidWhite,
   style,
 }: UserShareInfoProps) {
@@ -35,54 +31,31 @@ export default function UserShareInfo({
 
   const UserAction = useCallback(() => {
     if (contentType) {
-      const icon = getContentIcon(contentType, 16);
       const contentColor = getContentColor(contentType);
 
       return (
         <View>
+          {/* USER */}
           <View style={styles.userActionContainer}>
             <View style={styles.userActionRow}>
-              <Text
-                style={[
-                  globalStyle.textBold,
-                  globalStyle.textLittleMediumSize,
-                  {color: textColor},
-                ]}>
-                {user}{' '}
-              </Text>
-              <Text
-                style={[
-                  globalStyle.textRegular,
-                  globalStyle.textSmallSize,
-                  styles.txtStyle,
-                  {color: colors.doveGrey},
-                ]}>
-                {' ha aggiunto'}
-              </Text>
+              <Text style={[styles.userText, {color: textColor}]}>{user}</Text>
+              <Text style={styles.actionText}>{' ha aggiunto'}</Text>
             </View>
-            <Text
-              style={[
-                globalStyle.textLight,
-                globalStyle.textSmallSize,
-                styles.txtStyle,
-                {color: colors.doveGrey},
-              ]}>
-              2h ago
-            </Text>
+            <Text style={styles.dateText}>2h ago</Text>
           </View>
+
           <View style={styles.contentWithRateContainer}>
+            {/* CONTENT TITLE */}
             <View style={styles.contentContainer}>
-              <View style={styles.iconContainer}>{icon}</View>
-              <Text
-                style={[
-                  globalStyle.textRegular,
-                  globalStyle.textLittleMediumSize,
-                  styles.txtStyle,
-                  {color: contentColor},
-                ]}>
+              <View style={styles.iconContainer}>
+                <IconSvg iconName={contentType} width={16} />
+              </View>
+              <Text style={[styles.contentText, {color: contentColor}]}>
                 {contentTitle}
               </Text>
             </View>
+
+            {/* CONTENT RATING */}
             <StarRating
               rating={rating || 5}
               starSize={sizes.littleMedium}
@@ -99,21 +72,7 @@ export default function UserShareInfo({
   return (
     <View style={[styles.infoContainer, style]}>
       <ImageCircleContainer img={userImg} style={styles.imgStyle} width={54} />
-      {withoutAction ? (
-        <View>
-          <Text style={[globalStyle.textBold, {color: textColor}]}>{user}</Text>
-          {review ? (
-            <View style={styles.reviewContainer}>
-              <Text
-                style={[globalStyle.textLight, globalStyle.textSmallishSize]}>
-                {review}
-              </Text>
-            </View>
-          ) : null}
-        </View>
-      ) : (
-        <UserAction />
-      )}
+      <UserAction />
     </View>
   );
 }

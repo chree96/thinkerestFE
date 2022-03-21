@@ -1,4 +1,5 @@
 import {StyleSheet} from 'react-native';
+import {colors, families, sizes} from '../../../style';
 
 export const styles = StyleSheet.create({
   container: {
@@ -11,8 +12,18 @@ export const styles = StyleSheet.create({
     paddingRight: 10,
     alignItems: 'flex-end',
   },
+  titleText: {
+    fontFamily: families.bold,
+    color: colors.solidWhite,
+    fontSize: sizes.cardTitle,
+  },
   rateGrid: {
     flexDirection: 'row',
     marginTop: 6,
+  },
+  rateText: {
+    fontFamily: families.bold,
+    color: colors.solidWhite,
+    fontSize: sizes.giant,
   },
 });

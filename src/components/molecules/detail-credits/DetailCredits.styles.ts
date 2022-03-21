@@ -1,4 +1,5 @@
 import {StyleSheet} from 'react-native';
+import {colors, families, sizes} from '../../../style';
 
 export const styles = StyleSheet.create({
   container: {
@@ -23,5 +24,22 @@ export const styles = StyleSheet.create({
   textContainer: {
     alignContent: 'center',
     alignItems: 'center',
+  },
+  nameText: {
+    fontFamily: families.bold,
+    color: colors.solidWhite,
+    fontSize: sizes.smallish,
+    textAlign: 'center',
+  },
+  characterText: {
+    fontFamily: families.light,
+    color: colors.solidWhite,
+    fontSize: sizes.smallish,
+    textAlign: 'center',
+  },
+  creditsTitle: {
+    fontFamily: families.bold,
+    color: colors.solidWhite,
+    fontSize: sizes.cardTitle,
   },
 });

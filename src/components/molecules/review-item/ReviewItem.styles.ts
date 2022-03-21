@@ -1,9 +1,10 @@
 import {StyleSheet} from 'react-native';
-import {colors, shadows} from '../../../style';
+import {colors, families, sizes} from '../../../style';
 
 export const styles = StyleSheet.create({
   container: {
     flex: 1,
+    flexDirection: 'row',
     paddingTop: 8,
     padding: 16,
     paddingRight: 0,
@@ -16,5 +17,22 @@ export const styles = StyleSheet.create({
     marginTop: 0,
     marginLeft: 0,
     paddingRight: 16,
+  },
+  reviewContainer: {
+    paddingRight: 16,
+    paddingBottom: 16,
+  },
+  imgStyle: {
+    marginRight: 8,
+    marginTop: 8,
+  },
+  userText: {
+    fontFamily: families.bold,
+    color: colors.solidWhite,
+  },
+  reviewText: {
+    fontFamily: families.light,
+    color: colors.solidWhite,
+    fontSize: sizes.smallish,
   },
 });
