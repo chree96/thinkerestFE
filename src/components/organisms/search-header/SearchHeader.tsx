@@ -32,7 +32,7 @@ const SearchHeader = memo<SearchHeaderProps>(
     const [selectContentAlert, setSelectContentAlert] = useState(true);
 
     const peopleIconColor = useMemo(
-      () => (isPeopleSearch ? colors.solidWhite : colors.solidBlack),
+      () => (isPeopleSearch ? colors.whiteSmoke : colors.solidBlack),
       [isPeopleSearch],
     );
 

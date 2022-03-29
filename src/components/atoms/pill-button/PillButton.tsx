@@ -28,7 +28,7 @@ export default function PillButton({
 }: PillButtonProps) {
   const bgColor = useMemo(
     () =>
-      contentType ? getSecondaryContentColor(contentType) : colors.solidWhite,
+      contentType ? getSecondaryContentColor(contentType) : colors.whiteSmoke,
     [contentType],
   );
 

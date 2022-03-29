@@ -28,7 +28,7 @@ export const styles = StyleSheet.create({
   searchedContentText: {
     textAlign: 'center',
     fontFamily: families.regular,
-    color: colors.solidWhite,
+    color: colors.whiteSmoke,
   },
   contentContainer: {
     marginTop: 8,

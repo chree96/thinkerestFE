@@ -27,19 +27,19 @@ export const styles = StyleSheet.create({
   },
   nameText: {
     fontFamily: families.bold,
-    color: colors.solidWhite,
+    color: colors.whiteSmoke,
     fontSize: sizes.smallish,
     textAlign: 'center',
   },
   characterText: {
     fontFamily: families.light,
-    color: colors.solidWhite,
+    color: colors.whiteSmoke,
     fontSize: sizes.smallish,
     textAlign: 'center',
   },
   creditsTitle: {
     fontFamily: families.bold,
-    color: colors.solidWhite,
+    color: colors.whiteSmoke,
     fontSize: sizes.cardTitle,
   },
 });

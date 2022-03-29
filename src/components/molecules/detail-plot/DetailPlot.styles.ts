@@ -9,11 +9,11 @@ export const styles = StyleSheet.create({
   title: {
     fontFamily: families.bold,
     fontSize: sizes.smallish,
-    color: colors.solidWhite,
+    color: colors.whiteSmoke,
   },
   plot: {
     fontFamily: families.light,
     fontSize: sizes.smallish,
-    color: colors.solidWhite,
+    color: colors.whiteSmoke,
   },
 });

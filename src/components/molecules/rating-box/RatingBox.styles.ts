@@ -7,7 +7,7 @@ export const styles = StyleSheet.create({
   },
   starRateText: {
     fontFamily: families.light,
-    color: colors.solidWhite,
+    color: colors.whiteSmoke,
     fontSize: sizes.small,
     marginTop: 4,
   },

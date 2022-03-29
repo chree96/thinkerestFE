@@ -12,7 +12,7 @@ const getContentColor = (content: ContentType) => {
     case ContentType.books:
       return colors.yellow;
     default:
-      return colors.solidWhite;
+      return colors.whiteSmoke;
   }
 };
 

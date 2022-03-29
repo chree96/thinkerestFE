@@ -9,7 +9,7 @@ export const styles = StyleSheet.create({
   },
   iconText: {
     fontFamily: families.bold,
-    color: colors.solidWhite,
+    color: colors.whiteSmoke,
     fontSize: sizes.small,
     marginLeft: 2,
   },

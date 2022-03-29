@@ -17,7 +17,7 @@ interface ButtonWithIconProps {
 
 export default function ButtonWithIcon({
   iconName,
-  iconColor = colors.solidWhite,
+  iconColor = colors.whiteSmoke,
   iconSize,
   width = 40,
   noBackgroundColor,

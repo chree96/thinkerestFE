@@ -9,6 +9,6 @@ export const styles = StyleSheet.create({
   text: {
     fontFamily: families.bold,
     fontSize: sizes.cardTitle,
-    color: colors.solidWhite,
+    color: colors.whiteSmoke,
   },
 });

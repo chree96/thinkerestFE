@@ -15,7 +15,7 @@ export const styles = StyleSheet.create({
   },
   title: {
     fontFamily: families.bold,
-    color: colors.solidWhite,
+    color: colors.whiteSmoke,
     fontSize: sizes.medLarge,
   },
   description: {

@@ -14,7 +14,7 @@ export const styles = StyleSheet.create({
   },
   titleText: {
     fontFamily: families.bold,
-    color: colors.solidWhite,
+    color: colors.whiteSmoke,
     fontSize: sizes.cardTitle,
   },
   rateGrid: {
@@ -23,7 +23,7 @@ export const styles = StyleSheet.create({
   },
   rateText: {
     fontFamily: families.bold,
-    color: colors.solidWhite,
+    color: colors.whiteSmoke,
     fontSize: sizes.giant,
   },
 });

@@ -65,7 +65,7 @@ const initialState: ContentsState = {
   isLoadingReviews: false,
   error: null,
   contentType: ContentType.general,
-  contentColor: colors.solidWhite,
+  contentColor: colors.whiteSmoke,
 };
 
 const contentsReducer = (state = initialState, action: any) => {

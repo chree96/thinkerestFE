@@ -12,7 +12,7 @@ interface MoreButtonProps {
 }
 
 export default function MoreButton({
-  textColor = colors.solidWhite,
+  textColor = colors.whiteSmoke,
   isVisible,
   isShowingMore,
   style,

@@ -12,6 +12,6 @@ export const getSecondaryContentColor = (content: ContentType) => {
     case ContentType.books:
       return colors.yellowLight;
     default:
-      return colors.solidWhite;
+      return colors.whiteSmoke;
   }
 };

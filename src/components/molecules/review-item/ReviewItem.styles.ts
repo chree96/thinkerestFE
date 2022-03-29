@@ -28,11 +28,11 @@ export const styles = StyleSheet.create({
   },
   userText: {
     fontFamily: families.bold,
-    color: colors.solidWhite,
+    color: colors.whiteSmoke,
   },
   reviewText: {
     fontFamily: families.light,
-    color: colors.solidWhite,
+    color: colors.whiteSmoke,
     fontSize: sizes.smallish,
   },
 });
