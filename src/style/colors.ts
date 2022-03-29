@@ -12,6 +12,7 @@ const colors = {
   whiteAlpha6: 'rgba(255, 255, 255, 0.6)',
   whiteAlpha7: 'rgba(255, 255, 255, 0.7)',
   whiteAlpha9: 'rgba(255, 255, 255, 0.9)',
+  whiteSmoke: '#F5F5F5',
   coralRed: '#FF5555',
   eucalyptusGreen: '#38A383',
   froly: '#F46881',
