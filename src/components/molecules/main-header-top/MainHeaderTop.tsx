@@ -2,6 +2,7 @@ import React, {memo} from 'react';
 import {Text, View} from 'react-native';
 import {styles} from './MainHeaderTop.styles';
 import ButtonWithIcon from '../../atoms/button-with-icon';
+import {colors} from '../../../style';
 
 interface MainHeaderTopProps {
   color: string;
@@ -14,21 +15,21 @@ const MainHeaderTop = memo<MainHeaderTopProps>(({color}) => {
         style={[
           styles.textLogo,
           {
-            color: color,
+            color: colors.whiteSmoke,
           },
         ]}>
-        Thinkerest
+        thinkerest
       </Text>
       <View style={styles.topButtonsContainer}>
         <ButtonWithIcon
           iconName={'airplane'}
-          iconColor={color}
+          iconColor={colors.whiteSmoke}
           onPress={() => console.log('go to message')}
           noBackgroundColor
         />
         <ButtonWithIcon
           iconName={'hamburger'}
-          iconColor={color}
+          iconColor={colors.whiteSmoke}
           onPress={() => console.log('open menu')}
           noBackgroundColor
         />

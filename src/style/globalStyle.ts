@@ -7,15 +7,15 @@ export const globalStyle = StyleSheet.create({
   // TEXT
   textRegular: {
     fontFamily: families.regular,
-    color: colors.solidWhite,
+    color: colors.whiteSmoke,
   },
   textLight: {
     fontFamily: families.light,
-    color: colors.solidWhite,
+    color: colors.whiteSmoke,
   },
   textBold: {
     fontFamily: families.bold,
-    color: colors.solidWhite,
+    color: colors.whiteSmoke,
   },
   textExtraSmallSize: {
     fontSize: sizes.extraSmall,

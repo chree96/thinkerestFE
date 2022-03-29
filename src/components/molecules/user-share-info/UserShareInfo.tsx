@@ -24,7 +24,7 @@ interface UserShareInfoProps {
 
 export default function UserShareInfo({
   shareInfo,
-  textColor = colors.solidWhite,
+  textColor = colors.whiteSmoke,
   style,
 }: UserShareInfoProps) {
   const {user, userImg, rating, contentTitle, contentType} = shareInfo;
@@ -34,7 +34,7 @@ export default function UserShareInfo({
       const contentColor = getContentColor(contentType);
 
       return (
-        <View>
+        <View style={styles.actionContainer}>
           {/* USER */}
           <View style={styles.userActionContainer}>
             <View style={styles.userActionRow}>
@@ -71,7 +71,7 @@ export default function UserShareInfo({
 
   return (
     <View style={[styles.infoContainer, style]}>
-      <ImageCircleContainer img={userImg} style={styles.imgStyle} width={54} />
+      <ImageCircleContainer img={userImg} style={styles.imgStyle} width={48} />
       <UserAction />
     </View>
   );

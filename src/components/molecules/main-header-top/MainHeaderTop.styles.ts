@@ -6,13 +6,14 @@ export const styles = StyleSheet.create({
     flexDirection: 'row',
     justifyContent: 'space-between',
     backgroundColor: colors.mattBlack,
+    paddingLeft: 16,
+    paddingTop: 6,
   },
   topButtonsContainer: {
     flexDirection: 'row',
   },
   textLogo: {
-    fontFamily: families.bold,
+    fontFamily: families.extraLight,
     fontSize: sizes.larger,
-    marginLeft: 15,
   },
 });

@@ -20,7 +20,7 @@ const HeaderContentButtons = memo<HeaderContentButtonsProps>(
       ({item}) => {
         const selectedContent = item === contentType;
 
-        const iconColor = selectedContent ? contentColor : colors.solidWhite;
+        const iconColor = selectedContent ? contentColor : colors.whiteSmoke;
 
         const iconName =
           !selectedContent && item === ContentType.tvSeries
@@ -40,26 +40,22 @@ const HeaderContentButtons = memo<HeaderContentButtonsProps>(
       [contentColor, contentType, setContentType],
     );
 
-    const ContentButtons = useCallback(() => {
-      return (
-        <Animated.View
-          style={[
-            styles.buttonsContainer,
-            {borderBottomColor: contentColor},
-            style,
-          ]}>
-          <FlatList
-            horizontal
-            contentContainerStyle={styles.buttonsRow}
-            data={Object.keys(ContentType)}
-            renderItem={renderContentButtons}
-            keyExtractor={item => item + '-button'}
-          />
-        </Animated.View>
-      );
-    }, [contentColor, renderContentButtons, style]);
-
-    return <ContentButtons />;
+    return (
+      <Animated.View
+        style={[
+          styles.buttonsContainer,
+          {borderBottomColor: contentColor},
+          style,
+        ]}>
+        <FlatList
+          horizontal
+          contentContainerStyle={styles.buttonsRow}
+          data={Object.keys(ContentType)}
+          renderItem={renderContentButtons}
+          keyExtractor={item => item + '-button'}
+        />
+      </Animated.View>
+    );
   },
 );
 

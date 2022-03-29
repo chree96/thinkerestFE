@@ -2,17 +2,21 @@ import {StyleSheet} from 'react-native';
 import {colors, families, sizes} from '../../../style';
 
 export const styles = StyleSheet.create({
+  actionContainer: {
+    width: '85%',
+    paddingRight: 16,
+  },
   userActionContainer: {
     flexDirection: 'row',
-    width: '75%',
     justifyContent: 'space-between',
+    alignItems: 'center',
   },
   userActionRow: {
     flexDirection: 'row',
   },
   userText: {
     fontFamily: families.bold,
-    color: colors.solidWhite,
+    color: colors.whiteSmoke,
     fontSize: sizes.littleMedium,
   },
   actionText: {
@@ -33,7 +37,6 @@ export const styles = StyleSheet.create({
   },
   contentWithRateContainer: {
     flexDirection: 'row',
-    width: '76%',
     justifyContent: 'space-between',
     alignItems: 'center',
     marginTop: -6,
@@ -47,12 +50,13 @@ export const styles = StyleSheet.create({
   },
   infoContainer: {
     flexDirection: 'row',
-    marginTop: 50,
-    marginLeft: 12,
+    marginTop: 32,
+    width: '100%',
+    paddingLeft: 16,
   },
   imgStyle: {
     marginRight: 8,
-    marginTop: 8,
+    marginTop: 4,
   },
   txtStyle: {
     textAlignVertical: 'center',

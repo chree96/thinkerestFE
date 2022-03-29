@@ -78,11 +78,7 @@ const Home = memo<PostsListProps>(
         <FlatList
           renderItem={renderPosts}
           data={userPosts}
-          contentContainerStyle={
-            isHiddenHeader
-              ? styles.paddingTopHiddenHeader
-              : styles.paddingTopHeader
-          }
+          contentContainerStyle={styles.paddingTopHeader}
           keyExtractor={item => 'post-' + item?.id}
           onScroll={event => {
             setHeaderVisibility(event.nativeEvent.contentOffset.y);

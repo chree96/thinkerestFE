@@ -6,6 +6,7 @@ import {useMemo} from 'react';
 import IconWithText from '../icon-with-text';
 import MoreButton from '../../atoms/more-button';
 import {getButtonActions} from './utils';
+import {useDimensions} from 'react-native-hooks';
 
 interface PostCardProps {
   postData: {
@@ -18,6 +19,8 @@ interface PostCardProps {
 }
 
 const PostCard = memo<PostCardProps>(({postData, contentColor, style}) => {
+  const {height: screenHeight} = useDimensions().window;
+
   const [isVisible, setIsVisible] = useState(false);
 
   const actionButtons = useMemo(() => getButtonActions(), []);
@@ -35,7 +38,7 @@ const PostCard = memo<PostCardProps>(({postData, contentColor, style}) => {
           <IconWithText
             svgName={'airplane'}
             text={''}
-            width={24}
+            width={20}
             textStyle={{color: colors.doveGrey}}
             svgColor={colors.doveGrey}
           />
@@ -62,12 +65,18 @@ const PostCard = memo<PostCardProps>(({postData, contentColor, style}) => {
 
   return (
     <View style={[shadows.little, styles.cardContainer, style]}>
-      <View style={styles.imgContainer}>
+      <View
+        style={[
+          styles.imgContainer,
+          {
+            height: screenHeight * 0.68,
+          },
+        ]}>
         <Image
           source={postData?.contentImg}
           style={styles.imgStyle}
           key={postData?.contentImg}
-          resizeMode={'stretch'}
+          resizeMode={'contain'}
         />
       </View>
 
