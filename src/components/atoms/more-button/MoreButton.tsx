@@ -1,7 +1,8 @@
 import React, {useMemo} from 'react';
 import {TouchableOpacity} from 'react-native-gesture-handler';
-import {colors, globalStyle} from '../../../style';
+import {colors} from '../../../style';
 import {Text} from 'react-native';
+import styles from './MoreButton.styles';
 
 interface MoreButtonProps {
   textColor?: string;
@@ -25,14 +26,7 @@ export default function MoreButton({
 
   return isVisible ? (
     <TouchableOpacity onPress={onPress} style={style}>
-      <Text
-        style={[
-          globalStyle.textBold,
-          globalStyle.textSmallishSize,
-          {color: textColor},
-        ]}>
-        {buttonText}
-      </Text>
+      <Text style={[styles.logo, {color: textColor}]}>{buttonText}</Text>
     </TouchableOpacity>
   ) : null;
 }

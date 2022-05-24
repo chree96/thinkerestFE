@@ -14,6 +14,10 @@ interface HeaderContentButtonsProps {
   setContentType: (payload: ContentType) => void;
 }
 
+const contentTypes = Object.keys(ContentType).filter(
+  content => content !== ContentType.general,
+);
+
 const HeaderContentButtons = memo<HeaderContentButtonsProps>(
   ({contentType, contentColor, selectContentAlert, setContentType, style}) => {
     const renderContentButtons = useCallback(
@@ -27,10 +31,13 @@ const HeaderContentButtons = memo<HeaderContentButtonsProps>(
             ? item + 'Outline'
             : item;
 
+        const iconSize = item === ContentType.games ? 32 : 28;
+
         return (
           <ButtonWithIcon
             iconName={iconName}
             iconColor={iconColor}
+            iconSize={iconSize}
             noBackgroundColor
             style={styles.headerButton}
             onPress={() => setContentType(item as ContentType)}
@@ -50,7 +57,7 @@ const HeaderContentButtons = memo<HeaderContentButtonsProps>(
         <FlatList
           horizontal
           contentContainerStyle={styles.buttonsRow}
-          data={Object.keys(ContentType)}
+          data={contentTypes}
           renderItem={renderContentButtons}
           keyExtractor={item => item + '-button'}
         />

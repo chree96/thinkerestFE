@@ -3,7 +3,7 @@ import {colors, families, sizes} from '../../../style';
 
 export const styles = StyleSheet.create({
   actionContainer: {
-    width: '85%',
+    width: '84%',
     paddingRight: 16,
   },
   userActionContainer: {
@@ -17,13 +17,14 @@ export const styles = StyleSheet.create({
   userText: {
     fontFamily: families.bold,
     color: colors.whiteSmoke,
-    fontSize: sizes.littleMedium,
+    fontSize: sizes.smallish,
+    textAlignVertical: 'bottom',
   },
   actionText: {
     fontFamily: families.regular,
     fontSize: sizes.small,
     color: colors.doveGrey,
-    textAlignVertical: 'center',
+    textAlignVertical: 'bottom',
   },
   dateText: {
     fontFamily: families.light,
@@ -32,14 +33,13 @@ export const styles = StyleSheet.create({
   },
   contentText: {
     fontFamily: families.regular,
-    fontSize: sizes.littleMedium,
+    fontSize: sizes.smallish,
     textAlignVertical: 'center',
   },
   contentWithRateContainer: {
     flexDirection: 'row',
     justifyContent: 'space-between',
     alignItems: 'center',
-    marginTop: -6,
   },
   contentContainer: {
     flexDirection: 'row',

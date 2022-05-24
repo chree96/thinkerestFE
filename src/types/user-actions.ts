@@ -4,4 +4,5 @@ export enum ContentType {
   tvSeries = 'tvSeries',
   games = 'games',
   books = 'books',
+  music = 'music',
 }

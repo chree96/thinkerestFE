@@ -6,11 +6,13 @@ const getContentColor = (content: ContentType) => {
     case ContentType.movies:
       return colors.cherryRed;
     case ContentType.tvSeries:
-      return colors.malibu;
+      return colors.robinsEggBlue;
     case ContentType.games:
       return colors.electricViolet;
     case ContentType.books:
       return colors.yellow;
+    case ContentType.music:
+      return colors.green;
     default:
       return colors.whiteSmoke;
   }

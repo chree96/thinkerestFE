@@ -93,6 +93,13 @@ const DrawerMainStackNavigator = ({contentType, contentColor}: any) => {
             options={{headerShown: false}}
           />
           <Tab.Screen
+            name={Screen.Notifications}
+            children={props =>
+              getInnerNavigator(ContentDetail, Screen.Notifications, props)
+            }
+            options={{headerShown: false}}
+          />
+          <Tab.Screen
             name={Screen.Profile}
             children={props =>
               getInnerNavigator(ContentDetail, Screen.Profile, props)

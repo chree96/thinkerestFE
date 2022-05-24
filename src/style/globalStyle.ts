@@ -14,7 +14,7 @@ export const globalStyle = StyleSheet.create({
     color: colors.whiteSmoke,
   },
   textBold: {
-    fontFamily: families.bold,
+    fontFamily: families.bolder,
     color: colors.whiteSmoke,
   },
   textExtraSmallSize: {

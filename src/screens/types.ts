@@ -4,10 +4,12 @@ export enum Screen {
   Home = 'Home',
   Search = 'Search',
   ContentDetail = 'ContentDetail',
+  Notifications = 'Notifications',
   Profile = 'Profile',
 }
 
 export interface UserPost {
+  id: string;
   user: string;
   userImg: any;
   contentType: ContentType;

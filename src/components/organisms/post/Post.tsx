@@ -15,19 +15,26 @@ interface PostProps {
   };
   userData: ShareInfo;
   contentColor: string;
+  onPress: () => void;
   style?: any;
 }
 
-const Post = memo<PostProps>(({contentColor, postData, userData, style}) => {
-  const {height: screenHeight} = useDimensions().window;
+const Post = memo<PostProps>(
+  ({contentColor, postData, userData, onPress, style}) => {
+    const {height: screenHeight} = useDimensions().window;
 
-  return (
-    <View
-      style={[styles.listContainer, {minHeight: screenHeight * 0.62}, style]}>
-      <UserShareInfo shareInfo={userData} />
-      <PostCard postData={postData} contentColor={contentColor} />
-    </View>
-  );
-});
+    return (
+      <View
+        style={[styles.listContainer, {minHeight: screenHeight * 0.6}, style]}>
+        <UserShareInfo shareInfo={userData} />
+        <PostCard
+          postData={postData}
+          onPress={onPress}
+          contentColor={contentColor}
+        />
+      </View>
+    );
+  },
+);
 
 export default Post;

@@ -10,10 +10,12 @@ import {globalStyle} from '../../style';
 import AnimatedLoader from 'react-native-animated-loader';
 import {getMappedData} from './utils';
 import {UserPost} from '../types';
+import IconSvg from '../../components/atoms/icons-svg';
 
 interface PostsListProps {
   getHomePosts: () => void;
   setHiddenHeader: (payload: any) => void;
+  retrieveContentDetail: (payload: string) => void;
   userPosts?: UserPost[] | null;
   contentColor: string;
   isLoading?: boolean;
@@ -25,6 +27,7 @@ const Home = memo<PostsListProps>(
   ({
     getHomePosts,
     setHiddenHeader,
+    retrieveContentDetail,
     userPosts,
     contentColor,
     isLoading,
@@ -38,6 +41,14 @@ const Home = memo<PostsListProps>(
       setHiddenHeader(false);
     }, []);
 
+    const goToContentDetail = useCallback(
+      contentId => {
+        retrieveContentDetail(contentId);
+        navigation.navigate('ContentDetail');
+      },
+      [navigation, retrieveContentDetail],
+    );
+
     const renderPosts = useCallback(
       ({item}) => {
         const {postData, userData} = getMappedData(item);
@@ -47,10 +58,11 @@ const Home = memo<PostsListProps>(
             postData={postData}
             userData={userData}
             contentColor={contentColor}
+            onPress={() => goToContentDetail(postData?.id)}
           />
         );
       },
-      [contentColor],
+      [contentColor, goToContentDetail],
     );
 
     const setHeaderVisibility = useCallback(
@@ -88,6 +100,19 @@ const Home = memo<PostsListProps>(
           }
           scrollEventThrottle={16}
         />
+        <View
+          style={{
+            width: 50,
+            height: 50,
+            position: 'absolute',
+            bottom: 40,
+            right: 18,
+            borderRadius: 25,
+            backgroundColor: 'rgba(256, 256, 256, 0.7)',
+            justifyContent: 'center',
+          }}>
+          <IconSvg iconName={'controls'} />
+        </View>
       </View>
     );
   },

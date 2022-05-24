@@ -97,7 +97,13 @@ const contentsReducer = (state = initialState, action: any) => {
         isLoading: false,
       });
     case ContentsActionType.SET_CONTENT_TYPE:
-      const content = action.payload as ContentType;
+      let content = action.payload as ContentType;
+      const currentContentType = state?.contentType;
+
+      if (currentContentType === content) {
+        content = ContentType.general;
+      }
+
       return Object.assign({}, state, {
         contentType: content,
         contentColor: getContentColor(content),

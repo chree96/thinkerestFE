@@ -1,6 +1,8 @@
 import {UserPost} from '../types';
 
 export const getMappedData = (post: UserPost) => {
+  console.log('post', post);
+
   const {
     starRating,
     contentImg,
@@ -12,12 +14,14 @@ export const getMappedData = (post: UserPost) => {
     user,
     userImg,
     contentType,
+    id,
   } = post;
 
   const postData = {
     contentImg: {uri: contentImg},
     genre,
     review,
+    id,
   };
 
   const userData = {

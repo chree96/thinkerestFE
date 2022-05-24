@@ -15,21 +15,23 @@ const MainHeaderTop = memo<MainHeaderTopProps>(({color}) => {
         style={[
           styles.textLogo,
           {
-            color: colors.whiteSmoke,
+            color: color,
           },
         ]}>
-        thinkerest
+        t h i n k e r e s t
       </Text>
       <View style={styles.topButtonsContainer}>
         <ButtonWithIcon
-          iconName={'airplane'}
-          iconColor={colors.whiteSmoke}
+          iconName={'speechBubble'}
+          iconColor={color}
+          iconSize={42}
+          style={styles.chat}
           onPress={() => console.log('go to message')}
           noBackgroundColor
         />
         <ButtonWithIcon
           iconName={'hamburger'}
-          iconColor={colors.whiteSmoke}
+          iconColor={color}
           onPress={() => console.log('open menu')}
           noBackgroundColor
         />

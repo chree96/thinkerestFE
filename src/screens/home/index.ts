@@ -4,6 +4,7 @@ import * as postsActions from '../../store/modules/posts/posts.action';
 import * as postsSelector from '../../store/modules/posts/posts.selector';
 import * as contentsSelector from '../../store/modules/contents/contents.selector';
 import * as navigationSelector from '../../store/modules/navigation/navigation.selector';
+import * as contentsAction from '../../store/modules/contents/contents.action';
 import {Dispatch} from 'redux';
 import {connect} from 'react-redux';
 
@@ -20,6 +21,9 @@ const mapDispatchToProps = (dispatch: Dispatch) => ({
   },
   setHiddenHeader: (payload: any) => {
     dispatch(navigationActions.setHiddenHeader(payload) as any);
+  },
+  retrieveContentDetail: (payload: string) => {
+    dispatch(contentsAction.retrieveContentDetail(payload) as any);
   },
 });
 

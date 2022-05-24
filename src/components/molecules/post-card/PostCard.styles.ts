@@ -13,7 +13,8 @@ export const styles = StyleSheet.create({
     flex: 1,
   },
   imgContainer: {
-    marginLeft: '13%',
+    marginLeft: '14%',
+    height: 436,
   },
   imgStyle: {
     width: '100%',
@@ -37,6 +38,9 @@ export const styles = StyleSheet.create({
     color: colors.whiteSmoke,
     fontSize: sizes.smallish,
     paddingTop: 4,
+  },
+  moreButton: {
+    paddingTop: 6,
   },
   buttonsContainer: {
     flexDirection: 'row',

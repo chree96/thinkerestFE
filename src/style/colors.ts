@@ -94,6 +94,8 @@ const colors = {
   yellowLight: '#fffce6',
   greenPea: '#2A6E36',
   gold: '#ffcf40',
+  robinsEggBlue: '#00CCCC',
+  green: '#00cc00',
 };
 
 export default colors;

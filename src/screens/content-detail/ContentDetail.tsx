@@ -185,7 +185,7 @@ const ContentDetail = memo<ContentDetailProps>(
       <ScrollView showsVerticalScrollIndicator={false} style={styles.container}>
         <DetailBackgroundImage contentDetailImg={{uri: contentImage}}>
           <DetailBackgroundHeader
-            onGoBack={() => navigation.navigate('Search')}
+            onGoBack={() => navigation.goBack()}
             onAddToWatchlist={() => navigation.navigate('Search')}
           />
           <DetailBackgroundData data={backgroundData} />
