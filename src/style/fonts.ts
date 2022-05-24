@@ -33,10 +33,11 @@ export const sizes = {
 };
 
 export const families = {
-  light: 'Poppins-Light',
-  extraLight: 'Poppins-ExtraLight',
-  thin: 'Poppins-Thin',
-  regular: 'Poppins-Medium',
-  bold: 'Poppins-SemiBold',
-  bolder: 'Poppins-Bold',
+  light: 'Montserrat-Light',
+  extraLight: 'Montserrat-ExtraLight',
+  thin: 'Montserrat-Thin',
+  regular: 'Montserrat-Medium',
+  bold: 'Montserrat-SemiBold',
+  bolder: 'Montserrat-Bold',
+  logo: 'Sofia-Regular',
 };
