@@ -1,19 +1,22 @@
 import React from 'react';
 import {colors} from '../../../../style';
 import {
-  Airplane,
   ArrowBack,
   Book,
   Cloud,
+  ControlsIcon,
   Gamepad,
   General,
   Hamburger,
+  Headphones,
   Lens,
+  LensPlus,
   Movie,
   MovieOutline,
   People,
   Plus,
   Share,
+  SpeechBubble,
   Star,
   Television,
   TelevisionOutline,
@@ -42,7 +45,10 @@ export const getSvgIconList = (width?: number, color?: string | symbol) => {
     timer: <Timer fill={color} width={width || 30} />,
     star: <Star fill={color} width={width || 30} />,
     hamburger: <Hamburger fill={color} width={40} />,
-    airplane: <Airplane fill={color} width={30} />,
+    speechBubble: <SpeechBubble fill={color} width={width} />,
     plus: <Plus fill={color} width={width || 30} />,
+    music: <Headphones fill={color} width={width || 30} />,
+    controls: <ControlsIcon fill={color} width={width || 30} />,
+    lensPlus: <LensPlus fill={color} width={width || 30} />,
   };
 };

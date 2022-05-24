@@ -1,20 +1,26 @@
 import * as React from 'react';
-import Svg, {Path} from 'react-native-svg';
+import Svg, {Path, G} from 'react-native-svg';
 
 function Timer(props: any) {
   const width = props?.width || 30;
   const color = props?.fill || '#000';
 
   return (
-    <Svg width={width} height={width} viewBox="0 0 24 24" {...props}>
-      <Path
-        d="M13 5.07A7.002 7.002 0 0112 19 7 7 0 017.262 6.847L5.847 5.432A9 9 0 1011 3.055v6.03h2V5.072z"
-        fill={color}
-      />
-      <Path
-        d="M7.707 8.707a1 1 0 000 1.414l2.829 2.829a1 1 0 001.414-1.414L9.12 8.707a1 1 0 00-1.414 0z"
-        fill={color}
-      />
+    <Svg
+      width={width}
+      height={width}
+      viewBox="0 0 32 32"
+      xmlSpace="preserve"
+      {...props}>
+      <G
+        fill="none"
+        stroke={color}
+        strokeLinejoin="round"
+        strokeMiterlimit={10}
+        strokeWidth={2}>
+        <Path d="M31 16c0 8.284-6.716 15-15 15S1 24.284 1 16 7.716 1 16 1c5.343 0 10.034 2.794 12.691 7" />
+        <Path d="M29 0v8h-8M16 7v9h7" />
+      </G>
     </Svg>
   );
 }

@@ -7,23 +7,12 @@ function Movie(props: any) {
 
   return (
     <Svg
-      id="prefix__Icons"
       width={width}
       height={width}
-      x={0}
-      y={0}
-      viewBox="0 0 32 32"
-      xmlSpace="preserve"
+      fill={color}
+      viewBox="0 0 512 512"
       {...props}>
-      <Path
-        d="M27 31H5c-1.1 0-2-.9-2-2V16h26v13c0 1.1-.9 2-2 2zM23.5 1.1L2.8 8.7c-1 .4-1.6 1.5-1.2 2.6L3 15l24.4-8.9L26 2.3c-.3-1-1.5-1.5-2.5-1.2zM3 21h26"
-        fill="none"
-        stroke={color}
-        strokeWidth={2}
-        strokeLinecap="round"
-        strokeLinejoin="round"
-        strokeMiterlimit={10}
-      />
+      <Path d="M326.1 160 453.5 32.6c-1.8-.21-3.6-.6-5.5-.6h-86.06l-128 128h92.16zm-160 0 128-128h-92.2l-128 128h92.2zM497.7 56.19 393.9 160H512V96c0-15.13-5.5-28.85-14.3-39.81zM134.1 32H64C28.65 32 0 60.65 0 96v64h6.062L134.1 32zM0 416c0 35.35 28.65 64 64 64h384c35.35 0 64-28.65 64-64V192H0v224z" />
     </Svg>
   );
 }

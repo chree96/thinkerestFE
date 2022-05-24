@@ -49,7 +49,7 @@ export default function ButtonWithIcon({
 
   return (
     <TouchableOpacity onPress={onPress} style={touchableStyle}>
-      <IconSvg iconName={iconName} color={iconColor} width={iconSize || 25} />
+      <IconSvg iconName={iconName} color={iconColor} width={iconSize || 28} />
     </TouchableOpacity>
   );
 }
