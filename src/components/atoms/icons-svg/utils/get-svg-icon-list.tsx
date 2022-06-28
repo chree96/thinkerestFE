@@ -3,14 +3,17 @@ import {colors} from '../../../../style';
 import {
   ArrowBack,
   Book,
+  Close,
   Cloud,
   ControlsIcon,
+  Dots,
   Gamepad,
   General,
   Hamburger,
   Headphones,
   Lens,
   LensPlus,
+  MoreTime,
   Movie,
   MovieOutline,
   People,
@@ -50,5 +53,8 @@ export const getSvgIconList = (width?: number, color?: string | symbol) => {
     music: <Headphones fill={color} width={width || 30} />,
     controls: <ControlsIcon fill={color} width={width || 30} />,
     lensPlus: <LensPlus fill={color} width={width || 30} />,
+    close: <Close fill={color} width={width || 30} />,
+    dots: <Dots fill={color} width={width || 30} />,
+    moreTime: <MoreTime fill={color} width={width || 30} />,
   };
 };

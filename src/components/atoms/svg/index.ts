@@ -20,3 +20,6 @@ export {default as Plus} from './Plus';
 export {default as Headphones} from './Headphones';
 export {default as ControlsIcon} from './ControlsIcon';
 export {default as LensPlus} from './LensPlus';
+export {default as Close} from './Close';
+export {default as Dots} from './Dots';
+export {default as MoreTime} from './MoreTime';

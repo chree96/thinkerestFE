@@ -9,7 +9,7 @@ function SpeechBubble(props: any) {
     <Svg
       height={width}
       width={width}
-      viewBox={'0 0 35 35'}
+      viewBox={'0 -8 35 35'}
       fill={color}
       {...props}>
       <Path d="M0 0h24v24H0V0z" fill="none" />

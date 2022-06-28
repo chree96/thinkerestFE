@@ -4,8 +4,7 @@ import Svg, {Path} from 'react-native-svg';
 function Cloud(props: any) {
   const width = props?.width || 64;
   const color = props?.fill || '#000';
-  // console.log('color', color);
-  // console.log('props', props);
+
   return (
     <Svg height={width} viewBox="0 0 512 512" width={width} {...props}>
       <Path
