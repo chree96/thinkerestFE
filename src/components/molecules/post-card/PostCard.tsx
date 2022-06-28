@@ -37,7 +37,7 @@ const PostCard = memo<PostCardProps>(
             <IconWithText
               svgName={'speechBubble'}
               text={''}
-              width={20}
+              width={26}
               textStyle={{color: colors.doveGrey}}
               svgColor={colors.doveGrey}
             />

@@ -5,7 +5,7 @@ import ButtonWithIcon from '../../atoms/button-with-icon';
 import {styles} from './PostCard.styles';
 
 const btnActions = [
-  {icon: 'timer', action: 'log3'},
+  {icon: 'moreTime', action: 'log3'},
   {icon: 'cloud', action: 'log2'},
   {icon: 'share', action: 'log1'},
 ];
