@@ -5,28 +5,20 @@ import {styles} from './DetailBackgroundHeader.styles';
 
 interface DetailBackgroundHeaderProps {
   onGoBack: () => void;
-  onAddToWatchlist: () => void;
   style?: any;
 }
 
 export default function DetailBackgroundHeader({
   onGoBack,
-  onAddToWatchlist,
   style,
 }: DetailBackgroundHeaderProps) {
   return (
     <View style={[styles.buttonsContainer, style]}>
       <ButtonWithIcon
-        iconName={'arrowBack'}
+        iconName={'close'}
         backgroundWithOpacity
         width={50}
         onPress={onGoBack}
-      />
-      <ButtonWithIcon
-        iconName={'timer'}
-        backgroundWithOpacity
-        width={50}
-        onPress={onAddToWatchlist}
       />
     </View>
   );

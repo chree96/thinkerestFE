@@ -3,7 +3,6 @@ import {colors, families, sizes} from '../../../style';
 
 export const styles = StyleSheet.create({
   container: {
-    paddingHorizontal: 20,
     marginTop: 24,
   },
   creditContainer: {
@@ -41,5 +40,6 @@ export const styles = StyleSheet.create({
     fontFamily: families.bold,
     color: colors.whiteSmoke,
     fontSize: sizes.cardTitle,
+    paddingBottom: 4,
   },
 });

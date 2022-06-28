@@ -1,29 +1,40 @@
-import React from 'react';
+import React, {useMemo} from 'react';
 import {Text, View} from 'react-native';
 import {styles} from './DetailRating.styles';
 import RatingBox from '../rating-box';
-import TextButton from '../../atoms/text-button';
+import HorizontalBarGraph from '../horizontal-bar-graph';
+import {ContentRating} from '../../../store/modules/contents/contents.types';
+import {getGraphData} from './utils';
 
 interface DetailRatingProps {
   onMorePress: () => void;
   rate: number;
+  ratingData: ContentRating;
+  contentColor: string;
   style?: any;
 }
 
 export default function DetailRating({
   rate,
+  ratingData,
+  contentColor,
   onMorePress,
   style,
 }: DetailRatingProps) {
+  const graphData = useMemo(() => getGraphData(ratingData), [ratingData]);
+
   return (
     <View style={[styles.container, style]}>
       <View style={styles.titleGrid}>
         <Text style={styles.titleText}>{'Rating & reviews'}</Text>
-        <TextButton text={'View'} onPress={onMorePress} />
       </View>
-      <View style={styles.rateGrid}>
-        <Text style={styles.rateText}>{rate}</Text>
-        <RatingBox rate={Math.round(rate)} />
+      <View style={styles.graphGrid}>
+        <RatingBox rate={rate} ratingData={ratingData} />
+        <HorizontalBarGraph
+          graphData={graphData?.friendsData}
+          contentColor={contentColor}
+          style={styles.barGraph}
+        />
       </View>
     </View>
   );

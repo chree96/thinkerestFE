@@ -3,8 +3,7 @@ import {colors, families, sizes} from '../../../style';
 
 export const styles = StyleSheet.create({
   container: {
-    paddingHorizontal: 20,
-    marginTop: 24,
+    paddingTop: 4,
   },
   title: {
     fontFamily: families.bold,

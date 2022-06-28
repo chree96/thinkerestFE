@@ -17,13 +17,11 @@ export const styles = StyleSheet.create({
     color: colors.whiteSmoke,
     fontSize: sizes.cardTitle,
   },
-  rateGrid: {
+  graphGrid: {
     flexDirection: 'row',
-    marginTop: 6,
+    alignItems: 'center',
   },
-  rateText: {
-    fontFamily: families.bold,
-    color: colors.whiteSmoke,
-    fontSize: sizes.giant,
+  barGraph: {
+    marginLeft: 28,
   },
 });

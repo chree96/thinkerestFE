@@ -2,10 +2,16 @@ import {StyleSheet} from 'react-native';
 import {colors, families, sizes} from '../../../style';
 
 export const styles = StyleSheet.create({
-  starRateContainer: {
-    marginLeft: 24,
-  },
   starRateText: {
+    fontFamily: families.bold,
+    color: colors.whiteSmoke,
+    fontSize: sizes.giant,
+  },
+  starRating: {
+    justifyContent: 'flex-start',
+    marginTop: 0,
+  },
+  detailText: {
     fontFamily: families.light,
     color: colors.whiteSmoke,
     fontSize: sizes.small,
