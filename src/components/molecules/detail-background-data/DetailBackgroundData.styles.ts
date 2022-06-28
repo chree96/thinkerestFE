@@ -8,10 +8,13 @@ export const styles = StyleSheet.create({
     position: 'absolute',
     bottom: 0,
     zIndex: 9,
-    paddingHorizontal: 20,
+    paddingHorizontal: 12,
     paddingBottom: 16,
     justifyContent: 'flex-end',
-    alignItems: 'center',
+  },
+  bottomContainer: {
+    flexDirection: 'row',
+    justifyContent: 'space-between',
   },
   title: {
     fontFamily: families.bold,
@@ -20,7 +23,17 @@ export const styles = StyleSheet.create({
   },
   description: {
     fontFamily: families.light,
-    fontSize: sizes.littleMedium,
+    fontSize: sizes.smallish,
     color: colors.lightGrey,
+    marginTop: 2,
+  },
+  buttonsContainer: {
+    flexDirection: 'row',
+    justifyContent: 'flex-end',
+    alignSelf: 'flex-end',
+    alignItems: 'center',
+  },
+  iconMargin: {
+    marginLeft: 4,
   },
 });
