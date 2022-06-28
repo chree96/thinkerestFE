@@ -1,8 +1,6 @@
 import {UserPost} from '../types';
 
 export const getMappedData = (post: UserPost) => {
-  console.log('post', post);
-
   const {
     starRating,
     contentImg,
