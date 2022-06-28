@@ -1,13 +1,12 @@
-import React, {memo, useCallback, useMemo, useState} from 'react';
-import {Text, View} from 'react-native';
+import React, {memo, useCallback, useEffect, useMemo, useState} from 'react';
+import {Text, View, TouchableOpacity, ScrollView} from 'react-native';
 import DetailBackgroundImage from '../../components/molecules/detail-background-image';
-import {FlatList, ScrollView} from 'react-native-gesture-handler';
 import {styles} from './ContentDetail.styles';
-import DetailShareData from '../../components/molecules/detail-share-data';
 import DetailBackgroundData from '../../components/molecules/detail-background-data';
 import DetailBackgroundHeader from '../../components/molecules/detail-background-header';
-import ContentReview, {
+import {
   ContentDetails,
+  ContentReview,
 } from '../../store/modules/contents/contents.types';
 import AnimatedLoader from 'react-native-animated-loader';
 import {colors, globalStyle} from '../../style';
@@ -19,7 +18,9 @@ import {SceneMap, TabBar, TabView} from 'react-native-tab-view';
 import {useDimensions} from 'react-native-hooks';
 import DetailCredits from '../../components/molecules/detail-credits';
 import ReviewItem from '../../components/molecules/review-item';
-import ButtonPrimary from '../../components/atoms/button-primary';
+import ContentReviewsTabBar from '../../components/molecules/content-reviews-tab-bar';
+import getContentColor from '../../utils/content/get-content-color';
+import LinearGradient from 'react-native-linear-gradient';
 
 interface ContentDetailProps {
   navigation: any;
@@ -68,35 +69,31 @@ const ContentDetail = memo<ContentDetailProps>(
       peopleShare,
       peopleRate,
       image,
+      rating,
+      contentType,
     } = contentDetail;
 
     const formattedDuration = formatDuration(runningTimeInMinutes);
     const contentImage = image?.url || 'a';
     const backgroundData = {title, genre, year, duration: formattedDuration};
-    const shareAndRateData = {
-      friendsShare,
-      peopleShare,
-      peopleRate,
-    };
 
     const [isDrawerVisible, setDrawerVisible] = useState(false);
+    const [tabViewState1, setTabViewState1] = useState<0 | 1>(0);
     const [tabViewState, setTabViewState] = useState(initialTabViewState);
+    const [isVisible, setIsVisible] = useState(false);
+
+    useEffect(() => {
+      setIsVisible(false);
+    }, []);
+
+    const toggleVisibility = useCallback(() => {
+      setIsVisible(!isVisible);
+    }, [isVisible]);
 
     const reviewsData = useMemo(
       () =>
-        tabViewState.index === 0 ? friendsContentReviews : peopleContentReviews,
-      [friendsContentReviews, peopleContentReviews, tabViewState.index],
-    );
-
-    const renderReviews = useCallback(
-      ({item}) => (
-        <ReviewItem
-          user={item?.user}
-          userImg={item?.userImg}
-          review={item?.review}
-        />
-      ),
-      [],
+        tabViewState1 === 0 ? friendsContentReviews : peopleContentReviews,
+      [friendsContentReviews, peopleContentReviews, tabViewState1],
     );
 
     const reviewKeyExtractor = useCallback(
@@ -109,18 +106,27 @@ const ContentDetail = memo<ContentDetailProps>(
       [tabViewState.index],
     );
 
+    const renderReviews = useCallback(
+      (item, index) => (
+        <ReviewItem
+          key={reviewKeyExtractor(index)}
+          user={item?.user}
+          userImg={item?.userImg}
+          review={item?.review}
+        />
+      ),
+      [reviewKeyExtractor],
+    );
+
     const Reviews = useCallback(
       () => (
-        <View onStartShouldSetResponder={(): boolean => true}>
-          <FlatList
-            data={reviewsData}
-            renderItem={renderReviews}
-            contentContainerStyle={styles.reviewContainer}
-            keyExtractor={(item, index) => reviewKeyExtractor(index)}
-          />
+        <View
+          onStartShouldSetResponder={(): boolean => true}
+          style={styles.reviewContainer}>
+          {reviewsData.map((item, index) => renderReviews(item, index))}
         </View>
       ),
-      [renderReviews, reviewKeyExtractor, reviewsData],
+      [renderReviews, reviewsData],
     );
 
     const sceneMap = useMemo(
@@ -137,7 +143,8 @@ const ContentDetail = memo<ContentDetailProps>(
         <TabBar
           {...props}
           renderLabel={({route, focused, color}) => (
-            <View style={{flex: 1, width: screenWidth / 2}}>
+            <View
+              style={[styles.tabBarTextContainer, {width: screenWidth / 2}]}>
               <Text
                 style={[
                   styles.tabBarText,
@@ -172,6 +179,42 @@ const ContentDetail = memo<ContentDetailProps>(
       [isDrawerVisible],
     );
 
+    useEffect(() => {
+      retrieveContentReviews(contentDetail?.id);
+    }, []);
+
+    const Ratings = useCallback(
+      () => (
+        <>
+          <DetailRating
+            rate={contentDetail?.peopleRate}
+            ratingData={rating}
+            contentColor={getContentColor(contentType)}
+            onMorePress={() => {
+              retrieveContentReviews(contentDetail?.id);
+              toggleDrawer();
+            }}
+          />
+
+          <ContentReviewsTabBar
+            activeIndex={tabViewState1}
+            contentColor={getContentColor(contentType)}
+            onFriendsPress={() => setTabViewState1(0)}
+            onGlobalPress={() => setTabViewState1(1)}
+          />
+        </>
+      ),
+      [
+        contentDetail?.id,
+        contentDetail?.peopleRate,
+        contentType,
+        rating,
+        retrieveContentReviews,
+        tabViewState1,
+        toggleDrawer,
+      ],
+    );
+
     return isLoading ? (
       <View style={[styles.container, globalStyle.loaderContainer]}>
         <AnimatedLoader
@@ -184,32 +227,30 @@ const ContentDetail = memo<ContentDetailProps>(
     ) : (
       <ScrollView showsVerticalScrollIndicator={false} style={styles.container}>
         <DetailBackgroundImage contentDetailImg={{uri: contentImage}}>
-          <DetailBackgroundHeader
-            onGoBack={() => navigation.goBack()}
-            onAddToWatchlist={() => navigation.navigate('Search')}
-          />
+          <DetailBackgroundHeader onGoBack={() => navigation.goBack()} />
           <DetailBackgroundData data={backgroundData} />
         </DetailBackgroundImage>
 
-        <DetailShareData data={shareAndRateData} iconColor={contentColor} />
-
-        <DetailRating
-          rate={contentDetail?.peopleRate}
-          onMorePress={() => {
-            retrieveContentReviews(contentDetail?.id);
-            toggleDrawer();
-          }}
-        />
-
-        <ButtonPrimary
-          text={'Add review'}
-          bgColor={contentColor}
-          onPress={() => console.log('added review')}
-        />
-
-        <DetailPlot plot={contentDetail?.plot} />
-        <DetailCredits credits={contentDetail?.credits} />
-
+        <TouchableOpacity
+          style={styles.infoTouchable}
+          disabled={isVisible}
+          onPress={toggleVisibility}>
+          <View
+            style={[
+              styles.infoContainer,
+              {maxHeight: isVisible ? undefined : 100},
+            ]}>
+            <Text style={styles.titleText}>{'Info'}</Text>
+            <DetailPlot plot={contentDetail?.plot} />
+            <DetailCredits credits={contentDetail?.credits} />
+            <LinearGradient
+              colors={['rgba(0, 0, 0, 0)', 'rgba(0,0,0, 1)']}
+              style={[styles.obscuredView]}
+            />
+          </View>
+        </TouchableOpacity>
+        <Ratings />
+        <Reviews />
         <SwipeableBottomDrawer
           visible={isDrawerVisible}
           contentContainerStyle={{backgroundColor: colors.codGrey}}
