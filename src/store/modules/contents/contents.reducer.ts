@@ -45,7 +45,7 @@ const initialState: ContentsState = {
     },
     runningTimeInMinutes: 0,
     title: '',
-    titleType: '',
+    contentType: ContentType.general,
     year: 0,
     genre: '',
     peopleShare: 0,
@@ -56,6 +56,16 @@ const initialState: ContentsState = {
     runTime: 0,
     releaseData: '',
     credits: [],
+    rating: {
+      people: {
+        ratings: [],
+        totalRatings: 0,
+      },
+      friends: {
+        ratings: [],
+        totalRatings: 0,
+      },
+    },
   },
   contentReviews: {
     friends: [],

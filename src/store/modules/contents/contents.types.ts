@@ -39,12 +39,6 @@ export interface ContentsState {
   contentColor: string;
 }
 
-export default interface ContentReview {
-  user: string;
-  userImg: string;
-  review: string;
-}
-
 export interface ContentByGenre {
   action: SearchContent[];
   adventure: SearchContent[];
@@ -61,7 +55,7 @@ export interface SearchContent {
   };
   runningTimeInMinutes?: number;
   title: string;
-  titleType?: string;
+  contentType: ContentType;
   year: number;
 }
 
@@ -75,10 +69,26 @@ export interface ContentDetails extends SearchContent {
   runTime: number;
   releaseData: string;
   credits: CastInfo[];
+  rating: ContentRating;
 }
 
 export interface CastInfo {
   name: string;
   image: string;
   character: string;
+}
+
+export interface ContentReview {
+  user: string;
+  userImg: string;
+  review: string;
+}
+export interface Rating {
+  ratings: number[];
+  totalRatings: number;
+}
+
+export interface ContentRating {
+  people: Rating;
+  friends: Rating;
 }
