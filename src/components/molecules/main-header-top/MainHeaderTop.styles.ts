@@ -14,7 +14,6 @@ export const styles = StyleSheet.create({
     flexDirection: 'row',
   },
   chat: {
-    marginTop: 10,
     marginRight: -6,
   },
   textLogo: {
