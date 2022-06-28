@@ -7,6 +7,7 @@ import MainHeader from '../components/organisms/main-header';
 import SearchHeader from '../components/organisms/search-header';
 import Home from '../screens/home';
 import ContentDetail from '../screens/content-detail';
+import ContentShare from '../screens/content-share';
 import Search from '../screens/search';
 import Test from '../screens/search copy/Test';
 import {Screen} from '../screens/types';
@@ -123,7 +124,9 @@ const DrawerMainStackNavigator = ({contentType, contentColor}: any) => {
       const Component = initialRouteComponent;
 
       return (
-        <Stack.Navigator initialRouteName={initialRouteName}>
+        <Stack.Navigator
+          defaultScreenOptions={{gestureEnabled: false}}
+          initialRouteName={initialRouteName}>
           <Stack.Screen
             name={initialRouteName}
             children={() => (
@@ -131,6 +134,8 @@ const DrawerMainStackNavigator = ({contentType, contentColor}: any) => {
             )}
             options={{
               headerShown: false,
+              gestureEnabled: false,
+              animationEnabled: false,
             }}
           />
           {/* <Stack.Screen
