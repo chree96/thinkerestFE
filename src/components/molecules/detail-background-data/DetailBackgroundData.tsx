@@ -1,8 +1,10 @@
 import React, {useCallback} from 'react';
 import {Text, View} from 'react-native';
 import LinearGradient from 'react-native-linear-gradient';
+import {colors} from '../../../style';
+import ButtonWithIcon from '../../atoms/button-with-icon';
 import {styles} from './DetailBackgroundData.styles';
-import {getDetailHeaderActions} from './utils';
+import {contentDetailActionsData} from './utils';
 
 interface DetailShareDataProps {
   data: {
@@ -11,6 +13,7 @@ interface DetailShareDataProps {
     year: number;
     duration: string;
   };
+  onGoBack: () => void;
   style?: any;
 }
 
@@ -22,9 +25,27 @@ export interface ContentDetailActions {
 
 export default function DetailBackgroundData({
   data,
+  onGoBack,
   style,
 }: DetailShareDataProps) {
-  const contentDetailActions = useCallback(() => getDetailHeaderActions(), []);
+  const contentDetailActions = useCallback(
+    () =>
+      contentDetailActionsData.map((item, key) => (
+        <ButtonWithIcon
+          noBackgroundColor
+          iconColor={colors.solidWhite}
+          iconName={item.icon}
+          style={styles.iconMargin}
+          width={item?.iconSize || 26}
+          iconSize={item?.iconSize || 24}
+          onPress={() =>
+            item.action === 'addContent' ? onGoBack() : console.log(item.action)
+          }
+          key={key}
+        />
+      )),
+    [onGoBack],
+  );
 
   return (
     <LinearGradient
