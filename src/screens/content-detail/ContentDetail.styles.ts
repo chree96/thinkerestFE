@@ -19,15 +19,12 @@ export const styles = StyleSheet.create({
     color: colors.whiteSmoke,
     fontSize: sizes.cardTitle,
   },
-  infoTouchable: {
-    flex: 1,
-    paddingHorizontal: 20,
-  },
   infoContainer: {
     flex: 1,
     width: '100%',
     overflow: 'hidden',
     maxHeight: 100,
+    paddingHorizontal: 20,
   },
   reviewContainer: {
     paddingBottom: 40,

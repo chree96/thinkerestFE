@@ -4,10 +4,6 @@ import DetailBackgroundImage from '../../components/molecules/detail-background-
 import {styles} from './ContentDetail.styles';
 import DetailBackgroundData from '../../components/molecules/detail-background-data';
 import DetailBackgroundHeader from '../../components/molecules/detail-background-header';
-import {
-  ContentDetails,
-  ContentReview,
-} from '../../store/modules/contents/contents.types';
 import AnimatedLoader from 'react-native-animated-loader';
 import {colors, globalStyle} from '../../style';
 import formatDuration from '../../utils/content/format-duration';
@@ -21,17 +17,7 @@ import ReviewItem from '../../components/molecules/review-item';
 import ContentReviewsTabBar from '../../components/molecules/content-reviews-tab-bar';
 import getContentColor from '../../utils/content/get-content-color';
 import LinearGradient from 'react-native-linear-gradient';
-
-interface ContentDetailProps {
-  navigation: any;
-  contentColor: string;
-  contentDetail: ContentDetails;
-  friendsContentReviews: ContentReview[];
-  peopleContentReviews: ContentReview[];
-  isLoading: boolean;
-  isLoadingReviews: boolean;
-  retrieveContentReviews: (payload: string) => void;
-}
+import {ContentDetailProps} from './types';
 
 const initialTabViewState = {
   index: 0,
@@ -228,27 +214,29 @@ const ContentDetail = memo<ContentDetailProps>(
       <ScrollView showsVerticalScrollIndicator={false} style={styles.container}>
         <DetailBackgroundImage contentDetailImg={{uri: contentImage}}>
           <DetailBackgroundHeader onGoBack={() => navigation.goBack()} />
-          <DetailBackgroundData data={backgroundData} />
+          <DetailBackgroundData
+            data={backgroundData}
+            // add correct method
+            // not navigate, but open a modal with rating!!
+            onGoBack={() => navigation.navigate('ContentShare')}
+          />
         </DetailBackgroundImage>
 
-        <TouchableOpacity
-          style={styles.infoTouchable}
-          disabled={isVisible}
-          onPress={toggleVisibility}>
-          <View
-            style={[
-              styles.infoContainer,
-              {maxHeight: isVisible ? undefined : 100},
-            ]}>
+        <View
+          style={[
+            styles.infoContainer,
+            {maxHeight: isVisible ? undefined : 100},
+          ]}>
+          <TouchableOpacity onPress={toggleVisibility}>
             <Text style={styles.titleText}>{'Info'}</Text>
             <DetailPlot plot={contentDetail?.plot} />
-            <DetailCredits credits={contentDetail?.credits} />
-            <LinearGradient
-              colors={['rgba(0, 0, 0, 0)', 'rgba(0,0,0, 1)']}
-              style={[styles.obscuredView]}
-            />
-          </View>
-        </TouchableOpacity>
+          </TouchableOpacity>
+          <DetailCredits credits={contentDetail?.credits} />
+          <LinearGradient
+            colors={['rgba(0, 0, 0, 0)', 'rgba(0,0,0, 1)']}
+            style={[styles.obscuredView]}
+          />
+        </View>
         <Ratings />
         <Reviews />
         <SwipeableBottomDrawer
