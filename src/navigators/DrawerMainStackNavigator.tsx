@@ -138,11 +138,11 @@ const DrawerMainStackNavigator = ({contentType, contentColor}: any) => {
               animationEnabled: false,
             }}
           />
-          {/* <Stack.Screen
-          name={'Test'}
-          children={() => <Test navigation={navigation} />}
-          options={{headerShown: false}}
-        /> */}
+          <Stack.Screen
+            name={'ContentShare'}
+            children={() => <ContentShare navigation={navigation} />}
+            options={{headerShown: false}}
+          />
         </Stack.Navigator>
       );
     },
